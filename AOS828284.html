@@ -12,7 +12,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif; }
         body { background: #f8faff; color: #1e293b; min-height: 100vh; }
         
-        /* ===== HEADER ===== */
         .site-header { background: #0b1a33; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; border-bottom: 2px solid #e67e22; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); position: sticky; top: 0; z-index: 200; }
         .logo-area { display: flex; align-items: center; gap: 14px; }
         .logo-area img { height: 52px; width: auto; display: block; }
@@ -32,7 +31,6 @@
         .dropdown-overlay a:hover { background: #1a3052; border-left-color: #e67e22; color: #ffffff; }
         .dropdown-divider { height: 1px; background: #1e3350; margin: 8px 16px; }
         
-        /* ===== CERTIFICATE OVERLAY ===== */
         .certificate-overlay {
             display: none;
             position: fixed;
@@ -47,9 +45,7 @@
             align-items: center;
             padding: 20px;
         }
-        .certificate-overlay.show {
-            display: flex;
-        }
+        .certificate-overlay.show { display: flex; }
         .certificate-card {
             background: #ffffff;
             border-radius: 24px;
@@ -96,9 +92,7 @@
             border-bottom: 2px solid #e67e22;
             padding-bottom: 12px;
         }
-        .certificate-card .cert-title span {
-            color: #e67e22;
-        }
+        .certificate-card .cert-title span { color: #e67e22; }
         .certificate-card .cert-image-wrapper {
             width: 100%;
             border-radius: 16px;
@@ -159,7 +153,6 @@
             background: rgba(0,0,0,0.12);
         }
         
-        /* ===== PROFILE SECTION ===== */
         .app-card { max-width: 100%; width: 100%; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 0; box-shadow: none; padding: 0; border: none; min-height: 100vh; }
         .app-card > * { padding-left: 16px; padding-right: 16px; }
         
@@ -181,7 +174,6 @@
         .emp-id-inline .emp-id-label { font-size: 8px; font-weight: 400; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.3px; text-transform: uppercase; }
         .emp-id-inline .emp-id-value { font-size: 11px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; background: rgba(255, 255, 255, 0.08); padding: 1px 8px 1px 6px; border-radius: 40px; font-family: 'Inter', monospace; }
         
-        /* ===== BALANCE BOX ===== */
         .balance-box {
             display: flex;
             align-items: center;
@@ -195,7 +187,7 @@
         }
         .balance-box .balance-icon { font-size: 13px; color: #facc15; }
         .balance-box .balance-label { font-size: 9px; font-weight: 500; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 0.3px; }
-        .balance-box .balance-amount { font-size: 14px; font-weight: 700; letter-spacing: 0.3px; min-width: 50px; text-align: center; transition: color 0.3s ease; }
+        .balance-box .balance-amount { font-size: 14px; font-weight: 700; letter-spacing: 0.3px; min-width: 50px; text-align: center; }
         .balance-box .balance-amount.green { color: #4ade80; }
         .balance-box .balance-amount.red { color: #ef4444; }
         
@@ -230,34 +222,34 @@
             opacity: 0.6;
         }
         
-        .status-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease; transform: translateX(0) scale(1); opacity: 1; }
-        
-        /* Statement Button */
         .statement-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             background: linear-gradient(135deg, #1a2a4a, #2a3a5a);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 6px 14px 6px 12px;
-            border-radius: 60px;
-            color: white;
-            font-size: 12px;
+            padding: 4px 12px 4px 10px;
+            border-radius: 30px;
+            color: #b0c4de;
+            font-size: 9px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
             font-family: 'Inter', sans-serif;
             letter-spacing: 0.2px;
             flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.15);
         }
         .statement-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
             background: linear-gradient(135deg, #2a3a5a, #3a4a6a);
+            color: #ffffff;
         }
-        .statement-btn i { color: #facc15; }
+        .statement-btn i { color: #facc15; font-size: 10px; }
+        
+        .status-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease; transform: translateX(0) scale(1); opacity: 1; }
         
         .check-status-btn {
             display: inline-flex;
@@ -311,140 +303,6 @@
         .status-datetime i { color: #7b9ee0; font-size: 10px; }
         .status-datetime .live-datetime { color: rgba(255, 255, 255, 0.7); font-weight: 500; font-size: 10px; min-width: 80px; }
         
-        /* ===== STATEMENT MODAL ===== */
-        .statement-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.75);
-            backdrop-filter: blur(8px);
-            z-index: 99999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .statement-modal.show { display: flex; }
-        .statement-modal-content {
-            background: #0f1a2e;
-            border: 2px solid #e67e22;
-            border-radius: 24px;
-            padding: 25px 30px;
-            max-width: 550px;
-            width: 100%;
-            max-height: 85vh;
-            animation: modalPop 0.4s ease;
-            color: white;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .statement-modal-content .stmt-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #e67e22;
-            padding-bottom: 12px;
-            margin-bottom: 16px;
-        }
-        .statement-modal-content .stmt-header h2 {
-            color: #facc15;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .statement-modal-content .stmt-header .stmt-close {
-            background: none;
-            border: none;
-            color: #e74c3c;
-            font-size: 28px;
-            cursor: pointer;
-            padding: 0 8px;
-            transition: 0.3s;
-        }
-        .statement-modal-content .stmt-header .stmt-close:hover { transform: rotate(90deg); }
-        
-        .statement-modal-content .stmt-summary {
-            display: flex;
-            justify-content: space-between;
-            background: rgba(255,255,255,0.05);
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.06);
-            margin-bottom: 16px;
-        }
-        .statement-modal-content .stmt-summary .summary-item {
-            text-align: center;
-        }
-        .statement-modal-content .stmt-summary .summary-item .s-label {
-            color: #94b0d0;
-            font-size: 11px;
-            font-weight: 500;
-        }
-        .statement-modal-content .stmt-summary .summary-item .s-value {
-            font-size: 18px;
-            font-weight: 700;
-            margin-top: 2px;
-        }
-        .statement-modal-content .stmt-summary .summary-item .s-value.credit { color: #4ade80; }
-        .statement-modal-content .stmt-summary .summary-item .s-value.debit { color: #ef4444; }
-        .statement-modal-content .stmt-summary .summary-item .s-value.balance { color: #facc15; }
-        
-        .statement-modal-content .stmt-list {
-            flex: 1;
-            overflow-y: auto;
-            max-height: 350px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 12px;
-            padding: 8px 0;
-        }
-        .statement-modal-content .stmt-list .stmt-item {
-            padding: 10px 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-        }
-        .statement-modal-content .stmt-list .stmt-item .stmt-desc {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .statement-modal-content .stmt-list .stmt-item .stmt-desc .stmt-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-        .statement-modal-content .stmt-list .stmt-item .stmt-desc .stmt-icon.credit {
-            background: rgba(74, 222, 128, 0.2);
-            color: #4ade80;
-        }
-        .statement-modal-content .stmt-list .stmt-item .stmt-desc .stmt-icon.debit {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-        }
-        .statement-modal-content .stmt-list .stmt-item .stmt-amount.credit { color: #4ade80; }
-        .statement-modal-content .stmt-list .stmt-item .stmt-amount.debit { color: #ef4444; }
-        .statement-modal-content .stmt-list .stmt-item .stmt-time {
-            color: #6b8aaa;
-            font-size: 11px;
-        }
-        .statement-modal-content .stmt-empty {
-            text-align: center;
-            color: #6b8aaa;
-            padding: 40px 20px;
-            font-size: 14px;
-        }
-        
-        /* ===== BANNER ===== */
         .banner-wrapper { padding: 0 12px; margin: 4px 0 2px 0; touch-action: pan-y; }
         .ads-banner { width: 100%; border-radius: 16px; overflow: hidden; position: relative; background: #0f1a2e; min-height: 80px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18); border: 1px solid rgba(255, 215, 0, 0.18); }
         .ads-slide { display: none; width: 100%; animation: fadeSlide 0.6s ease-in-out; background: #0f1a2e; }
@@ -458,7 +316,140 @@
         .sell-earn-tag span { background: #7a5d0b; color: #fef9e7; padding: 1px 12px; border-radius: 60px; font-size: 10px; font-weight: 700; letter-spacing: 0.3px; border: 1px solid #a77b1a; flex-shrink: 0; }
         .sell-earn-tag .earn-amount { background: #1b2c50; color: #facc15; padding: 1px 12px; border-radius: 60px; font-size: 10px; font-weight: 700; flex-shrink: 0; }
         
-        /* ===== FORM GRID ===== */
+        /* ===== STATEMENT SECTION ===== */
+        .statement-section {
+            padding: 0 16px;
+            margin: 12px 0 6px 0;
+        }
+        .statement-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 16px 16px 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(210, 222, 240, 0.3);
+        }
+        .statement-card .statement-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0b1a33;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e67e22;
+        }
+        .statement-card .statement-title i { color: #e67e22; }
+        .statement-table-wrap {
+            max-height: 280px;
+            overflow-y: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(210, 222, 240, 0.2);
+        }
+        .statement-table-wrap::-webkit-scrollbar {
+            width: 4px;
+        }
+        .statement-table-wrap::-webkit-scrollbar-track {
+            background: #f1f4fa;
+            border-radius: 10px;
+        }
+        .statement-table-wrap::-webkit-scrollbar-thumb {
+            background: #c0cfe0;
+            border-radius: 10px;
+        }
+        .statement-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            min-width: 380px;
+        }
+        .statement-table th {
+            background: #f1f5fc;
+            color: #1e3a6a;
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 2px solid #dce5f0;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+        .statement-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #edf2f8;
+            color: #1e293b;
+            vertical-align: middle;
+        }
+        .statement-table tr:last-child td { border-bottom: none; }
+        .statement-table .type-credit { color: #0d7a3e; font-weight: 700; }
+        .statement-table .type-credit i { color: #22c55e; margin-right: 4px; }
+        .statement-table .type-debit { color: #b91c1c; font-weight: 700; }
+        .statement-table .type-debit i { color: #ef4444; margin-right: 4px; }
+        .statement-table .utr-copy {
+            background: none;
+            border: none;
+            color: #1a6bc4;
+            cursor: pointer;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .statement-table .utr-copy:hover {
+            background: rgba(26, 107, 196, 0.08);
+        }
+        .statement-table .utr-copy.copied {
+            color: #0d7a3e;
+        }
+        .statement-table .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 1px 8px 1px 6px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
+        .statement-table .status-badge.success {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+        }
+        .statement-table .status-badge.pending {
+            background: #fef9e7;
+            color: #a77b1a;
+            border: 1px solid #f7d44a;
+        }
+        .statement-table .status-badge.failed {
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+        }
+        .statement-table .status-badge i { font-size: 7px; }
+        .statement-table .account-opened {
+            font-size: 10px;
+            color: #1a6bc4;
+            font-weight: 600;
+            background: #e3f0ff;
+            padding: 1px 10px 1px 8px;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #b8d0f0;
+        }
+        .statement-empty {
+            text-align: center;
+            padding: 20px;
+            color: #8899b0;
+            font-size: 13px;
+        }
+        .statement-empty i { font-size: 24px; display: block; margin-bottom: 8px; color: #c0cfe0; }
+        
         .form-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 4px; padding-left: 16px; padding-right: 16px; }
         .form-link-card { background: white; border-radius: 18px; padding: 12px 14px 12px 16px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: #0b1a2f; border: 1px solid rgba(210, 222, 240, 0.3); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: pointer; gap: 8px; }
         .form-link-card:hover { transform: translateY(-2px); border-color: #b3c9f0; box-shadow: 0 12px 22px -10px rgba(20, 40, 80, 0.10); background: #ffffff; }
@@ -479,7 +470,6 @@
         .open-indicator { background: #f3f7ff; width: 30px; height: 30px; border-radius: 40px; display: flex; align-items: center; justify-content: center; color: #1f3b6a; font-size: 12px; border: 1px solid rgba(180, 200, 230, 0.3); transition: all 0.2s ease; flex-shrink: 0; }
         .form-link-card:hover .open-indicator { background: #13203a; color: white; border-color: #13203a; box-shadow: 0 6px 12px -4px rgba(19, 32, 58, 0.2); transform: translateX(2px); }
         
-        /* ===== FOOTER ===== */
         .site-footer { background: #0b1a33; color: #cbd5e1; padding: 32px 40px 20px; border-top: 2px solid #e67e22; margin-top: 20px; }
         .footer-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; padding-bottom: 24px; border-bottom: 1px solid #1e3350; }
         .footer-grid .brand-info { display: flex; flex-direction: column; }
@@ -509,7 +499,6 @@
         .footer-bottom .legal a:hover { color: #e67e22; }
         .footer-bottom .flag { display: flex; align-items: center; gap: 6px; background: #1e3350; padding: 4px 14px 4px 10px; border-radius: 40px; font-weight: 500; font-size: 13px; }
         
-        /* ===== SESSION TIMER ===== */
         .session-timer {
             position: fixed;
             bottom: 20px;
@@ -533,7 +522,6 @@
         .session-timer .timer-text { color: #ffffff; font-weight: 700; }
         .session-timer .timer-warning { color: #e74c3c; }
         
-        /* ===== 404 PAGE ===== */
         .error-page {
             display: none;
             position: fixed;
@@ -555,7 +543,6 @@
         .error-page .error-btn { margin-top: 30px; padding: 14px 40px; background: linear-gradient(145deg, #e67e22, #d35400); border: none; border-radius: 60px; color: white; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 6px 24px rgba(230, 126, 34, 0.3); }
         .error-page .error-btn:hover { transform: scale(1.05); box-shadow: 0 8px 32px rgba(230, 126, 34, 0.5); }
         
-        /* ===== WITHDRAW MODAL ===== */
         .withdraw-modal {
             display: none;
             position: fixed;
@@ -599,242 +586,199 @@
         .withdraw-modal-content .modal-actions .btn-cancel:hover { background: rgba(255,255,255,0.14); }
         .withdraw-modal-content .modal-error { color: #ef4444; font-size: 12px; font-weight: 500; margin-top: 6px; display: none; }
         .withdraw-modal-content .modal-error.show { display: block; }
-
-        /* ===== ADMIN PANEL STYLES ===== */
-        .admin-toggle {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: #e67e22;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(230, 126, 34, 0.5);
-            z-index: 9998;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .admin-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(230, 126, 34, 0.7); }
-        .admin-panel {
+        
+        /* ===== STATEMENT MODAL ===== */
+        .statement-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(10px);
-            z-index: 99999;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            z-index: 10001;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
-        .admin-panel.show { display: flex; }
-        .admin-panel-content {
-            background: #0f1a2e;
-            border: 2px solid #e67e22;
+        .statement-modal.show { display: flex; }
+        .statement-modal-content {
+            background: #ffffff;
             border-radius: 24px;
-            padding: 30px;
-            max-width: 500px;
+            padding: 25px 30px 20px;
+            max-width: 750px;
             width: 100%;
             max-height: 90vh;
-            overflow-y: auto;
-            animation: modalPop 0.4s ease;
-            color: white;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+            animation: modalPop 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
-        .admin-panel-content h2 {
-            color: #e67e22;
-            border-bottom: 2px solid #e67e22;
+        .statement-modal-content .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding-bottom: 12px;
-            margin-bottom: 20px;
+            border-bottom: 2px solid #e67e22;
+            margin-bottom: 16px;
+        }
+        .statement-modal-content .modal-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0b1a33;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .admin-panel-content .admin-close {
-            float: right;
+        .statement-modal-content .modal-header h3 i { color: #e67e22; }
+        .statement-modal-content .modal-close {
             background: none;
             border: none;
-            color: #e74c3c;
             font-size: 28px;
-            cursor: pointer;
-            padding: 0 8px;
-        }
-        .admin-panel-content .admin-close:hover { transform: rotate(90deg); }
-        .admin-panel-content .form-group { margin-bottom: 16px; }
-        .admin-panel-content label {
-            display: block;
-            color: #94b0d0;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .admin-panel-content input, 
-        .admin-panel-content select {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            font-size: 16px;
-            outline: none;
-            transition: 0.3s;
-            font-family: 'Inter', sans-serif;
-        }
-        .admin-panel-content input:focus,
-        .admin-panel-content select:focus {
-            border-color: #e67e22;
-            background: rgba(255,255,255,0.1);
-        }
-        .admin-panel-content .admin-btn {
-            padding: 12px 24px;
-            border-radius: 60px;
-            border: none;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-right: 10px;
-            font-family: 'Inter', sans-serif;
-        }
-        .admin-panel-content .admin-btn.add {
-            background: linear-gradient(145deg, #4ade80, #22c55e);
-            color: #0a0a0a;
-        }
-        .admin-panel-content .admin-btn.sub {
-            background: linear-gradient(145deg, #ef4444, #dc2626);
-            color: white;
-        }
-        .admin-panel-content .admin-btn:hover { transform: scale(1.04); }
-        .admin-panel-content .admin-btn:active { transform: scale(0.95); }
-        .admin-panel-content .current-balance {
-            background: rgba(255,255,255,0.05);
-            padding: 14px 18px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.06);
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .admin-panel-content .current-balance .label {
-            color: #94b0d0;
-            font-weight: 500;
-        }
-        .admin-panel-content .current-balance .value {
-            color: #4ade80;
-            font-size: 22px;
-            font-weight: 800;
-        }
-        .admin-panel-content .transaction-log {
-            margin-top: 16px;
-            max-height: 200px;
-            overflow-y: auto;
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            padding: 10px;
-        }
-        .admin-panel-content .transaction-log .log-item {
-            padding: 8px 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-size: 13px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .admin-panel-content .transaction-log .log-item .log-amount.add { color: #4ade80; }
-        .admin-panel-content .transaction-log .log-item .log-amount.sub { color: #ef4444; }
-        .admin-panel-content .transaction-log .log-item .log-time {
             color: #6b8aaa;
-            font-size: 11px;
-        }
-        .admin-password-input {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 99998;
-            display: none;
-            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
-            padding: 20px;
+            justify-content: center;
         }
-        .admin-password-input.show { display: flex; }
-        .admin-password-input .password-box {
-            background: #0f1a2e;
-            border: 2px solid #e67e22;
-            border-radius: 24px;
-            padding: 30px;
-            max-width: 400px;
+        .statement-modal-content .modal-close:hover {
+            background: rgba(0,0,0,0.06);
+            color: #e74c3c;
+            transform: rotate(90deg);
+        }
+        .statement-modal-content .statement-table-wrap {
+            max-height: 55vh;
+            overflow-y: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(210, 222, 240, 0.2);
+        }
+        .statement-modal-content .statement-table-wrap::-webkit-scrollbar {
+            width: 4px;
+        }
+        .statement-modal-content .statement-table-wrap::-webkit-scrollbar-track {
+            background: #f1f4fa;
+            border-radius: 10px;
+        }
+        .statement-modal-content .statement-table-wrap::-webkit-scrollbar-thumb {
+            background: #c0cfe0;
+            border-radius: 10px;
+        }
+        .statement-modal-content .statement-table {
             width: 100%;
-            text-align: center;
-            position: relative;
+            border-collapse: collapse;
+            font-size: 12px;
+            min-width: 380px;
         }
-        .admin-password-input .password-box .pass-close {
-            position: absolute;
-            top: 10px;
-            right: 14px;
+        .statement-modal-content .statement-table th {
+            background: #f1f5fc;
+            color: #1e3a6a;
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 2px solid #dce5f0;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+        .statement-modal-content .statement-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #edf2f8;
+            color: #1e293b;
+            vertical-align: middle;
+        }
+        .statement-modal-content .statement-table tr:last-child td { border-bottom: none; }
+        .statement-modal-content .statement-table .type-credit { color: #0d7a3e; font-weight: 700; }
+        .statement-modal-content .statement-table .type-credit i { color: #22c55e; margin-right: 4px; }
+        .statement-modal-content .statement-table .type-debit { color: #b91c1c; font-weight: 700; }
+        .statement-modal-content .statement-table .type-debit i { color: #ef4444; margin-right: 4px; }
+        .statement-modal-content .statement-table .utr-copy {
             background: none;
             border: none;
-            color: #e74c3c;
-            font-size: 28px;
+            color: #1a6bc4;
             cursor: pointer;
-            padding: 0 8px;
-            transition: 0.3s;
-        }
-        .admin-password-input .password-box .pass-close:hover { transform: rotate(90deg); }
-        .admin-password-input .password-box h3 {
-            color: white;
-            margin-bottom: 16px;
-            margin-top: 4px;
-        }
-        .admin-password-input .password-box input {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            font-size: 18px;
-            outline: none;
-            text-align: center;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: 0.2s;
             font-family: 'Inter', sans-serif;
         }
-        .admin-password-input .password-box input:focus {
-            border-color: #e67e22;
+        .statement-modal-content .statement-table .utr-copy:hover {
+            background: rgba(26, 107, 196, 0.08);
         }
-        .admin-password-input .password-box .password-error {
-            color: #ef4444;
-            font-size: 13px;
-            margin-top: 8px;
-            display: none;
+        .statement-modal-content .statement-table .utr-copy.copied {
+            color: #0d7a3e;
         }
-        .admin-password-input .password-box .password-error.show { display: block; }
-        .admin-password-input .password-box .pass-btn {
-            margin-top: 16px;
-            padding: 12px 40px;
-            border-radius: 60px;
-            background: linear-gradient(145deg, #e67e22, #d35400);
-            border: none;
-            color: white;
+        .statement-modal-content .statement-table .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 9px;
             font-weight: 700;
-            font-size: 16px;
+            padding: 1px 8px 1px 6px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
+        .statement-modal-content .statement-table .status-badge.success {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+        }
+        .statement-modal-content .statement-table .status-badge.pending {
+            background: #fef9e7;
+            color: #a77b1a;
+            border: 1px solid #f7d44a;
+        }
+        .statement-modal-content .statement-table .status-badge.failed {
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+        }
+        .statement-modal-content .statement-table .status-badge i { font-size: 7px; }
+        .statement-modal-content .statement-table .account-opened {
+            font-size: 10px;
+            color: #1a6bc4;
+            font-weight: 600;
+            background: #e3f0ff;
+            padding: 1px 10px 1px 8px;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #b8d0f0;
+        }
+        .statement-modal-content .modal-footer {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #edf2f8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: #8899b0;
+        }
+        .statement-modal-content .modal-footer .close-btn {
+            padding: 8px 24px;
+            border-radius: 60px;
+            background: #0b1a33;
+            color: white;
+            border: none;
+            font-weight: 600;
+            font-size: 13px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s;
             font-family: 'Inter', sans-serif;
         }
-        .admin-password-input .password-box .pass-btn:hover { transform: scale(1.05); }
+        .statement-modal-content .modal-footer .close-btn:hover {
+            background: #1a3052;
+        }
         
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 860px) {
             .site-header { padding: 12px 20px; flex-wrap: wrap; gap: 10px; }
             .logo-area { flex: 1; }
@@ -842,6 +786,10 @@
             .dropdown-overlay { right: 0; left: auto; min-width: 200px; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
             .certificate-card { padding: 20px 16px; }
+            .statement-modal-content { padding: 20px; max-width: 95%; }
+            .statement-modal-content .statement-table { font-size: 11px; min-width: 300px; }
+            .statement-modal-content .statement-table th,
+            .statement-modal-content .statement-table td { padding: 6px 8px; }
         }
         @media (max-width: 550px) {
             .site-header { padding: 10px 16px; }
@@ -863,8 +811,6 @@
             .emp-id-inline { padding: 2px 10px 2px 6px; }
             .emp-id-inline .emp-id-value { font-size: 10px; }
             .emp-id-inline .emp-id-label { font-size: 7px; }
-            .statement-btn { font-size: 10px; padding: 4px 10px 4px 8px; }
-            .statement-btn i { font-size: 10px; }
             .check-status-btn { font-size: 10px; padding: 4px 10px 4px 8px; }
             .check-status-btn i { font-size: 10px; }
             .status-datetime { font-size: 8px; padding: 2px 6px 2px 5px; }
@@ -875,12 +821,16 @@
             .balance-box { padding: 3px 10px 3px 8px; }
             .balance-box .balance-amount { font-size: 12px; min-width: 40px; }
             .withdraw-btn { font-size: 9px; padding: 3px 10px 3px 8px; }
+            .statement-btn { font-size: 8px; padding: 3px 8px 3px 6px; }
+            .statement-btn i { font-size: 8px; }
             .certificate-card .cert-actions button { font-size: 12px; padding: 10px 18px; }
             .certificate-card .cert-title { font-size: 17px; }
-            .admin-toggle { width: 45px; height: 45px; font-size: 20px; bottom: 70px; right: 15px; }
-            .admin-panel-content { padding: 20px; }
-            .statement-modal-content { padding: 20px; }
-            .admin-password-input .password-box { padding: 20px; }
+            .statement-modal-content { padding: 16px; }
+            .statement-modal-content .statement-table { font-size: 10px; min-width: 260px; }
+            .statement-modal-content .statement-table th,
+            .statement-modal-content .statement-table td { padding: 5px 6px; }
+            .statement-modal-content .modal-header h3 { font-size: 15px; }
+            .statement-modal-content .modal-footer { font-size: 10px; flex-wrap: wrap; gap: 8px; }
         }
         @media (max-width: 380px) {
             .profile-section { padding: 6px 10px; margin: 10px 6px 5px 6px; border-radius: 12px; }
@@ -891,8 +841,6 @@
             .emp-id-inline { padding: 2px 8px 2px 5px; }
             .emp-id-inline .emp-id-value { font-size: 9px; }
             .emp-id-inline .emp-id-label { font-size: 6px; }
-            .statement-btn { font-size: 9px; padding: 3px 8px 3px 6px; }
-            .statement-btn i { font-size: 9px; }
             .check-status-btn { font-size: 9px; padding: 3px 8px 3px 6px; }
             .check-status-btn i { font-size: 9px; }
             .status-datetime { font-size: 7px; padding: 2px 5px 2px 4px; }
@@ -904,10 +852,13 @@
             .footer-brand-top h3 { font-size: 17px; }
             .balance-box .balance-amount { font-size: 10px; min-width: 30px; }
             .withdraw-btn { font-size: 8px; padding: 2px 8px 2px 6px; }
+            .statement-btn { font-size: 7px; padding: 2px 6px 2px 5px; }
+            .statement-btn i { font-size: 7px; }
             .certificate-card { padding: 16px 12px; }
             .certificate-card .cert-actions button { font-size: 10px; padding: 8px 14px; }
-            .admin-password-input .password-box { padding: 16px; }
-            .admin-password-input .password-box .pass-close { top: 6px; right: 10px; font-size: 22px; }
+            .statement-modal-content .statement-table { font-size: 9px; min-width: 220px; }
+            .statement-modal-content .statement-table th,
+            .statement-modal-content .statement-table td { padding: 4px 4px; }
         }
     </style>
 </head>
@@ -957,12 +908,12 @@
             <div class="modal-title">
                 <i class="fas fa-wallet"></i> Withdraw Balance
             </div>
-            <div class="modal-sub">Enter amount to withdraw from your available balance</div>
+            <div class="modal-sub">Enter amount to withdraw (Min: ₹100, Max: ₹1000)</div>
             <div class="modal-amount">
                 <span class="label">Available Balance</span>
                 <span class="value" id="modalBalanceDisplay">₹0</span>
             </div>
-            <input type="number" class="modal-input" id="withdrawAmount" placeholder="Enter amount (₹)" min="1" step="1">
+            <input type="number" class="modal-input" id="withdrawAmount" placeholder="Enter amount (₹100 - ₹1000)" min="100" max="1000" step="1">
             <div class="modal-error" id="withdrawError">Insufficient balance or invalid amount!</div>
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeWithdrawModal()">Cancel</button>
@@ -974,26 +925,102 @@
     <!-- ===== STATEMENT MODAL ===== -->
     <div class="statement-modal" id="statementModal">
         <div class="statement-modal-content">
-            <div class="stmt-header">
-                <h2><i class="fas fa-file-invoice"></i> Account Statement</h2>
-                <button class="stmt-close" onclick="closeStatement()"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h3><i class="fas fa-receipt"></i> Account Statement</h3>
+                <button class="modal-close" onclick="closeStatementModal()">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            <div class="stmt-summary" id="stmtSummary">
-                <div class="summary-item">
-                    <div class="s-label">Total Credit</div>
-                    <div class="s-value credit" id="stmtTotalCredit">₹0</div>
-                </div>
-                <div class="summary-item">
-                    <div class="s-label">Total Debit</div>
-                    <div class="s-value debit" id="stmtTotalDebit">₹0</div>
-                </div>
-                <div class="summary-item">
-                    <div class="s-label">Current Balance</div>
-                    <div class="s-value balance" id="stmtCurrentBalance">₹0</div>
-                </div>
+            <div class="statement-table-wrap">
+                <table class="statement-table" id="statementTableModal">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>UTR / Details</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="statementBodyModal">
+                        <!-- 5 Credit entries (no UTR, shows "Account Opened") -->
+                        <tr>
+                            <td>02 Sep 2026 10:15</td>
+                            <td class="type-credit"><i class="fas fa-arrow-down"></i> Credit</td>
+                            <td>+₹500</td>
+                            <td><span class="account-opened"><i class="fas fa-unlock-alt"></i> Account Opened</span></td>
+                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
+                        </tr>
+                        <tr>
+                            <td>03 Sep 2026 14:30</td>
+                            <td class="type-credit"><i class="fas fa-arrow-down"></i> Credit</td>
+                            <td>+₹1,200</td>
+                            <td><span class="account-opened"><i class="fas fa-unlock-alt"></i> Account Opened</span></td>
+                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
+                        </tr>
+                        <tr>
+                            <td>04 Sep 2026 09:45</td>
+                            <td class="type-credit"><i class="fas fa-arrow-down"></i> Credit</td>
+                            <td>+₹750</td>
+                            <td><span class="account-opened"><i class="fas fa-unlock-alt"></i> Account Opened</span></td>
+                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
+                        </tr>
+                        <tr>
+                            <td>05 Sep 2026 16:20</td>
+                            <td class="type-credit"><i class="fas fa-arrow-down"></i> Credit</td>
+                            <td>+₹2,000</td>
+                            <td><span class="account-opened"><i class="fas fa-unlock-alt"></i> Account Opened</span></td>
+                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
+                        </tr>
+                        <tr>
+                            <td>06 Sep 2026 11:00</td>
+                            <td class="type-credit"><i class="fas fa-arrow-down"></i> Credit</td>
+                            <td>+₹3,500</td>
+                            <td><span class="account-opened"><i class="fas fa-unlock-alt"></i> Account Opened</span></td>
+                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
+                        </tr>
+                        <!-- 5 Withdrawal entries (with UTR, copyable) -->
+                        <tr>
+                            <td>07 Sep 2026 12:10</td>
+                            <td class="type-debit"><i class="fas fa-arrow-up"></i> Withdraw</td>
+                            <td>-₹500</td>
+                            <td><button class="utr-copy" onclick="copyUTR(this, 'WDR260907001')">📋 WDR260907001</button></td>
+                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
+                        </tr>
+                        <tr>
+                            <td>08 Sep 2026 08:30</td>
+                            <td class="type-debit"><i class="fas fa-arrow-up"></i> Withdraw</td>
+                            <td>-₹1,000</td>
+                            <td><button class="utr-copy" onclick="copyUTR(this, 'WDR260908002')">📋 WDR260908002</button></td>
+                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
+                        </tr>
+                        <tr>
+                            <td>09 Sep 2026 15:45</td>
+                            <td class="type-debit"><i class="fas fa-arrow-up"></i> Withdraw</td>
+                            <td>-₹250</td>
+                            <td><button class="utr-copy" onclick="copyUTR(this, 'WDR260909003')">📋 WDR260909003</button></td>
+                            <td><span class="status-badge pending"><i class="fas fa-clock"></i> Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>10 Sep 2026 10:00</td>
+                            <td class="type-debit"><i class="fas fa-arrow-up"></i> Withdraw</td>
+                            <td>-₹750</td>
+                            <td><button class="utr-copy" onclick="copyUTR(this, 'WDR260910004')">📋 WDR260910004</button></td>
+                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
+                        </tr>
+                        <tr>
+                            <td>11 Sep 2026 13:20</td>
+                            <td class="type-debit"><i class="fas fa-arrow-up"></i> Withdraw</td>
+                            <td>-₹1,500</td>
+                            <td><button class="utr-copy" onclick="copyUTR(this, 'WDR260911005')">📋 WDR260911005</button></td>
+                            <td><span class="status-badge failed"><i class="fas fa-times-circle"></i> Failed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="stmt-list" id="stmtList">
-                <div class="stmt-empty">No transactions found</div>
+            <div class="modal-footer">
+                <span><i class="fas fa-info-circle"></i> Click UTR to copy</span>
+                <button class="close-btn" onclick="closeStatementModal()">Close</button>
             </div>
         </div>
     </div>
@@ -1049,20 +1076,18 @@
                     </div>
                 </div>
                 <div class="status-right">
-                    <!-- Balance Box -->
+                    <!-- Balance Box - Read from HTML (manual edit) -->
                     <div class="balance-box" id="balanceBox">
                         <i class="fas fa-wallet balance-icon"></i>
                         <span class="balance-label">Balance</span>
-                        <span class="balance-amount" id="balanceAmount">₹0</span>
-                        <button class="withdraw-btn disabled" id="withdrawBtn" onclick="openWithdrawModal()">
+                        <span class="balance-amount green" id="balanceAmount">₹500</span>
+                        <button class="withdraw-btn" id="withdrawBtn" onclick="openWithdrawModal()">
                             <i class="fas fa-arrow-up"></i> Withdraw
                         </button>
+                        <button class="statement-btn" onclick="openStatementModal()">
+                            <i class="fas fa-receipt"></i> Statement
+                        </button>
                     </div>
-                    
-                    <!-- Statement Button -->
-                    <button class="statement-btn" onclick="openStatement()">
-                        <i class="fas fa-file-invoice"></i> Statement
-                    </button>
                     
                     <a href="https://whatsapp.com/channel/0029Vb8rI6tDeONA9FRlyb40" class="check-status-btn" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-clipboard-list"></i>
@@ -1240,78 +1265,6 @@
         <span class="timer-text" id="timerDisplay">5:00</span>
     </div>
 
-    <!-- ===== ADMIN PANEL ===== -->
-    <!-- Admin Toggle Button -->
-    <button class="admin-toggle" id="adminToggle" title="Admin Panel">
-        <i class="fas fa-crown"></i>
-    </button>
-
-    <!-- Password Input with Close Button -->
-    <div class="admin-password-input" id="adminPasswordInput">
-        <div class="password-box">
-            <button class="pass-close" onclick="closeAdminPassword()">
-                <i class="fas fa-times"></i>
-            </button>
-            <h3>🔐 Admin Access</h3>
-            <p style="color:#94b0d0; font-size:14px; margin-bottom:16px;">Enter admin password to continue</p>
-            <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="off">
-            <div class="password-error" id="passwordError">❌ Incorrect password!</div>
-            <button class="pass-btn" onclick="verifyAdmin()">
-                <i class="fas fa-unlock"></i> Unlock
-            </button>
-        </div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-panel-content">
-            <button class="admin-close" onclick="closeAdminPanel()"><i class="fas fa-times"></i></button>
-            <h2><i class="fas fa-crown" style="color:#facc15;"></i> Admin Panel</h2>
-            
-            <div class="current-balance">
-                <span class="label">💰 Current Balance</span>
-                <span class="value" id="adminBalanceDisplay">₹0</span>
-            </div>
-
-            <div class="form-group">
-                <label for="adminEmpId">👤 Agent (Emp ID)</label>
-                <input type="text" id="adminEmpId" placeholder="e.g. AOS828284" value="AOS828284">
-            </div>
-
-            <div class="form-group">
-                <label for="adminAmount">💵 Amount (₹)</label>
-                <input type="number" id="adminAmount" placeholder="Enter amount" min="1">
-            </div>
-
-            <div class="form-group">
-                <label for="adminAction">📌 Action</label>
-                <select id="adminAction">
-                    <option value="add">➕ Add Balance</option>
-                    <option value="sub">➖ Deduct Balance</option>
-                </select>
-            </div>
-
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
-                <button class="admin-btn add" onclick="processAdminAction()">
-                    <i class="fas fa-check"></i> Execute
-                </button>
-                <button class="admin-btn" style="background:rgba(255,255,255,0.08); color:#b0c4de;" onclick="closeAdminPanel()">
-                    <i class="fas fa-times"></i> Close
-                </button>
-            </div>
-
-            <!-- Transaction Log -->
-            <div style="margin-top:16px;">
-                <h4 style="color:#94b0d0; font-size:14px; margin-bottom:8px;">📋 Transaction History</h4>
-                <div class="transaction-log" id="transactionLog">
-                    <div style="color:#6b8aaa; text-align:center; padding:20px; font-size:13px;">
-                        No transactions yet
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
         <div class="footer-grid">
@@ -1467,33 +1420,32 @@
     // =============================================
     // 🔐 CLOSE FUNCTIONS & ESC KEY
     // =============================================
-    function closeAdminPassword() {
-        document.getElementById('adminPasswordInput').classList.remove('show');
-        document.getElementById('adminPassword').value = '';
-        document.getElementById('passwordError').classList.remove('show');
-    }
-
-    function closeAdminPanel() {
-        document.getElementById('adminPanel').classList.remove('show');
-    }
-
-    function closeStatement() {
-        document.getElementById('statementModal').classList.remove('show');
-    }
-
     function closeWithdrawModal() {
         document.getElementById('withdrawModal').classList.remove('show');
         document.getElementById('withdrawError').classList.remove('show');
     }
 
+    function openStatementModal() {
+        document.getElementById('statementModal').classList.add('show');
+    }
+
+    function closeStatementModal() {
+        document.getElementById('statementModal').classList.remove('show');
+    }
+
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            closeAdminPassword();
-            closeAdminPanel();
-            closeStatement();
             closeCertificate();
             closeWithdrawModal();
+            closeStatementModal();
             document.getElementById('dropdownOverlay').classList.remove('open');
+        }
+    });
+
+    // Click outside to close statement modal
+    document.getElementById('statementModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeStatementModal();
         }
     });
 
@@ -1567,442 +1519,167 @@
     })();
 
     // =============================================
-    // 💰 BALANCE SYSTEM (Cross-Device Sync)
+    // 💰 BALANCE - Read directly from HTML (manual edit)
     // =============================================
-    (function() {
-        const BALANCE_KEY = 'agent_balance_AOS828284';
-        const SYNC_KEY = 'agent_balance_sync_AOS828284';
-        
-        function loadBalance() {
-            const stored = localStorage.getItem(BALANCE_KEY);
-            if (stored !== null) {
-                return parseFloat(stored) || 0;
-            }
-            const defaultBalance = 500;
-            localStorage.setItem(BALANCE_KEY, defaultBalance.toString());
-            return defaultBalance;
-        }
-        
-        function saveBalance(val) {
-            localStorage.setItem(BALANCE_KEY, val.toString());
-            localStorage.setItem(SYNC_KEY, Date.now().toString());
-        }
-        
-        let balance = loadBalance();
-        
-        const balanceAmount = document.getElementById('balanceAmount');
-        const withdrawBtn = document.getElementById('withdrawBtn');
-        const modalBalanceDisplay = document.getElementById('modalBalanceDisplay');
-        const withdrawAmountInput = document.getElementById('withdrawAmount');
-        const withdrawError = document.getElementById('withdrawError');
-        
-        function sendWithdrawalEmail(amount, remainingBalance) {
-            const agentEmail = 'arifgoldar602@gmail.com';
-            const agentName = 'Maruf Goldar';
-            const empId = 'AOS828284';
-            
-            const mailtoLink = `mailto:${agentEmail}?subject=Withdrawal%20Request%20-%20${empId}&body=Dear%20${agentName}%2C%0A%0AYour%20withdrawal%20request%20has%20been%20processed%20successfully.%0A%0A📌%20Withdrawal%20Amount%3A%20₹${amount.toLocaleString('en-IN')}%0A💰%20Remaining%20Balance%3A%20₹${remainingBalance.toLocaleString('en-IN')}%0A🆔%20Emp%20ID%3A%20${empId}%0A📅%20Date%3A%20${new Date().toLocaleString('en-IN')}%0A%0AThank%20you%20for%20using%20Arif%20Online%20Services.%0A%0A-%20Admin%20Team`;
-            
-            window.open(mailtoLink, '_blank');
-            console.log(`📧 Withdrawal email sent to ${agentEmail} for ₹${amount}`);
-        }
-        
-        function updateBalanceUI() {
-            const formatted = '₹' + balance.toLocaleString('en-IN');
-            balanceAmount.textContent = formatted;
-            
-            if (balance > 0) {
-                balanceAmount.className = 'balance-amount green';
-                withdrawBtn.className = 'withdraw-btn';
-                withdrawBtn.disabled = false;
-                withdrawBtn.style.pointerEvents = 'auto';
-                withdrawBtn.style.opacity = '1';
-                withdrawBtn.style.cursor = 'pointer';
-            } else {
-                balanceAmount.className = 'balance-amount red';
-                withdrawBtn.className = 'withdraw-btn disabled';
-                withdrawBtn.disabled = true;
-                withdrawBtn.style.pointerEvents = 'none';
-                withdrawBtn.style.opacity = '0.6';
-                withdrawBtn.style.cursor = 'not-allowed';
-            }
-            
-            if (modalBalanceDisplay) {
-                modalBalanceDisplay.textContent = '₹' + balance.toLocaleString('en-IN');
-            }
-        }
-        
-        window.openWithdrawModal = function() {
-            if (balance <= 0) return;
-            document.getElementById('withdrawModal').classList.add('show');
-            withdrawAmountInput.value = '';
-            withdrawError.classList.remove('show');
-            if (modalBalanceDisplay) {
-                modalBalanceDisplay.textContent = '₹' + balance.toLocaleString('en-IN');
-            }
-            setTimeout(() => withdrawAmountInput.focus(), 200);
-        };
-        
-        window.processWithdraw = function() {
-            const amount = parseInt(withdrawAmountInput.value);
-            
-            if (isNaN(amount) || amount <= 0) {
-                withdrawError.textContent = 'Please enter a valid amount!';
-                withdrawError.classList.add('show');
-                return;
-            }
-            
-            if (amount > balance) {
-                withdrawError.textContent = 'Insufficient balance! You have ₹' + balance.toLocaleString('en-IN');
-                withdrawError.classList.add('show');
-                return;
-            }
-            
-            const remaining = balance - amount;
-            balance = remaining;
-            saveBalance(balance);
-            updateBalanceUI();
-            updateAdminBalanceDisplay();
-            
-            // Add to transaction log (debit)
-            addTransaction('Withdrawal', amount, 'debit', 'AOS828284');
-            
-            sendWithdrawalEmail(amount, remaining);
-            
-            alert('✅ Withdrawal successful!\n₹' + amount.toLocaleString('en-IN') + ' has been deducted.\nRemaining balance: ₹' + balance.toLocaleString('en-IN') + '\n\n📧 A confirmation email has been sent.');
-            
-            closeWithdrawModal();
-        };
-        
-        window.updateAgentBalance = function(newBalance) {
-            balance = newBalance;
-            saveBalance(balance);
-            updateBalanceUI();
-            updateAdminBalanceDisplay();
-            console.log('💰 Balance updated to: ₹' + balance);
-            return balance;
-        };
-        
-        window.__getBalance = function() { return balance; };
-        
-        // Close withdraw modal on outside click
-        document.getElementById('withdrawModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeWithdrawModal();
-            }
-        });
-        
-        withdrawAmountInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                processWithdraw();
-            }
-        });
-        
-        // Sync across tabs/windows
-        window.addEventListener('storage', function(e) {
-            if (e.key === BALANCE_KEY) {
-                const newBalance = parseFloat(e.newValue) || 0;
-                if (newBalance !== balance) {
-                    balance = newBalance;
-                    updateBalanceUI();
-                    updateAdminBalanceDisplay();
-                    console.log('🔄 Balance synced from another tab: ₹' + balance);
-                }
-            }
-            if (e.key === SYNC_KEY) {
-                const fresh = loadBalance();
-                if (fresh !== balance) {
-                    balance = fresh;
-                    updateBalanceUI();
-                    updateAdminBalanceDisplay();
-                    console.log('🔄 Balance refreshed via sync: ₹' + balance);
-                }
-            }
-        });
-        
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden) {
-                const fresh = loadBalance();
-                if (fresh !== balance) {
-                    balance = fresh;
-                    updateBalanceUI();
-                    updateAdminBalanceDisplay();
-                    console.log('🔄 Balance refreshed on visibility change: ₹' + balance);
-                }
-            }
-        });
-        
-        updateBalanceUI();
-        
-        console.log('💰 Balance system initialized. Current balance: ₹' + balance);
-    })();
+    const balanceAmountEl = document.getElementById('balanceAmount');
+    const modalBalanceDisplay = document.getElementById('modalBalanceDisplay');
+    const withdrawAmountInput = document.getElementById('withdrawAmount');
+    const withdrawError = document.getElementById('withdrawError');
 
-    // =============================================
-    // 📋 STATEMENT SYSTEM
-    // =============================================
-    const TRANSACTION_KEY = 'agent_transactions_AOS828284';
-    let transactions = [];
-
-    function loadTransactions() {
-        const stored = localStorage.getItem(TRANSACTION_KEY);
-        if (stored) {
-            try {
-                transactions = JSON.parse(stored);
-            } catch(e) {
-                transactions = [];
-            }
-        }
-        return transactions;
+    // Get balance directly from the HTML content (manual edit)
+    function getCurrentBalance() {
+        const text = balanceAmountEl.textContent.replace('₹', '').replace(/,/g, '').trim();
+        const val = parseInt(text);
+        return isNaN(val) ? 0 : val;
     }
 
-    function saveTransactions() {
-        localStorage.setItem(TRANSACTION_KEY, JSON.stringify(transactions));
+    function updateModalBalance() {
+        const balance = getCurrentBalance();
+        modalBalanceDisplay.textContent = '₹' + balance.toLocaleString('en-IN');
     }
 
-    function addTransaction(description, amount, type, agentId) {
+    window.openWithdrawModal = function() {
+        const balance = getCurrentBalance();
+        if (balance <= 0) {
+            alert('⚠️ Your balance is ₹0. Please add funds first.');
+            return;
+        }
+        document.getElementById('withdrawModal').classList.add('show');
+        withdrawAmountInput.value = '';
+        withdrawError.classList.remove('show');
+        updateModalBalance();
+        withdrawAmountInput.min = 100;
+        withdrawAmountInput.max = Math.min(balance, 1000);
+        withdrawAmountInput.placeholder = 'Enter amount (₹100 - ₹' + Math.min(balance, 1000) + ')';
+        setTimeout(() => withdrawAmountInput.focus(), 200);
+    };
+
+    window.processWithdraw = function() {
+        const balance = getCurrentBalance();
+        const amount = parseInt(withdrawAmountInput.value);
+        const maxAllowed = Math.min(balance, 1000);
+        
+        if (isNaN(amount) || amount < 100) {
+            withdrawError.textContent = 'Minimum withdrawal amount is ₹100!';
+            withdrawError.classList.add('show');
+            return;
+        }
+        
+        if (amount > 1000) {
+            withdrawError.textContent = 'Maximum withdrawal amount is ₹1000!';
+            withdrawError.classList.add('show');
+            return;
+        }
+        
+        if (amount > balance) {
+            withdrawError.textContent = 'Insufficient balance! You have ₹' + balance.toLocaleString('en-IN');
+            withdrawError.classList.add('show');
+            return;
+        }
+        
+        // Balance stays unchanged (manual edit only)
+        const utr = 'WDR' + Date.now().toString().slice(-8) + Math.floor(Math.random()*1000).toString().padStart(3, '0');
+        sendWithdrawalEmail(amount, balance);
+        
+        alert('✅ Withdrawal successful!\n\n' +
+              '💰 Amount: ₹' + amount.toLocaleString('en-IN') + '\n' +
+              '📊 Remaining Balance: ₹' + balance.toLocaleString('en-IN') + ' (unchanged)\n' +
+              '🆔 Emp ID: AOS828284\n' +
+              '📅 Date & Time: ' + new Date().toLocaleString('en-IN') + '\n\n' +
+              '📋 UTR: ' + utr + '\n\n' +
+              '💡 Note: Balance is manually managed. Please edit the HTML to update.');
+        
+        closeWithdrawModal();
+    };
+    
+    function sendWithdrawalEmail(amount, remainingBalance) {
+        const agentEmail = 'arifgoldar602@gmail.com';
+        const agentName = 'Maruf Goldar';
+        const agentEmpId = 'AOS828284';
         const now = new Date();
-        const timeStr = now.toLocaleString('en-IN', {
+        const dateTimeStr = now.toLocaleString('en-IN', {
             day: '2-digit',
             month: 'short',
             year: 'numeric',
             hour: '2-digit',
-            minute: '2-digit'
-        });
-        transactions.push({
-            id: Date.now(),
-            description: description,
-            amount: amount,
-            type: type,
-            agent: agentId || 'AOS828284',
-            time: timeStr,
-            timestamp: now.getTime()
-        });
-        saveTransactions();
-        return transactions;
-    }
-
-    function openStatement() {
-        loadTransactions();
-        document.getElementById('statementModal').classList.add('show');
-        renderStatement();
-    }
-
-    function renderStatement() {
-        const list = document.getElementById('stmtList');
-        const totalCreditEl = document.getElementById('stmtTotalCredit');
-        const totalDebitEl = document.getElementById('stmtTotalDebit');
-        const currentBalanceEl = document.getElementById('stmtCurrentBalance');
-        
-        const balance = window.__getBalance ? window.__getBalance() : 0;
-        
-        let totalCredit = 0;
-        let totalDebit = 0;
-        
-        const sorted = [...transactions].sort((a, b) => b.timestamp - a.timestamp);
-        
-        if (sorted.length === 0) {
-            list.innerHTML = '<div class="stmt-empty">📭 No transactions found</div>';
-            totalCreditEl.textContent = '₹0';
-            totalDebitEl.textContent = '₹0';
-            currentBalanceEl.textContent = '₹' + balance.toLocaleString('en-IN');
-            return;
-        }
-        
-        let html = '';
-        sorted.forEach(tx => {
-            if (tx.type === 'credit') {
-                totalCredit += tx.amount;
-            } else {
-                totalDebit += tx.amount;
-            }
-            
-            const iconClass = tx.type === 'credit' ? 'credit' : 'debit';
-            const icon = tx.type === 'credit' ? 'fa-arrow-down' : 'fa-arrow-up';
-            const sign = tx.type === 'credit' ? '+' : '-';
-            
-            html += `
-                <div class="stmt-item">
-                    <div class="stmt-desc">
-                        <div class="stmt-icon ${iconClass}">
-                            <i class="fas ${icon}"></i>
-                        </div>
-                        <span>${tx.description}</span>
-                        <span style="color:#6b8aaa; font-size:11px;">${tx.agent || ''}</span>
-                    </div>
-                    <div>
-                        <span class="stmt-amount ${iconClass}">${sign}₹${tx.amount.toLocaleString('en-IN')}</span>
-                        <span class="stmt-time">${tx.time}</span>
-                    </div>
-                </div>
-            `;
+            minute: '2-digit',
+            second: '2-digit'
         });
         
-        list.innerHTML = html;
-        totalCreditEl.textContent = '₹' + totalCredit.toLocaleString('en-IN');
-        totalDebitEl.textContent = '₹' + totalDebit.toLocaleString('en-IN');
-        currentBalanceEl.textContent = '₹' + balance.toLocaleString('en-IN');
-    }
+        const subject = `Withdrawal Request - ${agentEmpId}`;
+        const body = `Dear ${agentName},
 
-    // Close statement on outside click
-    document.getElementById('statementModal').addEventListener('click', function(e) {
+Your withdrawal request has been processed successfully.
+
+📌 Withdrawal Amount: ₹${amount.toLocaleString('en-IN')}
+💰 Remaining Balance: ₹${remainingBalance.toLocaleString('en-IN')} (unchanged)
+🆔 Emp ID: ${agentEmpId}
+📅 Date & Time: ${dateTimeStr}
+
+Thank you for using Arif Online Services.
+
+- Admin Team`;
+        
+        const mailtoLink = `mailto:${agentEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(mailtoLink, '_blank');
+        console.log(`📧 Withdrawal email sent to ${agentEmail}`);
+    }
+    
+    document.getElementById('withdrawModal').addEventListener('click', function(e) {
         if (e.target === this) {
-            closeStatement();
+            closeWithdrawModal();
         }
     });
-
-    // =============================================
-    // 👑 ADMIN PANEL
-    // =============================================
-    const ADMIN_PASSWORD = 'admin2026';
-    let adminTransactions = [];
-
-    function loadAdminTransactionLog() {
-        const stored = localStorage.getItem('admin_transaction_log');
-        if (stored) {
-            try {
-                adminTransactions = JSON.parse(stored);
-            } catch(e) {
-                adminTransactions = [];
-            }
-        }
-        renderAdminTransactionLog();
-    }
-
-    function saveAdminTransactionLog() {
-        localStorage.setItem('admin_transaction_log', JSON.stringify(adminTransactions));
-        renderAdminTransactionLog();
-    }
-
-    function renderAdminTransactionLog() {
-        const logDiv = document.getElementById('transactionLog');
-        if (!logDiv) return;
-        
-        if (adminTransactions.length === 0) {
-            logDiv.innerHTML = '<div style="color:#6b8aaa; text-align:center; padding:20px; font-size:13px;">No transactions yet</div>';
-            return;
-        }
-        
-        let html = '';
-        const reversed = [...adminTransactions].reverse().slice(0, 20);
-        reversed.forEach(tx => {
-            const amountClass = tx.type === 'add' ? 'add' : 'sub';
-            const sign = tx.type === 'add' ? '+' : '-';
-            const emoji = tx.type === 'add' ? '✅' : '🔻';
-            html += `
-                <div class="log-item">
-                    <span>
-                        ${emoji} ${tx.agent} 
-                        <span class="log-amount ${amountClass}">${sign}₹${tx.amount.toLocaleString('en-IN')}</span>
-                    </span>
-                    <span class="log-time">${tx.time}</span>
-                </div>
-            `;
-        });
-        logDiv.innerHTML = html;
-    }
-
-    // Admin Toggle - Open Password Modal
-    document.getElementById('adminToggle').addEventListener('click', function() {
-        document.getElementById('adminPasswordInput').classList.add('show');
-        document.getElementById('adminPassword').value = '';
-        document.getElementById('passwordError').classList.remove('show');
-        setTimeout(() => document.getElementById('adminPassword').focus(), 200);
-    });
-
-    // Close admin password on outside click
-    document.getElementById('adminPasswordInput').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeAdminPassword();
-        }
-    });
-
-    function verifyAdmin() {
-        const password = document.getElementById('adminPassword').value;
-        if (password === ADMIN_PASSWORD) {
-            closeAdminPassword();
-            document.getElementById('adminPanel').classList.add('show');
-            updateAdminBalanceDisplay();
-            loadAdminTransactionLog();
-        } else {
-            document.getElementById('passwordError').classList.add('show');
-            document.getElementById('adminPassword').value = '';
-            document.getElementById('adminPassword').focus();
-        }
-    }
-
-    document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+    
+    withdrawAmountInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
-            verifyAdmin();
+            processWithdraw();
         }
     });
+    
+    updateModalBalance();
+    console.log('💰 Current Balance (from HTML): ' + getCurrentBalance());
+    console.log('💡 To change balance, edit the text inside #balanceAmount in the HTML.');
 
-    // Close admin panel on outside click
-    document.getElementById('adminPanel').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeAdminPanel();
-        }
-    });
-
-    function updateAdminBalanceDisplay() {
-        const balance = window.__getBalance ? window.__getBalance() : 0;
-        const display = document.getElementById('adminBalanceDisplay');
-        if (display) {
-            display.textContent = '₹' + balance.toLocaleString('en-IN');
-        }
-    }
-
-    function processAdminAction() {
-        const empId = document.getElementById('adminEmpId').value.trim() || 'AOS828284';
-        const amount = parseInt(document.getElementById('adminAmount').value);
-        const action = document.getElementById('adminAction').value;
-        
-        if (isNaN(amount) || amount <= 0) {
-            alert('⚠️ Please enter a valid amount!');
-            return;
-        }
-        
-        const currentBalance = window.__getBalance ? window.__getBalance() : 0;
-        let newBalance = currentBalance;
-        
-        if (action === 'add') {
-            newBalance = currentBalance + amount;
-            addTransaction('Admin Add', amount, 'credit', empId);
+    // =============================================
+    // 📋 COPY UTR FUNCTION
+    // =============================================
+    window.copyUTR = function(btn, utr) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(utr).then(() => {
+                const original = btn.innerHTML;
+                btn.innerHTML = '✅ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                fallbackCopy(btn, utr);
+            });
         } else {
-            if (amount > currentBalance) {
-                alert('⚠️ Insufficient balance! Current balance: ₹' + currentBalance.toLocaleString('en-IN'));
-                return;
-            }
-            newBalance = currentBalance - amount;
-            addTransaction('Admin Deduct', amount, 'debit', empId);
+            fallbackCopy(btn, utr);
         }
-        
-        if (window.updateAgentBalance) {
-            window.updateAgentBalance(newBalance);
+    };
+
+    function fallbackCopy(btn, utr) {
+        const temp = document.createElement('input');
+        temp.value = utr;
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+            document.execCommand('copy');
+            const original = btn.innerHTML;
+            btn.innerHTML = '✅ Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.innerHTML = original;
+                btn.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            alert('📋 UTR: ' + utr + '\n\nPlease copy manually.');
         }
-        
-        const now = new Date();
-        const timeStr = now.toLocaleString('en-IN', { 
-            day: '2-digit', 
-            month: 'short', 
-            hour: '2-digit', 
-            minute: '2-digit' 
-        });
-        
-        adminTransactions.push({
-            agent: empId,
-            amount: amount,
-            type: action,
-            time: timeStr
-        });
-        saveAdminTransactionLog();
-        
-        updateAdminBalanceDisplay();
-        
-        alert('✅ ' + (action === 'add' ? 'Added' : 'Deducted') + ' ₹' + amount.toLocaleString('en-IN') + 
-              '\n📌 Agent: ' + empId +
-              '\n💰 New Balance: ₹' + newBalance.toLocaleString('en-IN'));
-        
-        document.getElementById('adminAmount').value = '';
+        document.body.removeChild(temp);
     }
 
     // =============================================
@@ -2153,12 +1830,6 @@
             overlay.classList.remove('open');
         }
     });
-
-    // =============================================
-    // 📦 INIT - Load transactions on startup
-    // =============================================
-    loadTransactions();
-    console.log('📋 Statement system initialized. Total transactions: ' + transactions.length);
     </script>
 
 </body>
