@@ -394,6 +394,225 @@
         .withdraw-modal-content .modal-actions .btn-cancel:hover { background: rgba(255,255,255,0.14); }
         .withdraw-modal-content .modal-error { color: #ef4444; font-size: 12px; font-weight: 500; margin-top: 6px; display: none; }
         .withdraw-modal-content .modal-error.show { display: block; }
+
+        /* ===== ADMIN PANEL STYLES ===== */
+        .admin-toggle {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: #e67e22;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(230, 126, 34, 0.5);
+            z-index: 9998;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .admin-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(230, 126, 34, 0.7); }
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .admin-panel.show { display: flex; }
+        .admin-panel-content {
+            background: #0f1a2e;
+            border: 2px solid #e67e22;
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalPop 0.4s ease;
+            color: white;
+        }
+        .admin-panel-content h2 {
+            color: #e67e22;
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .admin-panel-content .admin-close {
+            float: right;
+            background: none;
+            border: none;
+            color: #e74c3c;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0 8px;
+        }
+        .admin-panel-content .admin-close:hover { transform: rotate(90deg); }
+        .admin-panel-content .form-group { margin-bottom: 16px; }
+        .admin-panel-content label {
+            display: block;
+            color: #94b0d0;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .admin-panel-content input, 
+        .admin-panel-content select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .admin-panel-content input:focus,
+        .admin-panel-content select:focus {
+            border-color: #e67e22;
+            background: rgba(255,255,255,0.1);
+        }
+        .admin-panel-content .admin-btn {
+            padding: 12px 24px;
+            border-radius: 60px;
+            border: none;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-right: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+        .admin-panel-content .admin-btn.add {
+            background: linear-gradient(145deg, #4ade80, #22c55e);
+            color: #0a0a0a;
+        }
+        .admin-panel-content .admin-btn.sub {
+            background: linear-gradient(145deg, #ef4444, #dc2626);
+            color: white;
+        }
+        .admin-panel-content .admin-btn:hover { transform: scale(1.04); }
+        .admin-panel-content .admin-btn:active { transform: scale(0.95); }
+        .admin-panel-content .current-balance {
+            background: rgba(255,255,255,0.05);
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-panel-content .current-balance .label {
+            color: #94b0d0;
+            font-weight: 500;
+        }
+        .admin-panel-content .current-balance .value {
+            color: #4ade80;
+            font-size: 22px;
+            font-weight: 800;
+        }
+        .admin-panel-content .transaction-log {
+            margin-top: 16px;
+            max-height: 200px;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 10px;
+        }
+        .admin-panel-content .transaction-log .log-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-panel-content .transaction-log .log-item .log-amount.add { color: #4ade80; }
+        .admin-panel-content .transaction-log .log-item .log-amount.sub { color: #ef4444; }
+        .admin-panel-content .transaction-log .log-item .log-time {
+            color: #6b8aaa;
+            font-size: 11px;
+        }
+        .admin-password-input {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 99998;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .admin-password-input.show { display: flex; }
+        .admin-password-input .password-box {
+            background: #0f1a2e;
+            border: 2px solid #e67e22;
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .admin-password-input .password-box h3 {
+            color: white;
+            margin-bottom: 16px;
+        }
+        .admin-password-input .password-box input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            font-size: 18px;
+            outline: none;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+        .admin-password-input .password-box input:focus {
+            border-color: #e67e22;
+        }
+        .admin-password-input .password-box .password-error {
+            color: #ef4444;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+        }
+        .admin-password-input .password-box .password-error.show { display: block; }
+        .admin-password-input .password-box .pass-btn {
+            margin-top: 16px;
+            padding: 12px 40px;
+            border-radius: 60px;
+            background: linear-gradient(145deg, #e67e22, #d35400);
+            border: none;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .admin-password-input .password-box .pass-btn:hover { transform: scale(1.05); }
         
         /* ===== RESPONSIVE ===== */
         @media (max-width: 860px) {
@@ -436,6 +655,8 @@
             .withdraw-btn { font-size: 9px; padding: 3px 10px 3px 8px; }
             .certificate-card .cert-actions button { font-size: 12px; padding: 10px 18px; }
             .certificate-card .cert-title { font-size: 17px; }
+            .admin-toggle { width: 45px; height: 45px; font-size: 20px; bottom: 70px; right: 15px; }
+            .admin-panel-content { padding: 20px; }
         }
         @media (max-width: 380px) {
             .profile-section { padding: 6px 10px; margin: 10px 6px 5px 6px; border-radius: 12px; }
@@ -758,6 +979,75 @@
         <span class="timer-text" id="timerDisplay">5:00</span>
     </div>
 
+    <!-- ===== ADMIN PANEL ===== -->
+    <!-- Admin Toggle Button -->
+    <button class="admin-toggle" id="adminToggle" title="Admin Panel">
+        <i class="fas fa-crown"></i>
+    </button>
+
+    <!-- Password Input -->
+    <div class="admin-password-input" id="adminPasswordInput">
+        <div class="password-box">
+            <h3>🔐 Admin Access</h3>
+            <p style="color:#94b0d0; font-size:14px; margin-bottom:16px;">Enter admin password to continue</p>
+            <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="off">
+            <div class="password-error" id="passwordError">❌ Incorrect password!</div>
+            <button class="pass-btn" onclick="verifyAdmin()">
+                <i class="fas fa-unlock"></i> Unlock
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-panel-content">
+            <button class="admin-close" onclick="closeAdminPanel()"><i class="fas fa-times"></i></button>
+            <h2><i class="fas fa-crown" style="color:#facc15;"></i> Admin Panel</h2>
+            
+            <div class="current-balance">
+                <span class="label">💰 Current Balance</span>
+                <span class="value" id="adminBalanceDisplay">₹0</span>
+            </div>
+
+            <div class="form-group">
+                <label for="adminEmpId">👤 Agent (Emp ID)</label>
+                <input type="text" id="adminEmpId" placeholder="e.g. AOS828284" value="AOS828284">
+            </div>
+
+            <div class="form-group">
+                <label for="adminAmount">💵 Amount (₹)</label>
+                <input type="number" id="adminAmount" placeholder="Enter amount" min="1">
+            </div>
+
+            <div class="form-group">
+                <label for="adminAction">📌 Action</label>
+                <select id="adminAction">
+                    <option value="add">➕ Add Balance</option>
+                    <option value="sub">➖ Deduct Balance</option>
+                </select>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+                <button class="admin-btn add" onclick="processAdminAction()">
+                    <i class="fas fa-check"></i> Execute
+                </button>
+                <button class="admin-btn" style="background:rgba(255,255,255,0.08); color:#b0c4de;" onclick="closeAdminPanel()">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+
+            <!-- Transaction Log -->
+            <div style="margin-top:16px;">
+                <h4 style="color:#94b0d0; font-size:14px; margin-bottom:8px;">📋 Transaction History</h4>
+                <div class="transaction-log" id="transactionLog">
+                    <div style="color:#6b8aaa; text-align:center; padding:20px; font-size:13px;">
+                        No transactions yet
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
         <div class="footer-grid">
@@ -822,7 +1112,7 @@
 
     <script>
     // =============================================
-    // 📜 CERTIFICATE FUNCTIONS (FIXED)
+    // 📜 CERTIFICATE FUNCTIONS
     // =============================================
     function openCertificate() {
         document.getElementById('certificateOverlay').classList.add('show');
@@ -866,21 +1156,16 @@
         }
     }
 
-    // FIXED: Download certificate with proper CORS handling
     function downloadCertificate() {
         const img = document.getElementById('certificateImage');
         const imageUrl = img.src;
         
-        // Show loading message
         const downloadBtn = document.querySelector('.btn-download');
         const originalText = downloadBtn.innerHTML;
         downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
         downloadBtn.disabled = true;
         
-        // Try fetch with CORS
-        fetch(imageUrl, {
-            mode: 'cors'
-        })
+        fetch(imageUrl, { mode: 'cors' })
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.blob();
@@ -898,10 +1183,8 @@
         })
         .catch(error => {
             console.warn('Fetch download failed, trying fallback method:', error);
-            // Fallback: Open in new tab
             const newWindow = window.open(imageUrl, '_blank');
             if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                // If popup blocked, try anchor download
                 const link = document.createElement('a');
                 link.download = 'Certificate_AOS828284.png';
                 link.href = imageUrl;
@@ -917,7 +1200,6 @@
         });
     }
 
-    // Close certificate with Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeCertificate();
@@ -995,7 +1277,7 @@
     })();
 
     // =============================================
-    // 💰 BALANCE SYSTEM (Cross-Device using localStorage + sync)
+    // 💰 BALANCE SYSTEM (Cross-Device Sync)
     // =============================================
     (function() {
         const BALANCE_KEY = 'agent_balance_AOS828284';
@@ -1006,7 +1288,6 @@
             if (stored !== null) {
                 return parseFloat(stored) || 0;
             }
-            // Default 500 for demo (or set to 0)
             const defaultBalance = 500;
             localStorage.setItem(BALANCE_KEY, defaultBalance.toString());
             return defaultBalance;
@@ -1014,7 +1295,6 @@
         
         function saveBalance(val) {
             localStorage.setItem(BALANCE_KEY, val.toString());
-            // Trigger sync event for other tabs
             localStorage.setItem(SYNC_KEY, Date.now().toString());
         }
         
@@ -1098,6 +1378,7 @@
             balance = remaining;
             saveBalance(balance);
             updateBalanceUI();
+            updateAdminBalanceDisplay();
             
             sendWithdrawalEmail(amount, remaining);
             
@@ -1110,9 +1391,12 @@
             balance = newBalance;
             saveBalance(balance);
             updateBalanceUI();
+            updateAdminBalanceDisplay();
             console.log('💰 Balance updated to: ₹' + balance);
             return balance;
         };
+        
+        window.__getBalance = function() { return balance; };
         
         withdrawModal.addEventListener('click', function(e) {
             if (e.target === withdrawModal) {
@@ -1126,34 +1410,35 @@
             }
         });
         
-        // ===== SYNC across tabs/windows =====
+        // Sync across tabs/windows
         window.addEventListener('storage', function(e) {
             if (e.key === BALANCE_KEY) {
                 const newBalance = parseFloat(e.newValue) || 0;
                 if (newBalance !== balance) {
                     balance = newBalance;
                     updateBalanceUI();
+                    updateAdminBalanceDisplay();
                     console.log('🔄 Balance synced from another tab: ₹' + balance);
                 }
             }
-            // Also listen to sync key to trigger re-read
             if (e.key === SYNC_KEY) {
                 const fresh = loadBalance();
                 if (fresh !== balance) {
                     balance = fresh;
                     updateBalanceUI();
+                    updateAdminBalanceDisplay();
                     console.log('🔄 Balance refreshed via sync: ₹' + balance);
                 }
             }
         });
         
-        // Also sync on visibility change (when tab becomes active)
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
                 const fresh = loadBalance();
                 if (fresh !== balance) {
                     balance = fresh;
                     updateBalanceUI();
+                    updateAdminBalanceDisplay();
                     console.log('🔄 Balance refreshed on visibility change: ₹' + balance);
                 }
             }
@@ -1161,11 +1446,150 @@
         
         updateBalanceUI();
         
-        window.__getBalance = function() { return balance; };
-        
-        console.log('💰 Balance system initialized (cross-device sync). Current balance: ₹' + balance);
-        console.log('📧 Email notification system active.');
+        console.log('💰 Balance system initialized. Current balance: ₹' + balance);
     })();
+
+    // =============================================
+    // 👑 ADMIN PANEL
+    // =============================================
+    const ADMIN_PASSWORD = 'Arif@97484';
+    let transactionHistory = [];
+
+    function loadTransactionLog() {
+        const stored = localStorage.getItem('admin_transaction_log');
+        if (stored) {
+            try {
+                transactionHistory = JSON.parse(stored);
+            } catch(e) {
+                transactionHistory = [];
+            }
+        }
+        renderTransactionLog();
+    }
+
+    function saveTransactionLog() {
+        localStorage.setItem('admin_transaction_log', JSON.stringify(transactionHistory));
+        renderTransactionLog();
+    }
+
+    function renderTransactionLog() {
+        const logDiv = document.getElementById('transactionLog');
+        if (!logDiv) return;
+        
+        if (transactionHistory.length === 0) {
+            logDiv.innerHTML = '<div style="color:#6b8aaa; text-align:center; padding:20px; font-size:13px;">No transactions yet</div>';
+            return;
+        }
+        
+        let html = '';
+        const reversed = [...transactionHistory].reverse().slice(0, 20);
+        reversed.forEach(tx => {
+            const amountClass = tx.type === 'add' ? 'add' : 'sub';
+            const sign = tx.type === 'add' ? '+' : '-';
+            const emoji = tx.type === 'add' ? '✅' : '🔻';
+            html += `
+                <div class="log-item">
+                    <span>
+                        ${emoji} ${tx.agent} 
+                        <span class="log-amount ${amountClass}">${sign}₹${tx.amount.toLocaleString('en-IN')}</span>
+                    </span>
+                    <span class="log-time">${tx.time}</span>
+                </div>
+            `;
+        });
+        logDiv.innerHTML = html;
+    }
+
+    document.getElementById('adminToggle').addEventListener('click', function() {
+        document.getElementById('adminPasswordInput').classList.add('show');
+        document.getElementById('adminPassword').value = '';
+        document.getElementById('passwordError').classList.remove('show');
+        setTimeout(() => document.getElementById('adminPassword').focus(), 200);
+    });
+
+    function verifyAdmin() {
+        const password = document.getElementById('adminPassword').value;
+        if (password === ADMIN_PASSWORD) {
+            document.getElementById('adminPasswordInput').classList.remove('show');
+            document.getElementById('adminPanel').classList.add('show');
+            updateAdminBalanceDisplay();
+            loadTransactionLog();
+        } else {
+            document.getElementById('passwordError').classList.add('show');
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('adminPassword').focus();
+        }
+    }
+
+    document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            verifyAdmin();
+        }
+    });
+
+    function closeAdminPanel() {
+        document.getElementById('adminPanel').classList.remove('show');
+    }
+
+    function updateAdminBalanceDisplay() {
+        const balance = window.__getBalance ? window.__getBalance() : 0;
+        const display = document.getElementById('adminBalanceDisplay');
+        if (display) {
+            display.textContent = '₹' + balance.toLocaleString('en-IN');
+        }
+    }
+
+    function processAdminAction() {
+        const empId = document.getElementById('adminEmpId').value.trim() || 'AOS828284';
+        const amount = parseInt(document.getElementById('adminAmount').value);
+        const action = document.getElementById('adminAction').value;
+        
+        if (isNaN(amount) || amount <= 0) {
+            alert('⚠️ Please enter a valid amount!');
+            return;
+        }
+        
+        const currentBalance = window.__getBalance ? window.__getBalance() : 0;
+        let newBalance = currentBalance;
+        
+        if (action === 'add') {
+            newBalance = currentBalance + amount;
+        } else {
+            if (amount > currentBalance) {
+                alert('⚠️ Insufficient balance! Current balance: ₹' + currentBalance.toLocaleString('en-IN'));
+                return;
+            }
+            newBalance = currentBalance - amount;
+        }
+        
+        if (window.updateAgentBalance) {
+            window.updateAgentBalance(newBalance);
+        }
+        
+        const now = new Date();
+        const timeStr = now.toLocaleString('en-IN', { 
+            day: '2-digit', 
+            month: 'short', 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        });
+        
+        transactionHistory.push({
+            agent: empId,
+            amount: amount,
+            type: action,
+            time: timeStr
+        });
+        saveTransactionLog();
+        
+        updateAdminBalanceDisplay();
+        
+        alert('✅ ' + (action === 'add' ? 'Added' : 'Deducted') + ' ₹' + amount.toLocaleString('en-IN') + 
+              '\n📌 Agent: ' + empId +
+              '\n💰 New Balance: ₹' + newBalance.toLocaleString('en-IN'));
+        
+        document.getElementById('adminAmount').value = '';
+    }
 
     // =============================================
     // ⏰ LIVE DATETIME
