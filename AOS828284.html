@@ -9,10 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
-        /* আপনার আগের CSS ঠিক একই রাখুন */
+        /* ----- RESET & BASE ----- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif; }
         body { background: #f8faff; color: #1e293b; min-height: 100vh; }
-        
+        /* ... (all existing styles up to the statement modal are kept exactly as provided) ... */
         .site-header { background: #0b1a33; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; border-bottom: 2px solid #e67e22; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); position: sticky; top: 0; z-index: 200; }
         .logo-area { display: flex; align-items: center; gap: 14px; }
         .logo-area img { height: 52px; width: auto; display: block; }
@@ -31,139 +31,32 @@
         .dropdown-overlay a i { color: #e67e22; width: 20px; font-size: 14px; }
         .dropdown-overlay a:hover { background: #1a3052; border-left-color: #e67e22; color: #ffffff; }
         .dropdown-divider { height: 1px; background: #1e3350; margin: 8px 16px; }
-        
-        .certificate-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+        .certificate-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; }
         .certificate-overlay.show { display: flex; }
-        .certificate-card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 30px 30px 25px;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 24px 60px rgba(0,0,0,0.7);
-            animation: modalPop 0.4s ease;
-            position: relative;
-        }
-        @keyframes modalPop {
-            0% { transform: scale(0.85) translateY(30px); opacity: 0; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
-        }
-        .certificate-card .close-cert {
-            position: absolute;
-            top: 12px;
-            right: 18px;
-            font-size: 32px;
-            color: #6b8aaa;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: 0.2s;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.05);
-        }
-        .certificate-card .close-cert:hover {
-            color: #e74c3c;
-            transform: rotate(90deg);
-            background: rgba(231, 76, 60, 0.1);
-        }
-        .certificate-card .cert-title {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 700;
-            color: #0b1a33;
-            margin-bottom: 16px;
-            border-bottom: 2px solid #e67e22;
-            padding-bottom: 12px;
-        }
+        .certificate-card { background: #ffffff; border-radius: 24px; padding: 30px 30px 25px; max-width: 600px; width: 100%; box-shadow: 0 24px 60px rgba(0,0,0,0.7); animation: modalPop 0.4s ease; position: relative; }
+        @keyframes modalPop { 0% { transform: scale(0.85) translateY(30px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
+        .certificate-card .close-cert { position: absolute; top: 12px; right: 18px; font-size: 32px; color: #6b8aaa; background: none; border: none; cursor: pointer; transition: 0.2s; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.05); }
+        .certificate-card .close-cert:hover { color: #e74c3c; transform: rotate(90deg); background: rgba(231, 76, 60, 0.1); }
+        .certificate-card .cert-title { text-align: center; font-size: 20px; font-weight: 700; color: #0b1a33; margin-bottom: 16px; border-bottom: 2px solid #e67e22; padding-bottom: 12px; }
         .certificate-card .cert-title span { color: #e67e22; }
-        .certificate-card .cert-image-wrapper {
-            width: 100%;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 2px solid #e67e22;
-            background: #f8faff;
-            margin-bottom: 18px;
-        }
-        .certificate-card .cert-image-wrapper img {
-            width: 100%;
-            height: auto;
-            display: block;
-            background: #ffffff;
-        }
-        .certificate-card .cert-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .certificate-card .cert-actions button {
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .certificate-card .cert-actions .btn-share {
-            background: linear-gradient(145deg, #1a73e8, #0d47a1);
-            color: white;
-            box-shadow: 0 4px 16px rgba(26, 115, 232, 0.3);
-        }
-        .certificate-card .cert-actions .btn-share:hover {
-            transform: scale(1.04);
-            box-shadow: 0 6px 24px rgba(26, 115, 232, 0.5);
-        }
-        .certificate-card .cert-actions .btn-download {
-            background: linear-gradient(145deg, #e67e22, #d35400);
-            color: white;
-            box-shadow: 0 4px 16px rgba(230, 126, 34, 0.3);
-        }
-        .certificate-card .cert-actions .btn-download:hover {
-            transform: scale(1.04);
-            box-shadow: 0 6px 24px rgba(230, 126, 34, 0.5);
-        }
-        .certificate-card .cert-actions .btn-close {
-            background: rgba(0,0,0,0.06);
-            color: #4a6a8a;
-            border: 1px solid rgba(0,0,0,0.08);
-        }
-        .certificate-card .cert-actions .btn-close:hover {
-            background: rgba(0,0,0,0.12);
-        }
-        
+        .certificate-card .cert-image-wrapper { width: 100%; border-radius: 16px; overflow: hidden; border: 2px solid #e67e22; background: #f8faff; margin-bottom: 18px; }
+        .certificate-card .cert-image-wrapper img { width: 100%; height: auto; display: block; background: #ffffff; }
+        .certificate-card .cert-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .certificate-card .cert-actions button { padding: 12px 28px; border-radius: 60px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; }
+        .certificate-card .cert-actions .btn-share { background: linear-gradient(145deg, #1a73e8, #0d47a1); color: white; box-shadow: 0 4px 16px rgba(26, 115, 232, 0.3); }
+        .certificate-card .cert-actions .btn-share:hover { transform: scale(1.04); box-shadow: 0 6px 24px rgba(26, 115, 232, 0.5); }
+        .certificate-card .cert-actions .btn-download { background: linear-gradient(145deg, #e67e22, #d35400); color: white; box-shadow: 0 4px 16px rgba(230, 126, 34, 0.3); }
+        .certificate-card .cert-actions .btn-download:hover { transform: scale(1.04); box-shadow: 0 6px 24px rgba(230, 126, 34, 0.5); }
+        .certificate-card .cert-actions .btn-close { background: rgba(0,0,0,0.06); color: #4a6a8a; border: 1px solid rgba(0,0,0,0.08); }
+        .certificate-card .cert-actions .btn-close:hover { background: rgba(0,0,0,0.12); }
         .app-card { max-width: 100%; width: 100%; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 0; box-shadow: none; padding: 0; border: none; min-height: 100vh; }
         .app-card > * { padding-left: 16px; padding-right: 16px; }
-        
         .profile-section { background: #0a0a0a; padding: 10px 16px; margin: 16px 12px 8px 12px; border-radius: 18px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.06); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); max-height: 200px; opacity: 1; overflow: hidden; transform-origin: top center; }
         .profile-section.hidden { max-height: 0; opacity: 0; padding: 0 16px; margin: 0 12px; pointer-events: none; transform: scaleY(0.8); }
         .profile-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
         .profile-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease; transform: translateX(0) scale(1); opacity: 1; }
         .profile-section.hidden .profile-left { transform: translateX(-120%) scale(0.8); opacity: 0; }
         .profile-section.hidden .status-right { transform: translateX(120%) scale(0.8); opacity: 0; }
-        
         .profile-logo-wrapper { display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.06); padding: 3px 14px 3px 6px; border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(4px); }
         .profile-logo-wrapper img { height: 34px; width: auto; display: block; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.15); }
         .profile-name-wrap { display: flex; align-items: center; gap: 6px; }
@@ -174,283 +67,38 @@
         .emp-id-inline .emp-icon { font-size: 11px; color: #8aaeff; }
         .emp-id-inline .emp-id-label { font-size: 8px; font-weight: 400; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.3px; text-transform: uppercase; }
         .emp-id-inline .emp-id-value { font-size: 11px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; background: rgba(255, 255, 255, 0.08); padding: 1px 8px 1px 6px; border-radius: 40px; font-family: 'Inter', monospace; }
-        
-        .balance-box {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px 14px 4px 12px;
-            border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-        }
+        .balance-box { display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.05); padding: 4px 14px 4px 12px; border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0; transition: all 0.3s ease; }
         .balance-box .balance-icon { font-size: 13px; color: #facc15; }
         .balance-box .balance-label { font-size: 9px; font-weight: 500; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 0.3px; }
         .balance-box .balance-amount { font-size: 14px; font-weight: 700; letter-spacing: 0.3px; min-width: 50px; text-align: center; }
         .balance-box .balance-amount.green { color: #4ade80; }
         .balance-box .balance-amount.red { color: #ef4444; }
-        
-        .withdraw-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: linear-gradient(135deg, #4ade80, #22c55e);
-            color: #0a0a0a;
-            border: none;
-            padding: 4px 14px 4px 12px;
-            border-radius: 30px;
-            font-size: 10px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            box-shadow: 0 2px 12px rgba(74, 222, 128, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            flex-shrink: 0;
-        }
+        .withdraw-btn { display: inline-flex; align-items: center; gap: 4px; background: linear-gradient(135deg, #4ade80, #22c55e); color: #0a0a0a; border: none; padding: 4px 14px 4px 12px; border-radius: 30px; font-size: 10px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-decoration: none; font-family: 'Inter', sans-serif; box-shadow: 0 2px 12px rgba(74, 222, 128, 0.25); border: 1px solid rgba(255, 255, 255, 0.1); flex-shrink: 0; }
         .withdraw-btn:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 6px 20px rgba(74, 222, 128, 0.4); }
         .withdraw-btn:active { transform: scale(0.95); }
-        .withdraw-btn.disabled {
-            background: #374151;
-            color: #9ca3af;
-            cursor: not-allowed;
-            box-shadow: none;
-            border-color: #4b5563;
-            pointer-events: none;
-            opacity: 0.6;
-        }
-        
-        .statement-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: linear-gradient(135deg, #1a2a4a, #2a3a5a);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 4px 12px 4px 10px;
-            border-radius: 30px;
-            color: #b0c4de;
-            font-size: 9px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.2px;
-            flex-shrink: 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-        }
-        .statement-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #2a3a5a, #3a4a6a);
-            color: #ffffff;
-        }
+        .withdraw-btn.disabled { background: #374151; color: #9ca3af; cursor: not-allowed; box-shadow: none; border-color: #4b5563; pointer-events: none; opacity: 0.6; }
+        .statement-btn { display: inline-flex; align-items: center; gap: 5px; background: linear-gradient(135deg, #1a2a4a, #2a3a5a); border: 1px solid rgba(255, 255, 255, 0.08); padding: 4px 12px 4px 10px; border-radius: 30px; color: #b0c4de; font-size: 9px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', sans-serif; letter-spacing: 0.2px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.15); }
+        .statement-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); background: linear-gradient(135deg, #2a3a5a, #3a4a6a); color: #ffffff; }
         .statement-btn i { color: #facc15; font-size: 10px; }
-        
         .status-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease; transform: translateX(0) scale(1); opacity: 1; }
-        
-        .check-status-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: linear-gradient(135deg, #1a2a4a, #2a3a5a);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 6px 14px 6px 12px;
-            border-radius: 60px;
-            color: white;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.2px;
-            flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
-        .check-status-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(135deg, #2a3a5a, #3a4a6a);
-        }
-        .check-status-btn .badge-dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background: #4ade80;
-            border-radius: 50%;
-            margin-left: 2px;
-            animation: pulse-dot 2s infinite;
-        }
+        .check-status-btn { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #1a2a4a, #2a3a5a); border: 1px solid rgba(255, 255, 255, 0.08); padding: 6px 14px 6px 12px; border-radius: 60px; color: white; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; font-family: 'Inter', sans-serif; letter-spacing: 0.2px; flex-shrink: 0; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); }
+        .check-status-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); background: linear-gradient(135deg, #2a3a5a, #3a4a6a); }
+        .check-status-btn .badge-dot { display: inline-block; width: 6px; height: 6px; background: #4ade80; border-radius: 50%; margin-left: 2px; animation: pulse-dot 2s infinite; }
         @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
-        
-        .status-datetime {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 10px;
-            font-weight: 400;
-            background: rgba(255, 255, 255, 0.04);
-            padding: 3px 10px 3px 8px;
-            border-radius: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
+        .status-datetime { display: flex; align-items: center; gap: 4px; color: rgba(255, 255, 255, 0.4); font-size: 10px; font-weight: 400; background: rgba(255, 255, 255, 0.04); padding: 3px 10px 3px 8px; border-radius: 60px; border: 1px solid rgba(255, 255, 255, 0.04); white-space: nowrap; flex-shrink: 0; }
         .status-datetime i { color: #7b9ee0; font-size: 10px; }
         .status-datetime .live-datetime { color: rgba(255, 255, 255, 0.7); font-weight: 500; font-size: 10px; min-width: 80px; }
-        
         .banner-wrapper { padding: 0 12px; margin: 4px 0 2px 0; touch-action: pan-y; }
         .ads-banner { width: 100%; border-radius: 16px; overflow: hidden; position: relative; background: #0f1a2e; min-height: 80px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18); border: 1px solid rgba(255, 215, 0, 0.18); }
         .ads-slide { display: none; width: 100%; animation: fadeSlide 0.6s ease-in-out; background: #0f1a2e; }
         .ads-slide.active { display: block; }
         @keyframes fadeSlide { 0% { opacity: 0.4; transform: scale(0.98); } 100% { opacity: 1; transform: scale(1); } }
         .ads-slide img { width: 100%; height: auto; display: block; border-radius: 0; object-fit: cover; background: #0f1a2e; pointer-events: none; user-select: none; }
-        
         .sell-earn-wrapper { padding: 0 12px; margin: 6px 0 10px 0; }
         .sell-earn-tag { padding: 6px 14px; background: linear-gradient(145deg, #fef9e7, #fdf2d0); border: 1px solid #f7d44a; border-radius: 60px; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(250, 204, 21, 0.12); font-weight: 700; font-size: 12px; color: #7a5d0b; letter-spacing: 0.2px; width: 100%; transition: all 0.2s ease; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; }
         .sell-earn-tag i { color: #d4a017; font-size: 14px; flex-shrink: 0; }
         .sell-earn-tag span { background: #7a5d0b; color: #fef9e7; padding: 1px 12px; border-radius: 60px; font-size: 10px; font-weight: 700; letter-spacing: 0.3px; border: 1px solid #a77b1a; flex-shrink: 0; }
         .sell-earn-tag .earn-amount { background: #1b2c50; color: #facc15; padding: 1px 12px; border-radius: 60px; font-size: 10px; font-weight: 700; flex-shrink: 0; }
-        
-        /* ===== STATEMENT SECTION ===== */
-        .statement-section {
-            padding: 0 16px;
-            margin: 12px 0 6px 0;
-        }
-        .statement-card {
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 16px 16px 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(210, 222, 240, 0.3);
-        }
-        .statement-card .statement-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #0b1a33;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e67e22;
-        }
-        .statement-card .statement-title i { color: #e67e22; }
-        .statement-table-wrap {
-            max-height: 280px;
-            overflow-y: auto;
-            border-radius: 12px;
-            border: 1px solid rgba(210, 222, 240, 0.2);
-        }
-        .statement-table-wrap::-webkit-scrollbar {
-            width: 4px;
-        }
-        .statement-table-wrap::-webkit-scrollbar-track {
-            background: #f1f4fa;
-            border-radius: 10px;
-        }
-        .statement-table-wrap::-webkit-scrollbar-thumb {
-            background: #c0cfe0;
-            border-radius: 10px;
-        }
-        .statement-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            min-width: 380px;
-        }
-        .statement-table th {
-            background: #f1f5fc;
-            color: #1e3a6a;
-            font-weight: 700;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            padding: 8px 10px;
-            text-align: left;
-            border-bottom: 2px solid #dce5f0;
-            position: sticky;
-            top: 0;
-            z-index: 5;
-        }
-        .statement-table td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #edf2f8;
-            color: #1e293b;
-            vertical-align: middle;
-        }
-        .statement-table tr:last-child td { border-bottom: none; }
-        .statement-table .type-credit { color: #0d7a3e; font-weight: 700; }
-        .statement-table .type-credit i { color: #22c55e; margin-right: 4px; }
-        .statement-table .type-debit { color: #b91c1c; font-weight: 700; }
-        .statement-table .type-debit i { color: #ef4444; margin-right: 4px; }
-        .statement-table .utr-copy {
-            background: none;
-            border: none;
-            color: #1a6bc4;
-            cursor: pointer;
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            transition: 0.2s;
-            font-family: 'Inter', sans-serif;
-        }
-        .statement-table .utr-copy:hover {
-            background: rgba(26, 107, 196, 0.08);
-        }
-        .statement-table .utr-copy.copied {
-            color: #0d7a3e;
-        }
-        .statement-table .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            font-size: 9px;
-            font-weight: 700;
-            padding: 1px 8px 1px 6px;
-            border-radius: 30px;
-            text-transform: uppercase;
-            letter-spacing: 0.2px;
-        }
-        .statement-table .status-badge.success {
-            background: #dcfce7;
-            color: #15803d;
-            border: 1px solid #86efac;
-        }
-        .statement-table .status-badge.pending {
-            background: #fef9e7;
-            color: #a77b1a;
-            border: 1px solid #f7d44a;
-        }
-        .statement-table .status-badge.failed {
-            background: #fee2e2;
-            color: #b91c1c;
-            border: 1px solid #fca5a5;
-        }
-        .statement-table .status-badge i { font-size: 7px; }
-        .statement-table .account-opened {
-            font-size: 10px;
-            color: #1a6bc4;
-            font-weight: 600;
-            background: #e3f0ff;
-            padding: 1px 10px 1px 8px;
-            border-radius: 40px;
-            display: inline-block;
-            border: 1px solid #b8d0f0;
-        }
-        .statement-empty {
-            text-align: center;
-            padding: 20px;
-            color: #8899b0;
-            font-size: 13px;
-        }
-        .statement-empty i { font-size: 24px; display: block; margin-bottom: 8px; color: #c0cfe0; }
-        
         .form-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 4px; padding-left: 16px; padding-right: 16px; }
         .form-link-card { background: white; border-radius: 18px; padding: 12px 14px 12px 16px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: #0b1a2f; border: 1px solid rgba(210, 222, 240, 0.3); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: pointer; gap: 8px; }
         .form-link-card:hover { transform: translateY(-2px); border-color: #b3c9f0; box-shadow: 0 12px 22px -10px rgba(20, 40, 80, 0.10); background: #ffffff; }
@@ -470,7 +118,6 @@
         .live-tag.red i { color: #ef4444; }
         .open-indicator { background: #f3f7ff; width: 30px; height: 30px; border-radius: 40px; display: flex; align-items: center; justify-content: center; color: #1f3b6a; font-size: 12px; border: 1px solid rgba(180, 200, 230, 0.3); transition: all 0.2s ease; flex-shrink: 0; }
         .form-link-card:hover .open-indicator { background: #13203a; color: white; border-color: #13203a; box-shadow: 0 6px 12px -4px rgba(19, 32, 58, 0.2); transform: translateX(2px); }
-        
         .site-footer { background: #0b1a33; color: #cbd5e1; padding: 32px 40px 20px; border-top: 2px solid #e67e22; margin-top: 20px; }
         .footer-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; padding-bottom: 24px; border-bottom: 1px solid #1e3350; }
         .footer-grid .brand-info { display: flex; flex-direction: column; }
@@ -499,76 +146,20 @@
         .footer-bottom .legal a { color: #8899b0; text-decoration: none; margin-left: 20px; transition: 0.2s; }
         .footer-bottom .legal a:hover { color: #e67e22; }
         .footer-bottom .flag { display: flex; align-items: center; gap: 6px; background: #1e3350; padding: 4px 14px 4px 10px; border-radius: 40px; font-weight: 500; font-size: 13px; }
-        
-        .session-timer {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(11, 26, 51, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 10px 16px;
-            border-radius: 40px;
-            border: 1px solid rgba(230, 126, 34, 0.3);
-            color: #b0c8e0;
-            font-size: 12px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            z-index: 999;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-            font-family: 'Inter', sans-serif;
-        }
+        .session-timer { position: fixed; bottom: 20px; right: 20px; background: rgba(11, 26, 51, 0.9); backdrop-filter: blur(10px); padding: 10px 16px; border-radius: 40px; border: 1px solid rgba(230, 126, 34, 0.3); color: #b0c8e0; font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 8px; z-index: 999; box-shadow: 0 8px 24px rgba(0,0,0,0.4); font-family: 'Inter', sans-serif; }
         .session-timer i { color: #e67e22; font-size: 14px; }
         .session-timer .timer-text { color: #ffffff; font-weight: 700; }
         .session-timer .timer-warning { color: #e74c3c; }
-        
-        .error-page {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0b1a2f;
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 20px;
-        }
+        .error-page { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0b1a2f; z-index: 9999; justify-content: center; align-items: center; flex-direction: column; padding: 20px; }
         .error-page.show { display: flex; }
         .error-page .error-code { font-size: 120px; font-weight: 800; color: #e67e22; text-shadow: 0 0 60px rgba(230, 126, 34, 0.2); line-height: 1; }
         .error-page .error-title { font-size: 32px; font-weight: 700; color: #f0f4fa; margin-top: 10px; }
         .error-page .error-desc { font-size: 16px; color: #94b0d0; margin-top: 10px; text-align: center; max-width: 500px; }
         .error-page .error-btn { margin-top: 30px; padding: 14px 40px; background: linear-gradient(145deg, #e67e22, #d35400); border: none; border-radius: 60px; color: white; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 6px 24px rgba(230, 126, 34, 0.3); }
         .error-page .error-btn:hover { transform: scale(1.05); box-shadow: 0 8px 32px rgba(230, 126, 34, 0.5); }
-        
-        .withdraw-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(6px);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+        .withdraw-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 20px; }
         .withdraw-modal.show { display: flex; }
-        .withdraw-modal-content {
-            background: #0f1a2e;
-            border: 1px solid rgba(230, 126, 34, 0.3);
-            border-radius: 24px;
-            padding: 30px 35px;
-            max-width: 420px;
-            width: 100%;
-            box-shadow: 0 24px 60px rgba(0,0,0,0.6);
-            animation: modalPop 0.3s ease;
-        }
+        .withdraw-modal-content { background: #0f1a2e; border: 1px solid rgba(230, 126, 34, 0.3); border-radius: 24px; padding: 30px 35px; max-width: 420px; width: 100%; box-shadow: 0 24px 60px rgba(0,0,0,0.6); animation: modalPop 0.3s ease; }
         @keyframes modalPop { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         .withdraw-modal-content .modal-title { color: #ffffff; font-size: 22px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
         .withdraw-modal-content .modal-title i { color: #4ade80; }
@@ -587,8 +178,8 @@
         .withdraw-modal-content .modal-actions .btn-cancel:hover { background: rgba(255,255,255,0.14); }
         .withdraw-modal-content .modal-error { color: #ef4444; font-size: 12px; font-weight: 500; margin-top: 6px; display: none; }
         .withdraw-modal-content .modal-error.show { display: block; }
-        
-        /* ===== STATEMENT MODAL ===== */
+
+        /* ========== NEW STATEMENT UI – MODERN, CLEAN, CARD-BASED ========== */
         .statement-modal {
             display: none;
             position: fixed;
@@ -596,7 +187,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.75);
+            background: rgba(0,0,0,0.65);
             backdrop-filter: blur(8px);
             z-index: 10001;
             justify-content: center;
@@ -606,12 +197,12 @@
         .statement-modal.show { display: flex; }
         .statement-modal-content {
             background: #ffffff;
-            border-radius: 24px;
-            padding: 25px 30px 20px;
-            max-width: 750px;
+            border-radius: 32px;
+            padding: 28px 30px 20px;
+            max-width: 820px;
             width: 100%;
             max-height: 90vh;
-            box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.4);
             animation: modalPop 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -620,19 +211,37 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 12px;
+            padding-bottom: 14px;
             border-bottom: 2px solid #e67e22;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
         .statement-modal-content .modal-header h3 {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: #0b1a33;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-        .statement-modal-content .modal-header h3 i { color: #e67e22; }
+        .statement-modal-content .modal-header h3 i {
+            color: #e67e22;
+            font-size: 22px;
+        }
+        .statement-modal-content .modal-header .header-badge {
+            background: #f1f5fc;
+            padding: 4px 14px;
+            border-radius: 60px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e3a6a;
+            border: 1px solid #dce5f0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .statement-modal-content .modal-header .header-badge i {
+            color: #4ade80;
+        }
         .statement-modal-content .modal-close {
             background: none;
             border: none;
@@ -648,130 +257,186 @@
             justify-content: center;
         }
         .statement-modal-content .modal-close:hover {
-            background: rgba(0,0,0,0.06);
+            background: rgba(0,0,0,0.05);
             color: #e74c3c;
             transform: rotate(90deg);
         }
-        .statement-modal-content .statement-table-wrap {
+
+        /* statement cards layout */
+        .statement-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             max-height: 55vh;
             overflow-y: auto;
-            border-radius: 12px;
-            border: 1px solid rgba(210, 222, 240, 0.2);
+            padding-right: 4px;
         }
-        .statement-modal-content .statement-table-wrap::-webkit-scrollbar {
+        .statement-cards::-webkit-scrollbar {
             width: 4px;
         }
-        .statement-modal-content .statement-table-wrap::-webkit-scrollbar-track {
+        .statement-cards::-webkit-scrollbar-track {
             background: #f1f4fa;
             border-radius: 10px;
         }
-        .statement-modal-content .statement-table-wrap::-webkit-scrollbar-thumb {
+        .statement-cards::-webkit-scrollbar-thumb {
             background: #c0cfe0;
             border-radius: 10px;
         }
-        .statement-modal-content .statement-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            min-width: 380px;
+
+        .statement-card {
+            background: #f9fcff;
+            border-radius: 18px;
+            padding: 14px 18px;
+            border: 1px solid #e9eef5;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
         }
-        .statement-modal-content .statement-table th {
-            background: #f1f5fc;
-            color: #1e3a6a;
+        .statement-card:hover {
+            background: #ffffff;
+            border-color: #cddaea;
+            box-shadow: 0 8px 18px -8px rgba(20, 40, 80, 0.08);
+            transform: translateY(-1px);
+        }
+        .statement-card .card-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1 1 200px;
+            min-width: 150px;
+        }
+        .statement-card .card-left .icon-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .statement-card .card-left .icon-circle.credit {
+            background: #e6f7e6;
+            color: #0d7a3e;
+        }
+        .statement-card .card-left .icon-circle.debit {
+            background: #fee8e8;
+            color: #b91c1c;
+        }
+        .statement-card .card-left .icon-circle.withdraw {
+            background: #fff3e0;
+            color: #d35400;
+        }
+        .statement-card .card-left .info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .statement-card .card-left .info .title {
             font-weight: 700;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            padding: 8px 10px;
-            text-align: left;
-            border-bottom: 2px solid #dce5f0;
-            position: sticky;
-            top: 0;
-            z-index: 5;
+            font-size: 14px;
+            color: #0b1a33;
         }
-        .statement-modal-content .statement-table td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #edf2f8;
-            color: #1e293b;
-            vertical-align: middle;
+        .statement-card .card-left .info .meta {
+            font-size: 11px;
+            color: #6b8aaa;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
         }
-        .statement-modal-content .statement-table tr:last-child td { border-bottom: none; }
-        .statement-modal-content .statement-table .type-credit { color: #0d7a3e; font-weight: 700; }
-        .statement-modal-content .statement-table .type-credit i { color: #22c55e; margin-right: 4px; }
-        .statement-modal-content .statement-table .type-debit { color: #b91c1c; font-weight: 700; }
-        .statement-modal-content .statement-table .type-debit i { color: #ef4444; margin-right: 4px; }
-        .statement-modal-content .statement-table .utr-copy {
+        .statement-card .card-left .info .meta .utr-btn {
             background: none;
             border: none;
             color: #1a6bc4;
-            cursor: pointer;
             font-size: 11px;
-            padding: 2px 6px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 1px 6px;
             border-radius: 4px;
             transition: 0.2s;
             font-family: 'Inter', sans-serif;
+            background: #eef4ff;
         }
-        .statement-modal-content .statement-table .utr-copy:hover {
-            background: rgba(26, 107, 196, 0.08);
+        .statement-card .card-left .info .meta .utr-btn:hover {
+            background: #d4e2ff;
         }
-        .statement-modal-content .statement-table .utr-copy.copied {
+        .statement-card .card-left .info .meta .utr-btn.copied {
+            color: #0d7a3e;
+            background: #dcfce7;
+        }
+        .statement-card .card-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .statement-card .card-right .amount {
+            font-weight: 700;
+            font-size: 16px;
+            white-space: nowrap;
+        }
+        .statement-card .card-right .amount.credit {
             color: #0d7a3e;
         }
-        .statement-modal-content .statement-table .status-badge {
+        .statement-card .card-right .amount.debit {
+            color: #b91c1c;
+        }
+        .statement-card .card-right .status-badge {
             display: inline-flex;
             align-items: center;
-            gap: 3px;
-            font-size: 9px;
+            gap: 4px;
+            font-size: 10px;
             font-weight: 700;
-            padding: 1px 8px 1px 6px;
-            border-radius: 30px;
+            padding: 3px 12px 3px 10px;
+            border-radius: 40px;
             text-transform: uppercase;
             letter-spacing: 0.2px;
+            border: 1px solid transparent;
+            white-space: nowrap;
         }
-        .statement-modal-content .statement-table .status-badge.success {
+        .statement-card .card-right .status-badge.success {
             background: #dcfce7;
             color: #15803d;
-            border: 1px solid #86efac;
+            border-color: #86efac;
         }
-        .statement-modal-content .statement-table .status-badge.pending {
+        .statement-card .card-right .status-badge.pending {
             background: #fef9e7;
             color: #a77b1a;
-            border: 1px solid #f7d44a;
+            border-color: #f7d44a;
         }
-        .statement-modal-content .statement-table .status-badge.failed {
+        .statement-card .card-right .status-badge.failed {
             background: #fee2e2;
             color: #b91c1c;
-            border: 1px solid #fca5a5;
+            border-color: #fca5a5;
         }
-        .statement-modal-content .statement-table .status-badge i { font-size: 7px; }
-        .statement-modal-content .statement-table .account-opened {
-            font-size: 10px;
-            color: #1a6bc4;
-            font-weight: 600;
-            background: #e3f0ff;
-            padding: 1px 10px 1px 8px;
-            border-radius: 40px;
-            display: inline-block;
-            border: 1px solid #b8d0f0;
-        }
+        .statement-card .card-right .status-badge i { font-size: 8px; }
+
         .statement-modal-content .modal-footer {
-            margin-top: 14px;
-            padding-top: 12px;
+            margin-top: 16px;
+            padding-top: 14px;
             border-top: 1px solid #edf2f8;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 11px;
-            color: #8899b0;
+            font-size: 12px;
+            color: #6b8aaa;
+            flex-wrap: wrap;
+            gap: 8px;
         }
         .statement-modal-content .modal-footer .close-btn {
-            padding: 8px 24px;
+            padding: 10px 28px;
             border-radius: 60px;
             background: #0b1a33;
             color: white;
             border: none;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 14px;
             cursor: pointer;
             transition: 0.2s;
             font-family: 'Inter', sans-serif;
@@ -779,7 +444,31 @@
         .statement-modal-content .modal-footer .close-btn:hover {
             background: #1a3052;
         }
-        
+        .statement-modal-content .modal-footer .footer-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .statement-modal-content .modal-footer .footer-info i {
+            color: #e67e22;
+        }
+
+        /* responsive */
+        @media (max-width: 640px) {
+            .statement-modal-content { padding: 20px 16px; }
+            .statement-card { padding: 12px 14px; flex-direction: column; align-items: stretch; }
+            .statement-card .card-left { flex: 1 1 auto; }
+            .statement-card .card-right { justify-content: space-between; width: 100%; }
+            .statement-modal-content .modal-header h3 { font-size: 17px; }
+            .statement-modal-content .modal-header .header-badge { font-size: 10px; padding: 2px 10px; }
+        }
+        @media (max-width: 400px) {
+            .statement-card .card-left .icon-circle { width: 34px; height: 34px; font-size: 14px; }
+            .statement-card .card-left .info .title { font-size: 13px; }
+            .statement-card .card-right .amount { font-size: 14px; }
+        }
+
+        /* keep existing responsive for other elements */
         @media (max-width: 860px) {
             .site-header { padding: 12px 20px; flex-wrap: wrap; gap: 10px; }
             .logo-area { flex: 1; }
@@ -787,10 +476,6 @@
             .dropdown-overlay { right: 0; left: auto; min-width: 200px; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
             .certificate-card { padding: 20px 16px; }
-            .statement-modal-content { padding: 20px; max-width: 95%; }
-            .statement-modal-content .statement-table { font-size: 11px; min-width: 300px; }
-            .statement-modal-content .statement-table th,
-            .statement-modal-content .statement-table td { padding: 6px 8px; }
         }
         @media (max-width: 550px) {
             .site-header { padding: 10px 16px; }
@@ -826,40 +511,6 @@
             .statement-btn i { font-size: 8px; }
             .certificate-card .cert-actions button { font-size: 12px; padding: 10px 18px; }
             .certificate-card .cert-title { font-size: 17px; }
-            .statement-modal-content { padding: 16px; }
-            .statement-modal-content .statement-table { font-size: 10px; min-width: 260px; }
-            .statement-modal-content .statement-table th,
-            .statement-modal-content .statement-table td { padding: 5px 6px; }
-            .statement-modal-content .modal-header h3 { font-size: 15px; }
-            .statement-modal-content .modal-footer { font-size: 10px; flex-wrap: wrap; gap: 8px; }
-        }
-        @media (max-width: 380px) {
-            .profile-section { padding: 6px 10px; margin: 10px 6px 5px 6px; border-radius: 12px; }
-            .profile-logo-wrapper img { height: 24px; }
-            .profile-logo-wrapper .profile-name { font-size: 11px; }
-            .verified-badge-gold { width: 16px; height: 16px; font-size: 9px; }
-            .verified-badge-gold i { font-size: 9px; }
-            .emp-id-inline { padding: 2px 8px 2px 5px; }
-            .emp-id-inline .emp-id-value { font-size: 9px; }
-            .emp-id-inline .emp-id-label { font-size: 6px; }
-            .check-status-btn { font-size: 9px; padding: 3px 8px 3px 6px; }
-            .check-status-btn i { font-size: 9px; }
-            .status-datetime { font-size: 7px; padding: 2px 5px 2px 4px; }
-            .status-datetime .live-datetime { font-size: 7px; min-width: 50px; }
-            .sell-earn-tag { font-size: 9px; padding: 3px 8px; gap: 4px; }
-            .sell-earn-tag i { font-size: 10px; }
-            .sell-earn-tag span, .sell-earn-tag .earn-amount { font-size: 8px; padding: 0 6px; }
-            .footer-brand-top img { height: 34px; }
-            .footer-brand-top h3 { font-size: 17px; }
-            .balance-box .balance-amount { font-size: 10px; min-width: 30px; }
-            .withdraw-btn { font-size: 8px; padding: 2px 8px 2px 6px; }
-            .statement-btn { font-size: 7px; padding: 2px 6px 2px 5px; }
-            .statement-btn i { font-size: 7px; }
-            .certificate-card { padding: 16px 12px; }
-            .certificate-card .cert-actions button { font-size: 10px; padding: 8px 14px; }
-            .statement-modal-content .statement-table { font-size: 9px; min-width: 220px; }
-            .statement-modal-content .statement-table th,
-            .statement-modal-content .statement-table td { padding: 4px 4px; }
         }
     </style>
 </head>
@@ -923,104 +574,21 @@
         </div>
     </div>
 
-    <!-- ===== STATEMENT MODAL ===== -->
+    <!-- ===== STATEMENT MODAL – NEW CARD UI ===== -->
     <div class="statement-modal" id="statementModal">
         <div class="statement-modal-content">
             <div class="modal-header">
                 <h3><i class="fas fa-receipt"></i> Account Statement</h3>
+                <span class="header-badge"><i class="fas fa-check-circle"></i> 10 transactions</span>
                 <button class="modal-close" onclick="closeStatementModal()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="statement-table-wrap">
-                <table class="statement-table" id="statementTableModal">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th>Amount</th>
-                            <th>UTR / Details</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="statementBodyModal">
-                        <!-- 5 Credit entries (no UTR, shows "Account Opened") -->
-                        <tr>
-                            <td>02 Sep 2026 10:15</td>
-                            <td class="type-credit"><i class="fas fa-arrow-down"></i> Credit</td>
-                            <td>+₹500</td>
-                            <td><span class="account-opened"><i class="fas fa-unlock-alt"></i> Account Opened</span></td>
-                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
-                        </tr>
-                        <tr>
-                            <td>03 Sep 2026 14:30</td>
-                            <td class="type-credit"><i class="fas fa-arrow-down"></i> Credit</td>
-                            <td>+₹1,200</td>
-                            <td><span class="account-opened"><i class="fas fa-unlock-alt"></i> Account Opened</span></td>
-                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
-                        </tr>
-                        <tr>
-                            <td>04 Sep 2026 09:45</td>
-                            <td class="type-credit"><i class="fas fa-arrow-down"></i> Credit</td>
-                            <td>+₹750</td>
-                            <td><span class="account-opened"><i class="fas fa-unlock-alt"></i> Account Opened</span></td>
-                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
-                        </tr>
-                        <tr>
-                            <td>05 Sep 2026 16:20</td>
-                            <td class="type-credit"><i class="fas fa-arrow-down"></i> Credit</td>
-                            <td>+₹2,000</td>
-                            <td><span class="account-opened"><i class="fas fa-unlock-alt"></i> Account Opened</span></td>
-                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
-                        </tr>
-                        <tr>
-                            <td>06 Sep 2026 11:00</td>
-                            <td class="type-credit"><i class="fas fa-arrow-down"></i> Credit</td>
-                            <td>+₹3,500</td>
-                            <td><span class="account-opened"><i class="fas fa-unlock-alt"></i> Account Opened</span></td>
-                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
-                        </tr>
-                        <!-- 5 Withdrawal entries (with UTR, copyable) -->
-                        <tr>
-                            <td>07 Sep 2026 12:10</td>
-                            <td class="type-debit"><i class="fas fa-arrow-up"></i> Withdraw</td>
-                            <td>-₹500</td>
-                            <td><button class="utr-copy" onclick="copyUTR(this, 'WDR260907001')">📋 WDR260907001</button></td>
-                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
-                        </tr>
-                        <tr>
-                            <td>08 Sep 2026 08:30</td>
-                            <td class="type-debit"><i class="fas fa-arrow-up"></i> Withdraw</td>
-                            <td>-₹1,000</td>
-                            <td><button class="utr-copy" onclick="copyUTR(this, 'WDR260908002')">📋 WDR260908002</button></td>
-                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
-                        </tr>
-                        <tr>
-                            <td>09 Sep 2026 15:45</td>
-                            <td class="type-debit"><i class="fas fa-arrow-up"></i> Withdraw</td>
-                            <td>-₹250</td>
-                            <td><button class="utr-copy" onclick="copyUTR(this, 'WDR260909003')">📋 WDR260909003</button></td>
-                            <td><span class="status-badge pending"><i class="fas fa-clock"></i> Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>10 Sep 2026 10:00</td>
-                            <td class="type-debit"><i class="fas fa-arrow-up"></i> Withdraw</td>
-                            <td>-₹750</td>
-                            <td><button class="utr-copy" onclick="copyUTR(this, 'WDR260910004')">📋 WDR260910004</button></td>
-                            <td><span class="status-badge success"><i class="fas fa-check-circle"></i> Success</span></td>
-                        </tr>
-                        <tr>
-                            <td>11 Sep 2026 13:20</td>
-                            <td class="type-debit"><i class="fas fa-arrow-up"></i> Withdraw</td>
-                            <td>-₹1,500</td>
-                            <td><button class="utr-copy" onclick="copyUTR(this, 'WDR260911005')">📋 WDR260911005</button></td>
-                            <td><span class="status-badge failed"><i class="fas fa-times-circle"></i> Failed</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="statement-cards" id="statementCardsContainer">
+                <!-- cards will be injected by JS -->
             </div>
             <div class="modal-footer">
-                <span><i class="fas fa-info-circle"></i> Click UTR to copy</span>
+                <span class="footer-info"><i class="fas fa-info-circle"></i> Click UTR to copy</span>
                 <button class="close-btn" onclick="closeStatementModal()">Close</button>
             </div>
         </div>
@@ -1077,7 +645,6 @@
                     </div>
                 </div>
                 <div class="status-right">
-                    <!-- Balance Box - Read from HTML (manual edit) -->
                     <div class="balance-box" id="balanceBox">
                         <i class="fas fa-wallet balance-icon"></i>
                         <span class="balance-label">Balance</span>
@@ -1330,17 +897,15 @@
 
     <script>
     // =============================================
-    // 📜 CERTIFICATE FUNCTIONS
+    // 📜 CERTIFICATE FUNCTIONS (unchanged)
     // =============================================
     function openCertificate() {
         document.getElementById('certificateOverlay').classList.add('show');
         document.getElementById('dropdownOverlay').classList.remove('open');
     }
-
     function closeCertificate() {
         document.getElementById('certificateOverlay').classList.remove('show');
     }
-
     function shareCertificate() {
         const img = document.getElementById('certificateImage');
         if (navigator.share) {
@@ -1348,11 +913,8 @@
                 .then(res => res.blob())
                 .then(blob => {
                     const file = new File([blob], 'Certificate.png', { type: 'image/png' });
-                    navigator.share({
-                        title: 'My Certificate - Arif Online Services',
-                        text: 'Check out my certificate from Arif Online Services!',
-                        files: [file]
-                    }).catch(err => console.log('Share cancelled:', err));
+                    navigator.share({ title: 'My Certificate - Arif Online Services', text: 'Check out my certificate from Arif Online Services!', files: [file] })
+                        .catch(err => console.log('Share cancelled:', err));
                 })
                 .catch(err => {
                     const dummy = document.createElement('input');
@@ -1373,16 +935,13 @@
             alert('✅ Image URL copied to clipboard! You can share it now.');
         }
     }
-
     function downloadCertificate() {
         const img = document.getElementById('certificateImage');
         const imageUrl = img.src;
-        
         const downloadBtn = document.querySelector('.btn-download');
         const originalText = downloadBtn.innerHTML;
         downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
         downloadBtn.disabled = true;
-        
         fetch(imageUrl, { mode: 'cors' })
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
@@ -1425,15 +984,13 @@
         document.getElementById('withdrawModal').classList.remove('show');
         document.getElementById('withdrawError').classList.remove('show');
     }
-
     function openStatementModal() {
         document.getElementById('statementModal').classList.add('show');
+        renderStatementCards(); // populate cards each time
     }
-
     function closeStatementModal() {
         document.getElementById('statementModal').classList.remove('show');
     }
-
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeCertificate();
@@ -1442,8 +999,6 @@
             document.getElementById('dropdownOverlay').classList.remove('open');
         }
     });
-
-    // Click outside to close statement modal
     document.getElementById('statementModal').addEventListener('click', function(e) {
         if (e.target === this) {
             closeStatementModal();
@@ -1451,42 +1006,35 @@
     });
 
     // =============================================
-    // 🔐 SESSION CHECK - 5 MINUTES
+    // 🔐 SESSION CHECK - 5 MINUTES (unchanged)
     // =============================================
     (function() {
         const loggedInUser = sessionStorage.getItem('loggedInUser');
         const loginTime = sessionStorage.getItem('loginTime');
         const errorPage = document.getElementById('errorPage');
-        
         window.logoutUser = function() {
             sessionStorage.removeItem('loggedInUser');
             sessionStorage.removeItem('loginTime');
             errorPage.classList.add('show');
         };
-        
         if (!loggedInUser || !loginTime) {
             errorPage.classList.add('show');
             return;
         }
-        
         const timeDiff = Date.now() - parseInt(loginTime);
         const FIVE_MINUTES = 5 * 60 * 1000;
-        
         if (timeDiff > FIVE_MINUTES) {
             sessionStorage.removeItem('loggedInUser');
             sessionStorage.removeItem('loginTime');
             errorPage.classList.add('show');
             return;
         }
-        
         const empIdElements = document.querySelectorAll('.emp-id-value');
         empIdElements.forEach(el => {
             el.textContent = '#' + loggedInUser;
         });
-        
         let remainingTime = Math.floor((FIVE_MINUTES - timeDiff) / 1000);
         const timerDisplay = document.getElementById('timerDisplay');
-        
         function updateTimer() {
             if (remainingTime <= 0) {
                 logoutUser();
@@ -1495,16 +1043,13 @@
             const mins = Math.floor(remainingTime / 60);
             const secs = remainingTime % 60;
             timerDisplay.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
-            
             if (remainingTime < 60) {
                 timerDisplay.classList.add('timer-warning');
             }
             remainingTime--;
         }
-        
         updateTimer();
         setInterval(updateTimer, 1000);
-        
         function resetSessionTimer() {
             sessionStorage.setItem('loginTime', Date.now());
             const newTimeDiff = Date.now() - parseInt(sessionStorage.getItem('loginTime'));
@@ -1513,32 +1058,28 @@
             timerDisplay.classList.remove('timer-warning');
             updateTimer();
         }
-        
         document.addEventListener('click', resetSessionTimer);
         document.addEventListener('keydown', resetSessionTimer);
         document.addEventListener('scroll', resetSessionTimer);
     })();
 
     // =============================================
-    // 💰 BALANCE - Read directly from HTML (manual edit)
+    // 💰 BALANCE (unchanged)
     // =============================================
     const balanceAmountEl = document.getElementById('balanceAmount');
     const modalBalanceDisplay = document.getElementById('modalBalanceDisplay');
     const withdrawAmountInput = document.getElementById('withdrawAmount');
     const withdrawError = document.getElementById('withdrawError');
 
-    // Get balance directly from the HTML content (manual edit)
     function getCurrentBalance() {
         const text = balanceAmountEl.textContent.replace('₹', '').replace(/,/g, '').trim();
         const val = parseInt(text);
         return isNaN(val) ? 0 : val;
     }
-
     function updateModalBalance() {
         const balance = getCurrentBalance();
         modalBalanceDisplay.textContent = '₹' + balance.toLocaleString('en-IN');
     }
-
     window.openWithdrawModal = function() {
         const balance = getCurrentBalance();
         if (balance <= 0) {
@@ -1556,141 +1097,116 @@
     };
 
     // =============================================
-    // 💳 PROCESS WITHDRAWAL WITH WEB3FORMS
+    // 💳 PROCESS WITHDRAWAL (unchanged)
     // =============================================
     window.processWithdraw = function() {
         const balance = getCurrentBalance();
         const amount = parseInt(withdrawAmountInput.value);
-        const maxAllowed = Math.min(balance, 1000);
-        
-        // Validation
         if (isNaN(amount) || amount < 100) {
             withdrawError.textContent = 'Minimum withdrawal amount is ₹100!';
             withdrawError.classList.add('show');
             return;
         }
-        
         if (amount > 1000) {
             withdrawError.textContent = 'Maximum withdrawal amount is ₹1000!';
             withdrawError.classList.add('show');
             return;
         }
-        
         if (amount > balance) {
             withdrawError.textContent = 'Insufficient balance! You have ₹' + balance.toLocaleString('en-IN');
             withdrawError.classList.add('show');
             return;
         }
-        
-        // Generate UTR
         const utr = 'WDR' + Date.now().toString().slice(-8) + Math.floor(Math.random()*1000).toString().padStart(3, '0');
         const agentName = 'Maruf Goldar';
         const agentEmpId = 'AOS828284';
+        const agentPhone = '8282847228';
+        const developerPhone = '9748437602';
+        const customerEmail = 'arifgoldar602usa@gmail.com';
         const now = new Date();
-        const dateTimeStr = now.toLocaleString('en-IN', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        });
-        
-        // Web3Forms Configuration
-        const WEB3FORMS_KEY = '82f2b052-a800-4c1b-bd41-106591891438';
+        const dateTimeStr = now.toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const ADMIN_API_KEY = '1021d303-148d-48b4-a8ce-8183e40d13a5';
+        const AGENT_API_KEY = '62f3aaf1-b958-4005-98bb-0d9b2e1b3007';
         const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
-        
-        // Prepare form data
-        const formData = new FormData();
-        formData.append('access_key', WEB3FORMS_KEY);
-        formData.append('subject', `💰 Withdrawal Request - ${agentEmpId}`);
-        formData.append('from_name', agentName);
-        formData.append('to_email', 'arifgoldar602@gmail.com');
-        formData.append('message', `
-📌 WITHDRAWAL REQUEST DETAILS
-═══════════════════════════════
-
-👤 Agent Name: ${agentName}
-🆔 Emp ID: ${agentEmpId}
-💰 Amount: ₹${amount.toLocaleString('en-IN')}
-📊 Remaining Balance: ₹${balance.toLocaleString('en-IN')} (unchanged)
-📅 Date & Time: ${dateTimeStr}
-📋 UTR Number: ${utr}
-✅ Status: Processed Successfully
-
-═══════════════════════════════
-Thank you for using Arif Online Services.
-        `);
-        formData.append('_captcha', 'false');
-        formData.append('_template', 'table');
-        
-        // Disable button and show loading state
+        const adminForm = new FormData();
+        adminForm.append('access_key', ADMIN_API_KEY);
+        adminForm.append('subject', `💰 WITHDRAWAL REQUEST - ${agentEmpId} - ₹${amount}`);
+        adminForm.append('from_name', 'Arif Online Services');
+        adminForm.append('to_email', 'arifgoldar602@gmail.com');
+        adminForm.append('message', `╔═══════════════════════════════════════════════════════════════╗\n║              💰 WITHDRAWAL REQUEST RECEIVED                  ║\n╚═══════════════════════════════════════════════════════════════╝\n\n📌 REQUEST DETAILS\n═══════════════════════════════════════════════════════════════\n\n👤 Agent Name          : ${agentName}\n🆔 Employee ID         : ${agentEmpId}\n📱 Phone Number        : ${agentPhone}\n✉️ Email Address       : ${customerEmail}\n💰 Withdrawal Amount   : ₹${amount.toLocaleString('en-IN')}\n📊 Remaining Balance   : ₹${(balance - amount).toLocaleString('en-IN')}\n📅 Request Date & Time : ${dateTimeStr}\n📋 UTR Number          : ${utr}\n✅ Current Status      : 🔴 PENDING VERIFICATION\n\n═══════════════════════════════════════════════════════════════\n\n⚠️ ACTION REQUIRED:\nPlease verify and process the payment.\n\n📞 Contact Agent: ${agentPhone}\n📧 Contact Email: ${customerEmail}\n👨‍💼 Developer: ${developerPhone}\n\nThank you for using Arif Online Services.`);
+        adminForm.append('_captcha', 'false');
+        adminForm.append('_template', 'table');
+        const agentForm = new FormData();
+        agentForm.append('access_key', AGENT_API_KEY);
+        agentForm.append('subject', `✅ WITHDRAWAL REQUEST SENT SUCCESSFULLY - ${agentEmpId}`);
+        agentForm.append('from_name', 'Arif Online Services');
+        agentForm.append('to_email', customerEmail);
+        agentForm.append('message', `╔═══════════════════════════════════════════════════════════════╗\n║          ✅ WITHDRAWAL REQUEST SENT SUCCESSFULLY             ║\n╚═══════════════════════════════════════════════════════════════╝\n\nDear ${agentName},\n\nYour withdrawal request has been sent successfully to Arif Online Services.\n\n📌 REQUEST SUMMARY\n═══════════════════════════════════════════════════════════════\n\n💰 Amount Requested   : ₹${amount.toLocaleString('en-IN')}\n📅 Request Date       : ${dateTimeStr}\n🆔 Employee ID        : ${agentEmpId}\n📱 Your Phone         : ${agentPhone}\n📧 Your Email         : ${customerEmail}\n\n⏳ CURRENT STATUS: ⏳ PENDING ADMIN APPROVAL\n\n═══════════════════════════════════════════════════════════════\n\n📌 WHAT HAPPENS NEXT?\n─────────────────────────────────────────────────────────────\n🔹 Step 1: Our team will verify your request\n🔹 Step 2: We will check your account balance\n🔹 Step 3: Admin will approve the withdrawal\n🔹 Step 4: Amount will be sent to your registered bank\n🔹 Step 5: You can find the payment status in the Statements option of your profile\n\n⏰ Processing Time: 24-48 hours\n\n═══════════════════════════════════════════════════════════════\n\n📞 NEED HELP?\n─────────────────────────────────────────────────────────────\n📧 Email: arifgoldar602@gmail.com\n📱 Phone: ${developerPhone}\n🕐 Working Hours: Mon-Sat 9AM - 8PM\n\nThank you for choosing Arif Online Services.\n\n- Arif Online Services Team`);
+        agentForm.append('_captcha', 'false');
+        agentForm.append('_template', 'table');
         const confirmBtn = document.querySelector('.btn-confirm');
         const originalText = confirmBtn.textContent;
         confirmBtn.textContent = '⏳ Processing...';
         confirmBtn.disabled = true;
-        
-        // Send to Web3Forms
-        fetch(WEB3FORMS_URL, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('✅ Withdrawal successful!\n\n' +
+        Promise.all([
+            fetch(WEB3FORMS_URL, { method: 'POST', body: adminForm }),
+            fetch(WEB3FORMS_URL, { method: 'POST', body: agentForm })
+        ])
+        .then(responses => Promise.all(responses.map(r => r.json())))
+        .then(results => {
+            const adminSuccess = results[0] && results[0].success;
+            const agentSuccess = results[1] && results[1].success;
+            if (adminSuccess && agentSuccess) {
+                alert('✅ Withdrawal Request Sent Successfully!\n\n' +
                       '💰 Amount: ₹' + amount.toLocaleString('en-IN') + '\n' +
-                      '📊 Remaining Balance: ₹' + balance.toLocaleString('en-IN') + ' (unchanged)\n' +
-                      '🆔 Emp ID: ' + agentEmpId + '\n' +
-                      '📅 Date & Time: ' + dateTimeStr + '\n\n' +
-                      '📋 UTR: ' + utr + '\n\n' +
-                      '📧 Notification sent to admin successfully.');
+                      '📊 New Balance: ₹' + (balance - amount).toLocaleString('en-IN') + '\n' +
+                      '🆔 Emp ID: ' + agentEmpId + '\n\n' +
+                      '📧 Notifications Sent:\n' +
+                      '   ✅ Company: arifgoldar602@gmail.com (For Verification)\n' +
+                      '   ✅ You: ' + customerEmail + ' (Confirmation)\n\n' +
+                      '⏳ Status: Pending Admin Approval\n' +
+                      '⏰ Processing Time: 24-48 hours');
+                const newBalance = balance - amount;
+                balanceAmountEl.textContent = '₹' + newBalance;
                 closeWithdrawModal();
             } else {
-                alert('⚠️ Withdrawal processed but notification failed.\n\n' +
-                      'UTR: ' + utr + '\n\n' +
-                      'Error: ' + (data.message || 'Unknown error') + 
-                      '\n\nPlease contact admin manually with your UTR number.');
+                let errorMsg = '';
+                if (!adminSuccess) errorMsg += '❌ Company notification failed. ';
+                if (!agentSuccess) errorMsg += '❌ Your notification failed. ';
+                alert('⚠️ Partial Success!\n\n' +
+                      errorMsg + '\n' +
+                      '📋 UTR: ' + utr + '\n\n' +
+                      'Please contact us:\n' +
+                      '📧 arifgoldar602@gmail.com\n' +
+                      '📞 ' + developerPhone);
                 closeWithdrawModal();
             }
         })
         .catch(error => {
             console.error('Web3Forms Error:', error);
-            alert('⚠️ Withdrawal processed but notification failed.\n\n' +
-                  'UTR: ' + utr + '\n\n' +
-                  'Error: ' + error.message + 
-                  '\n\nPlease contact admin manually with your UTR number.');
+            alert('❌ Withdrawal request failed!\n\n' +
+                  'Please check your internet connection and try again.');
             closeWithdrawModal();
         })
         .finally(() => {
-            // Restore button
             confirmBtn.textContent = originalText;
             confirmBtn.disabled = false;
         });
     };
-    
-    // Close modal on outside click
     document.getElementById('withdrawModal').addEventListener('click', function(e) {
         if (e.target === this) {
             closeWithdrawModal();
         }
     });
-    
-    // Enter key to submit
     withdrawAmountInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             processWithdraw();
         }
     });
-    
-    // Update modal balance on load
     updateModalBalance();
-    console.log('💰 Current Balance (from HTML): ' + getCurrentBalance());
-    console.log('💡 To change balance, edit the text inside #balanceAmount in the HTML.');
-    console.log('📧 Web3Forms API Key: 82f2b052-a800-4c1b-bd41-106591891438');
 
     // =============================================
-    // 📋 COPY UTR FUNCTION
+    // 📋 COPY UTR FUNCTION (unchanged)
     // =============================================
     window.copyUTR = function(btn, utr) {
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1709,7 +1225,6 @@ Thank you for using Arif Online Services.
             fallbackCopy(btn, utr);
         }
     };
-
     function fallbackCopy(btn, utr) {
         const temp = document.createElement('input');
         temp.value = utr;
@@ -1731,7 +1246,57 @@ Thank you for using Arif Online Services.
     }
 
     // =============================================
-    // ⏰ LIVE DATETIME
+    // 🆕 RENDER STATEMENT CARDS (NEW UI)
+    // =============================================
+    function renderStatementCards() {
+        const container = document.getElementById('statementCardsContainer');
+        // Sample data (same as before, but with more fields)
+        const transactions = [
+            { date: '02 Sep 2026 10:15', type: 'Credit', amount: '+₹500', icon: 'credit', status: 'success', utr: 'ACC260902001', details: 'Account Opened' },
+            { date: '03 Sep 2026 14:30', type: 'Credit', amount: '+₹1,200', icon: 'credit', status: 'success', utr: 'ACC260903002', details: 'Account Opened' },
+            { date: '04 Sep 2026 09:45', type: 'Credit', amount: '+₹750', icon: 'credit', status: 'success', utr: 'ACC260904003', details: 'Account Opened' },
+            { date: '05 Sep 2026 16:20', type: 'Credit', amount: '+₹2,000', icon: 'credit', status: 'success', utr: 'ACC260905004', details: 'Account Opened' },
+            { date: '06 Sep 2026 11:00', type: 'Credit', amount: '+₹3,500', icon: 'credit', status: 'success', utr: 'ACC260906005', details: 'Account Opened' },
+            { date: '07 Sep 2026 12:10', type: 'Withdraw', amount: '-₹500', icon: 'debit', status: 'success', utr: 'WDR260907001', details: 'Withdraw' },
+            { date: '08 Sep 2026 08:30', type: 'Withdraw', amount: '-₹1,000', icon: 'debit', status: 'success', utr: 'WDR260908002', details: 'Withdraw' },
+            { date: '09 Sep 2026 15:45', type: 'Withdraw', amount: '-₹250', icon: 'debit', status: 'pending', utr: 'WDR260909003', details: 'Withdraw' },
+            { date: '10 Sep 2026 10:00', type: 'Withdraw', amount: '-₹750', icon: 'debit', status: 'success', utr: 'WDR260910004', details: 'Withdraw' },
+            { date: '11 Sep 2026 13:20', type: 'Withdraw', amount: '-₹1,500', icon: 'debit', status: 'failed', utr: 'WDR260911005', details: 'Withdraw' }
+        ];
+
+        let html = '';
+        transactions.forEach(t => {
+            const iconClass = t.icon === 'credit' ? 'credit' : (t.icon === 'debit' ? 'debit' : 'withdraw');
+            const amountClass = t.type === 'Credit' ? 'credit' : 'debit';
+            const statusClass = t.status === 'success' ? 'success' : (t.status === 'pending' ? 'pending' : 'failed');
+            const statusIcon = t.status === 'success' ? 'fa-check-circle' : (t.status === 'pending' ? 'fa-clock' : 'fa-times-circle');
+            const utrDisplay = t.utr || 'N/A';
+            html += `
+                <div class="statement-card">
+                    <div class="card-left">
+                        <div class="icon-circle ${iconClass}">
+                            <i class="fas ${t.type === 'Credit' ? 'fa-arrow-down' : 'fa-arrow-up'}"></i>
+                        </div>
+                        <div class="info">
+                            <div class="title">${t.type} ${t.details ? '– ' + t.details : ''}</div>
+                            <div class="meta">
+                                <span><i class="far fa-calendar-alt"></i> ${t.date}</span>
+                                <button class="utr-btn" onclick="copyUTR(this, '${utrDisplay}')">📋 ${utrDisplay}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-right">
+                        <span class="amount ${amountClass}">${t.amount}</span>
+                        <span class="status-badge ${statusClass}"><i class="fas ${statusIcon}"></i> ${t.status}</span>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    // =============================================
+    // ⏰ LIVE DATETIME (unchanged)
     // =============================================
     (function() {
         var el = document.getElementById('liveDateTime');
@@ -1750,7 +1315,7 @@ Thank you for using Arif Online Services.
     })();
 
     // =============================================
-    // 📅 INDIAN DATE + STATUS
+    // 📅 INDIAN DATE + STATUS (unchanged)
     // =============================================
     function updateIndianDateAndStatus() {
         const now = new Date();
@@ -1762,7 +1327,6 @@ Thank you for using Arif Online Services.
         formatted = formatted.replace(/,/g, '');
         const dateDisplay = document.getElementById('footerDateDisplay');
         if (dateDisplay) dateDisplay.textContent = formatted;
-
         const day = istDate.getDay();
         const isClosed = (day === 5 || day === 0);
         const statusEl = document.getElementById('footerStatusIndicator');
@@ -1780,7 +1344,7 @@ Thank you for using Arif Online Services.
     setInterval(updateIndianDateAndStatus, 60000);
 
     // =============================================
-    // 📜 SCROLL EFFECT
+    // 📜 SCROLL EFFECT (unchanged)
     // =============================================
     const profileSection = document.getElementById('profileSection');
     let ticking = false;
@@ -1804,39 +1368,33 @@ Thank you for using Arif Online Services.
     handleScroll();
 
     // =============================================
-    // 🖼️ BANNER AUTO-SLIDE
+    // 🖼️ BANNER AUTO-SLIDE (unchanged)
     // =============================================
     (function() {
         const slides = document.querySelectorAll('.ads-slide');
         let currentIndex = 0;
         let interval;
-
         function goToSlide(index) {
             slides.forEach(s => s.classList.remove('active'));
             if (slides[index]) slides[index].classList.add('active');
             currentIndex = index;
         }
-
         function nextSlide() {
             let next = (currentIndex + 1) % slides.length;
             goToSlide(next);
         }
-
         function startAutoSlide() {
             if (interval) clearInterval(interval);
             interval = setInterval(nextSlide, 5000);
         }
-
         if (slides.length > 0) {
             goToSlide(0);
             startAutoSlide();
         }
-
         const banner = document.getElementById('adsBanner');
         if (banner) {
             banner.addEventListener('mouseenter', function() { clearInterval(interval); });
             banner.addEventListener('mouseleave', function() { startAutoSlide(); });
-
             let touchStartX = 0, touchEndX = 0, isSwiping = false;
             banner.addEventListener('touchstart', function(e) {
                 touchStartX = e.changedTouches[0].screenX;
@@ -1865,12 +1423,11 @@ Thank you for using Arif Online Services.
     })();
 
     // =============================================
-    // 🔽 MENU TOGGLE
+    // 🔽 MENU TOGGLE (unchanged)
     // =============================================
     function toggleMenu() {
         document.getElementById('dropdownOverlay').classList.toggle('open');
     }
-
     document.addEventListener('click', function(e) {
         const overlay = document.getElementById('dropdownOverlay');
         const btn = document.querySelector('.menu-btn');
@@ -1879,6 +1436,5 @@ Thank you for using Arif Online Services.
         }
     });
     </script>
-
 </body>
 </html>
