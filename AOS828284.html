@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
+        /* আপনার আগের CSS ঠিক একই রাখুন */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif; }
         body { background: #f8faff; color: #1e293b; min-height: 100vh; }
         
@@ -1554,11 +1555,15 @@
         setTimeout(() => withdrawAmountInput.focus(), 200);
     };
 
+    // =============================================
+    // 💳 PROCESS WITHDRAWAL WITH WEB3FORMS
+    // =============================================
     window.processWithdraw = function() {
         const balance = getCurrentBalance();
         const amount = parseInt(withdrawAmountInput.value);
         const maxAllowed = Math.min(balance, 1000);
         
+        // Validation
         if (isNaN(amount) || amount < 100) {
             withdrawError.textContent = 'Minimum withdrawal amount is ₹100!';
             withdrawError.classList.add('show');
@@ -1577,23 +1582,8 @@
             return;
         }
         
-        // Balance stays unchanged (manual edit only)
+        // Generate UTR
         const utr = 'WDR' + Date.now().toString().slice(-8) + Math.floor(Math.random()*1000).toString().padStart(3, '0');
-        sendWithdrawalEmail(amount, balance);
-        
-        alert('✅ Withdrawal successful!\n\n' +
-              '💰 Amount: ₹' + amount.toLocaleString('en-IN') + '\n' +
-              '📊 Remaining Balance: ₹' + balance.toLocaleString('en-IN') + ' (unchanged)\n' +
-              '🆔 Emp ID: AOS828284\n' +
-              '📅 Date & Time: ' + new Date().toLocaleString('en-IN') + '\n\n' +
-              '📋 UTR: ' + utr + '\n\n' +
-              '💡 Note: Balance is manually managed. Please edit the HTML to update.');
-        
-        closeWithdrawModal();
-    };
-    
-    function sendWithdrawalEmail(amount, remainingBalance) {
-        const agentEmail = 'arifgoldar602@gmail.com';
         const agentName = 'Maruf Goldar';
         const agentEmpId = 'AOS828284';
         const now = new Date();
@@ -1606,40 +1596,98 @@
             second: '2-digit'
         });
         
-        const subject = `Withdrawal Request - ${agentEmpId}`;
-        const body = `Dear ${agentName},
-
-Your withdrawal request has been processed successfully.
-
-📌 Withdrawal Amount: ₹${amount.toLocaleString('en-IN')}
-💰 Remaining Balance: ₹${remainingBalance.toLocaleString('en-IN')} (unchanged)
-🆔 Emp ID: ${agentEmpId}
-📅 Date & Time: ${dateTimeStr}
-
-Thank you for using Arif Online Services.
-
-- Admin Team`;
+        // Web3Forms Configuration
+        const WEB3FORMS_KEY = '82f2b052-a800-4c1b-bd41-106591891438';
+        const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
         
-        const mailtoLink = `mailto:${agentEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.open(mailtoLink, '_blank');
-        console.log(`📧 Withdrawal email sent to ${agentEmail}`);
-    }
+        // Prepare form data
+        const formData = new FormData();
+        formData.append('access_key', WEB3FORMS_KEY);
+        formData.append('subject', `💰 Withdrawal Request - ${agentEmpId}`);
+        formData.append('from_name', agentName);
+        formData.append('to_email', 'arifgoldar602@gmail.com');
+        formData.append('message', `
+📌 WITHDRAWAL REQUEST DETAILS
+═══════════════════════════════
+
+👤 Agent Name: ${agentName}
+🆔 Emp ID: ${agentEmpId}
+💰 Amount: ₹${amount.toLocaleString('en-IN')}
+📊 Remaining Balance: ₹${balance.toLocaleString('en-IN')} (unchanged)
+📅 Date & Time: ${dateTimeStr}
+📋 UTR Number: ${utr}
+✅ Status: Processed Successfully
+
+═══════════════════════════════
+Thank you for using Arif Online Services.
+        `);
+        formData.append('_captcha', 'false');
+        formData.append('_template', 'table');
+        
+        // Disable button and show loading state
+        const confirmBtn = document.querySelector('.btn-confirm');
+        const originalText = confirmBtn.textContent;
+        confirmBtn.textContent = '⏳ Processing...';
+        confirmBtn.disabled = true;
+        
+        // Send to Web3Forms
+        fetch(WEB3FORMS_URL, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('✅ Withdrawal successful!\n\n' +
+                      '💰 Amount: ₹' + amount.toLocaleString('en-IN') + '\n' +
+                      '📊 Remaining Balance: ₹' + balance.toLocaleString('en-IN') + ' (unchanged)\n' +
+                      '🆔 Emp ID: ' + agentEmpId + '\n' +
+                      '📅 Date & Time: ' + dateTimeStr + '\n\n' +
+                      '📋 UTR: ' + utr + '\n\n' +
+                      '📧 Notification sent to admin successfully.');
+                closeWithdrawModal();
+            } else {
+                alert('⚠️ Withdrawal processed but notification failed.\n\n' +
+                      'UTR: ' + utr + '\n\n' +
+                      'Error: ' + (data.message || 'Unknown error') + 
+                      '\n\nPlease contact admin manually with your UTR number.');
+                closeWithdrawModal();
+            }
+        })
+        .catch(error => {
+            console.error('Web3Forms Error:', error);
+            alert('⚠️ Withdrawal processed but notification failed.\n\n' +
+                  'UTR: ' + utr + '\n\n' +
+                  'Error: ' + error.message + 
+                  '\n\nPlease contact admin manually with your UTR number.');
+            closeWithdrawModal();
+        })
+        .finally(() => {
+            // Restore button
+            confirmBtn.textContent = originalText;
+            confirmBtn.disabled = false;
+        });
+    };
     
+    // Close modal on outside click
     document.getElementById('withdrawModal').addEventListener('click', function(e) {
         if (e.target === this) {
             closeWithdrawModal();
         }
     });
     
+    // Enter key to submit
     withdrawAmountInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             processWithdraw();
         }
     });
     
+    // Update modal balance on load
     updateModalBalance();
     console.log('💰 Current Balance (from HTML): ' + getCurrentBalance());
     console.log('💡 To change balance, edit the text inside #balanceAmount in the HTML.');
+    console.log('📧 Web3Forms API Key: 82f2b052-a800-4c1b-bd41-106591891438');
 
     // =============================================
     // 📋 COPY UTR FUNCTION
