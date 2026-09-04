@@ -12,7 +12,6 @@
         /* ----- RESET & BASE ----- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif; }
         body { background: #f8faff; color: #1e293b; min-height: 100vh; }
-        /* ... (all existing styles up to the statement modal are kept exactly as provided) ... */
         .site-header { background: #0b1a33; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; border-bottom: 2px solid #e67e22; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); position: sticky; top: 0; z-index: 200; }
         .logo-area { display: flex; align-items: center; gap: 14px; }
         .logo-area img { height: 52px; width: auto; display: block; }
@@ -179,7 +178,7 @@
         .withdraw-modal-content .modal-error { color: #ef4444; font-size: 12px; font-weight: 500; margin-top: 6px; display: none; }
         .withdraw-modal-content .modal-error.show { display: block; }
 
-        /* ========== NEW STATEMENT UI – MODERN, CLEAN, CARD-BASED ========== */
+        /* ========== STATEMENT UI – MODERN, CLEAN, CARD-BASED ========== */
         .statement-modal {
             display: none;
             position: fixed;
@@ -368,6 +367,21 @@
         .statement-card .card-left .info .meta .utr-btn.copied {
             color: #0d7a3e;
             background: #dcfce7;
+        }
+        /* IMPS tag style */
+        .imps-tag {
+            display: inline-block;
+            background: #0b1a33;
+            color: #facc15;
+            font-size: 8px;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 30px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            border: 1px solid #facc15;
+            line-height: 1.4;
+            margin-left: 2px;
         }
         .statement-card .card-right {
             display: flex;
@@ -1246,22 +1260,22 @@
     }
 
     // =============================================
-    // 🆕 RENDER STATEMENT CARDS (NEW UI)
+    // 🆕 RENDER STATEMENT CARDS (NEW UI) with IMPS tag
     // =============================================
     function renderStatementCards() {
         const container = document.getElementById('statementCardsContainer');
-        // Sample data (same as before, but with more fields)
+        // Sample data – added IMPS tags on withdrawal (debit) transactions
         const transactions = [
             { date: '02 Sep 2026 10:15', type: 'Credit', amount: '+₹500', icon: 'credit', status: 'success', utr: 'ACC260902001', details: 'Account Opened' },
             { date: '03 Sep 2026 14:30', type: 'Credit', amount: '+₹1,200', icon: 'credit', status: 'success', utr: 'ACC260903002', details: 'Account Opened' },
             { date: '04 Sep 2026 09:45', type: 'Credit', amount: '+₹750', icon: 'credit', status: 'success', utr: 'ACC260904003', details: 'Account Opened' },
             { date: '05 Sep 2026 16:20', type: 'Credit', amount: '+₹2,000', icon: 'credit', status: 'success', utr: 'ACC260905004', details: 'Account Opened' },
             { date: '06 Sep 2026 11:00', type: 'Credit', amount: '+₹3,500', icon: 'credit', status: 'success', utr: 'ACC260906005', details: 'Account Opened' },
-            { date: '07 Sep 2026 12:10', type: 'Withdraw', amount: '-₹500', icon: 'debit', status: 'success', utr: 'WDR260907001', details: 'Withdraw' },
-            { date: '08 Sep 2026 08:30', type: 'Withdraw', amount: '-₹1,000', icon: 'debit', status: 'success', utr: 'WDR260908002', details: 'Withdraw' },
-            { date: '09 Sep 2026 15:45', type: 'Withdraw', amount: '-₹250', icon: 'debit', status: 'pending', utr: 'WDR260909003', details: 'Withdraw' },
-            { date: '10 Sep 2026 10:00', type: 'Withdraw', amount: '-₹750', icon: 'debit', status: 'success', utr: 'WDR260910004', details: 'Withdraw' },
-            { date: '11 Sep 2026 13:20', type: 'Withdraw', amount: '-₹1,500', icon: 'debit', status: 'failed', utr: 'WDR260911005', details: 'Withdraw' }
+            { date: '07 Sep 2026 12:10', type: 'Withdraw', amount: '-₹500', icon: 'debit', status: 'success', utr: 'WDR260907001', details: 'Withdraw (IMPS)' },
+            { date: '08 Sep 2026 08:30', type: 'Withdraw', amount: '-₹1,000', icon: 'debit', status: 'success', utr: 'WDR260908002', details: 'Withdraw (IMPS)' },
+            { date: '09 Sep 2026 15:45', type: 'Withdraw', amount: '-₹250', icon: 'debit', status: 'pending', utr: 'WDR260909003', details: 'Withdraw (IMPS)' },
+            { date: '10 Sep 2026 10:00', type: 'Withdraw', amount: '-₹750', icon: 'debit', status: 'success', utr: 'WDR260910004', details: 'Withdraw (IMPS)' },
+            { date: '11 Sep 2026 13:20', type: 'Withdraw', amount: '-₹1,500', icon: 'debit', status: 'failed', utr: 'WDR260911005', details: 'Withdraw (IMPS)' }
         ];
 
         let html = '';
@@ -1271,6 +1285,8 @@
             const statusClass = t.status === 'success' ? 'success' : (t.status === 'pending' ? 'pending' : 'failed');
             const statusIcon = t.status === 'success' ? 'fa-check-circle' : (t.status === 'pending' ? 'fa-clock' : 'fa-times-circle');
             const utrDisplay = t.utr || 'N/A';
+            // Show IMPS tag only for withdrawal (debit) transactions
+            const impsTag = (t.type === 'Withdraw') ? '<span class="imps-tag">IMPS</span>' : '';
             html += `
                 <div class="statement-card">
                     <div class="card-left">
@@ -1278,7 +1294,7 @@
                             <i class="fas ${t.type === 'Credit' ? 'fa-arrow-down' : 'fa-arrow-up'}"></i>
                         </div>
                         <div class="info">
-                            <div class="title">${t.type} ${t.details ? '– ' + t.details : ''}</div>
+                            <div class="title">${t.type} ${t.details ? '– ' + t.details : ''} ${impsTag}</div>
                             <div class="meta">
                                 <span><i class="far fa-calendar-alt"></i> ${t.date}</span>
                                 <button class="utr-btn" onclick="copyUTR(this, '${utrDisplay}')">📋 ${utrDisplay}</button>
