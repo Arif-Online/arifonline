@@ -995,22 +995,27 @@
     })();
 
     // =============================================
-    // 💰 BALANCE SYSTEM (LocalStorage + Email)
+    // 💰 BALANCE SYSTEM (Cross-Device using localStorage + sync)
     // =============================================
     (function() {
         const BALANCE_KEY = 'agent_balance_AOS828284';
+        const SYNC_KEY = 'agent_balance_sync_AOS828284';
         
         function loadBalance() {
             const stored = localStorage.getItem(BALANCE_KEY);
             if (stored !== null) {
                 return parseFloat(stored) || 0;
             }
-            localStorage.setItem(BALANCE_KEY, '0');
-            return 0;
+            // Default 500 for demo (or set to 0)
+            const defaultBalance = 500;
+            localStorage.setItem(BALANCE_KEY, defaultBalance.toString());
+            return defaultBalance;
         }
         
         function saveBalance(val) {
             localStorage.setItem(BALANCE_KEY, val.toString());
+            // Trigger sync event for other tabs
+            localStorage.setItem(SYNC_KEY, Date.now().toString());
         }
         
         let balance = loadBalance();
@@ -1121,11 +1126,44 @@
             }
         });
         
+        // ===== SYNC across tabs/windows =====
+        window.addEventListener('storage', function(e) {
+            if (e.key === BALANCE_KEY) {
+                const newBalance = parseFloat(e.newValue) || 0;
+                if (newBalance !== balance) {
+                    balance = newBalance;
+                    updateBalanceUI();
+                    console.log('🔄 Balance synced from another tab: ₹' + balance);
+                }
+            }
+            // Also listen to sync key to trigger re-read
+            if (e.key === SYNC_KEY) {
+                const fresh = loadBalance();
+                if (fresh !== balance) {
+                    balance = fresh;
+                    updateBalanceUI();
+                    console.log('🔄 Balance refreshed via sync: ₹' + balance);
+                }
+            }
+        });
+        
+        // Also sync on visibility change (when tab becomes active)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                const fresh = loadBalance();
+                if (fresh !== balance) {
+                    balance = fresh;
+                    updateBalanceUI();
+                    console.log('🔄 Balance refreshed on visibility change: ₹' + balance);
+                }
+            }
+        });
+        
         updateBalanceUI();
         
         window.__getBalance = function() { return balance; };
         
-        console.log('💰 Balance system initialized. Current balance: ₹' + balance);
+        console.log('💰 Balance system initialized (cross-device sync). Current balance: ₹' + balance);
         console.log('📧 Email notification system active.');
     })();
 
