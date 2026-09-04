@@ -231,13 +231,218 @@
         }
         
         .status-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease; transform: translateX(0) scale(1); opacity: 1; }
-        .check-status-btn { display: flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #1a2a4a, #2a3a5a); border: 1px solid rgba(255, 255, 255, 0.08); padding: 6px 14px 6px 12px; border-radius: 60px; color: white; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; font-family: 'Inter', sans-serif; letter-spacing: 0.2px; flex-shrink: 0; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); }
-        .check-status-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); background: linear-gradient(135deg, #2a3a5a, #3a4a6a); }
-        .check-status-btn .badge-dot { display: inline-block; width: 6px; height: 6px; background: #4ade80; border-radius: 50%; margin-left: 2px; animation: pulse-dot 2s infinite; }
+        
+        /* Statement Button */
+        .statement-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #1a2a4a, #2a3a5a);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 6px 14px 6px 12px;
+            border-radius: 60px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.2px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        .statement-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #2a3a5a, #3a4a6a);
+        }
+        .statement-btn i { color: #facc15; }
+        
+        .check-status-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #1a2a4a, #2a3a5a);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 6px 14px 6px 12px;
+            border-radius: 60px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.2px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        .check-status-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #2a3a5a, #3a4a6a);
+        }
+        .check-status-btn .badge-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #4ade80;
+            border-radius: 50%;
+            margin-left: 2px;
+            animation: pulse-dot 2s infinite;
+        }
         @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
-        .status-datetime { display: flex; align-items: center; gap: 4px; color: rgba(255, 255, 255, 0.4); font-size: 10px; font-weight: 400; background: rgba(255, 255, 255, 0.04); padding: 3px 10px 3px 8px; border-radius: 60px; border: 1px solid rgba(255, 255, 255, 0.04); white-space: nowrap; flex-shrink: 0; }
+        
+        .status-datetime {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 10px;
+            font-weight: 400;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 3px 10px 3px 8px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
         .status-datetime i { color: #7b9ee0; font-size: 10px; }
         .status-datetime .live-datetime { color: rgba(255, 255, 255, 0.7); font-weight: 500; font-size: 10px; min-width: 80px; }
+        
+        /* ===== STATEMENT MODAL ===== */
+        .statement-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .statement-modal.show { display: flex; }
+        .statement-modal-content {
+            background: #0f1a2e;
+            border: 2px solid #e67e22;
+            border-radius: 24px;
+            padding: 25px 30px;
+            max-width: 550px;
+            width: 100%;
+            max-height: 85vh;
+            animation: modalPop 0.4s ease;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .statement-modal-content .stmt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+        .statement-modal-content .stmt-header h2 {
+            color: #facc15;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .statement-modal-content .stmt-header .stmt-close {
+            background: none;
+            border: none;
+            color: #e74c3c;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0 8px;
+            transition: 0.3s;
+        }
+        .statement-modal-content .stmt-header .stmt-close:hover { transform: rotate(90deg); }
+        
+        .statement-modal-content .stmt-summary {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.05);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 16px;
+        }
+        .statement-modal-content .stmt-summary .summary-item {
+            text-align: center;
+        }
+        .statement-modal-content .stmt-summary .summary-item .s-label {
+            color: #94b0d0;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .statement-modal-content .stmt-summary .summary-item .s-value {
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+        .statement-modal-content .stmt-summary .summary-item .s-value.credit { color: #4ade80; }
+        .statement-modal-content .stmt-summary .summary-item .s-value.debit { color: #ef4444; }
+        .statement-modal-content .stmt-summary .summary-item .s-value.balance { color: #facc15; }
+        
+        .statement-modal-content .stmt-list {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 350px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 8px 0;
+        }
+        .statement-modal-content .stmt-list .stmt-item {
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+        .statement-modal-content .stmt-list .stmt-item .stmt-desc {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .statement-modal-content .stmt-list .stmt-item .stmt-desc .stmt-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .statement-modal-content .stmt-list .stmt-item .stmt-desc .stmt-icon.credit {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+        .statement-modal-content .stmt-list .stmt-item .stmt-desc .stmt-icon.debit {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        .statement-modal-content .stmt-list .stmt-item .stmt-amount.credit { color: #4ade80; }
+        .statement-modal-content .stmt-list .stmt-item .stmt-amount.debit { color: #ef4444; }
+        .statement-modal-content .stmt-list .stmt-item .stmt-time {
+            color: #6b8aaa;
+            font-size: 11px;
+        }
+        .statement-modal-content .stmt-empty {
+            text-align: center;
+            color: #6b8aaa;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
         
         /* ===== BANNER ===== */
         .banner-wrapper { padding: 0 12px; margin: 4px 0 2px 0; touch-action: pan-y; }
@@ -572,10 +777,25 @@
             max-width: 400px;
             width: 100%;
             text-align: center;
+            position: relative;
         }
+        .admin-password-input .password-box .pass-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: none;
+            border: none;
+            color: #e74c3c;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0 8px;
+            transition: 0.3s;
+        }
+        .admin-password-input .password-box .pass-close:hover { transform: rotate(90deg); }
         .admin-password-input .password-box h3 {
             color: white;
             margin-bottom: 16px;
+            margin-top: 4px;
         }
         .admin-password-input .password-box input {
             width: 100%;
@@ -643,10 +863,12 @@
             .emp-id-inline { padding: 2px 10px 2px 6px; }
             .emp-id-inline .emp-id-value { font-size: 10px; }
             .emp-id-inline .emp-id-label { font-size: 7px; }
-            .check-status-btn { font-size: 11px; padding: 5px 12px 5px 10px; }
-            .check-status-btn i { font-size: 11px; }
-            .status-datetime { font-size: 9px; padding: 2px 8px 2px 6px; }
-            .status-datetime .live-datetime { font-size: 9px; min-width: 70px; }
+            .statement-btn { font-size: 10px; padding: 4px 10px 4px 8px; }
+            .statement-btn i { font-size: 10px; }
+            .check-status-btn { font-size: 10px; padding: 4px 10px 4px 8px; }
+            .check-status-btn i { font-size: 10px; }
+            .status-datetime { font-size: 8px; padding: 2px 6px 2px 5px; }
+            .status-datetime .live-datetime { font-size: 8px; min-width: 60px; }
             .sell-earn-tag { font-size: 10px; padding: 4px 10px; gap: 5px; }
             .sell-earn-tag i { font-size: 12px; }
             .sell-earn-tag span, .sell-earn-tag .earn-amount { font-size: 9px; padding: 1px 8px; }
@@ -657,6 +879,8 @@
             .certificate-card .cert-title { font-size: 17px; }
             .admin-toggle { width: 45px; height: 45px; font-size: 20px; bottom: 70px; right: 15px; }
             .admin-panel-content { padding: 20px; }
+            .statement-modal-content { padding: 20px; }
+            .admin-password-input .password-box { padding: 20px; }
         }
         @media (max-width: 380px) {
             .profile-section { padding: 6px 10px; margin: 10px 6px 5px 6px; border-radius: 12px; }
@@ -667,9 +891,12 @@
             .emp-id-inline { padding: 2px 8px 2px 5px; }
             .emp-id-inline .emp-id-value { font-size: 9px; }
             .emp-id-inline .emp-id-label { font-size: 6px; }
-            .check-status-btn { font-size: 10px; padding: 4px 10px 4px 8px; }
-            .status-datetime { font-size: 8px; padding: 2px 6px 2px 5px; }
-            .status-datetime .live-datetime { font-size: 8px; min-width: 60px; }
+            .statement-btn { font-size: 9px; padding: 3px 8px 3px 6px; }
+            .statement-btn i { font-size: 9px; }
+            .check-status-btn { font-size: 9px; padding: 3px 8px 3px 6px; }
+            .check-status-btn i { font-size: 9px; }
+            .status-datetime { font-size: 7px; padding: 2px 5px 2px 4px; }
+            .status-datetime .live-datetime { font-size: 7px; min-width: 50px; }
             .sell-earn-tag { font-size: 9px; padding: 3px 8px; gap: 4px; }
             .sell-earn-tag i { font-size: 10px; }
             .sell-earn-tag span, .sell-earn-tag .earn-amount { font-size: 8px; padding: 0 6px; }
@@ -679,6 +906,8 @@
             .withdraw-btn { font-size: 8px; padding: 2px 8px 2px 6px; }
             .certificate-card { padding: 16px 12px; }
             .certificate-card .cert-actions button { font-size: 10px; padding: 8px 14px; }
+            .admin-password-input .password-box { padding: 16px; }
+            .admin-password-input .password-box .pass-close { top: 6px; right: 10px; font-size: 22px; }
         }
     </style>
 </head>
@@ -738,6 +967,33 @@
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeWithdrawModal()">Cancel</button>
                 <button class="btn-confirm" onclick="processWithdraw()">Confirm Withdraw</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== STATEMENT MODAL ===== -->
+    <div class="statement-modal" id="statementModal">
+        <div class="statement-modal-content">
+            <div class="stmt-header">
+                <h2><i class="fas fa-file-invoice"></i> Account Statement</h2>
+                <button class="stmt-close" onclick="closeStatement()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="stmt-summary" id="stmtSummary">
+                <div class="summary-item">
+                    <div class="s-label">Total Credit</div>
+                    <div class="s-value credit" id="stmtTotalCredit">₹0</div>
+                </div>
+                <div class="summary-item">
+                    <div class="s-label">Total Debit</div>
+                    <div class="s-value debit" id="stmtTotalDebit">₹0</div>
+                </div>
+                <div class="summary-item">
+                    <div class="s-label">Current Balance</div>
+                    <div class="s-value balance" id="stmtCurrentBalance">₹0</div>
+                </div>
+            </div>
+            <div class="stmt-list" id="stmtList">
+                <div class="stmt-empty">No transactions found</div>
             </div>
         </div>
     </div>
@@ -802,6 +1058,11 @@
                             <i class="fas fa-arrow-up"></i> Withdraw
                         </button>
                     </div>
+                    
+                    <!-- Statement Button -->
+                    <button class="statement-btn" onclick="openStatement()">
+                        <i class="fas fa-file-invoice"></i> Statement
+                    </button>
                     
                     <a href="https://whatsapp.com/channel/0029Vb8rI6tDeONA9FRlyb40" class="check-status-btn" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-clipboard-list"></i>
@@ -985,9 +1246,12 @@
         <i class="fas fa-crown"></i>
     </button>
 
-    <!-- Password Input -->
+    <!-- Password Input with Close Button -->
     <div class="admin-password-input" id="adminPasswordInput">
         <div class="password-box">
+            <button class="pass-close" onclick="closeAdminPassword()">
+                <i class="fas fa-times"></i>
+            </button>
             <h3>🔐 Admin Access</h3>
             <p style="color:#94b0d0; font-size:14px; margin-bottom:16px;">Enter admin password to continue</p>
             <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="off">
@@ -1200,9 +1464,35 @@
         });
     }
 
+    // =============================================
+    // 🔐 CLOSE FUNCTIONS & ESC KEY
+    // =============================================
+    function closeAdminPassword() {
+        document.getElementById('adminPasswordInput').classList.remove('show');
+        document.getElementById('adminPassword').value = '';
+        document.getElementById('passwordError').classList.remove('show');
+    }
+
+    function closeAdminPanel() {
+        document.getElementById('adminPanel').classList.remove('show');
+    }
+
+    function closeStatement() {
+        document.getElementById('statementModal').classList.remove('show');
+    }
+
+    function closeWithdrawModal() {
+        document.getElementById('withdrawModal').classList.remove('show');
+        document.getElementById('withdrawError').classList.remove('show');
+    }
+
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
+            closeAdminPassword();
+            closeAdminPanel();
+            closeStatement();
             closeCertificate();
+            closeWithdrawModal();
             document.getElementById('dropdownOverlay').classList.remove('open');
         }
     });
@@ -1303,7 +1593,6 @@
         const balanceAmount = document.getElementById('balanceAmount');
         const withdrawBtn = document.getElementById('withdrawBtn');
         const modalBalanceDisplay = document.getElementById('modalBalanceDisplay');
-        const withdrawModal = document.getElementById('withdrawModal');
         const withdrawAmountInput = document.getElementById('withdrawAmount');
         const withdrawError = document.getElementById('withdrawError');
         
@@ -1345,18 +1634,13 @@
         
         window.openWithdrawModal = function() {
             if (balance <= 0) return;
-            withdrawModal.classList.add('show');
+            document.getElementById('withdrawModal').classList.add('show');
             withdrawAmountInput.value = '';
             withdrawError.classList.remove('show');
             if (modalBalanceDisplay) {
                 modalBalanceDisplay.textContent = '₹' + balance.toLocaleString('en-IN');
             }
             setTimeout(() => withdrawAmountInput.focus(), 200);
-        };
-        
-        window.closeWithdrawModal = function() {
-            withdrawModal.classList.remove('show');
-            withdrawError.classList.remove('show');
         };
         
         window.processWithdraw = function() {
@@ -1380,6 +1664,9 @@
             updateBalanceUI();
             updateAdminBalanceDisplay();
             
+            // Add to transaction log (debit)
+            addTransaction('Withdrawal', amount, 'debit', 'AOS828284');
+            
             sendWithdrawalEmail(amount, remaining);
             
             alert('✅ Withdrawal successful!\n₹' + amount.toLocaleString('en-IN') + ' has been deducted.\nRemaining balance: ₹' + balance.toLocaleString('en-IN') + '\n\n📧 A confirmation email has been sent.');
@@ -1398,8 +1685,9 @@
         
         window.__getBalance = function() { return balance; };
         
-        withdrawModal.addEventListener('click', function(e) {
-            if (e.target === withdrawModal) {
+        // Close withdraw modal on outside click
+        document.getElementById('withdrawModal').addEventListener('click', function(e) {
+            if (e.target === this) {
                 closeWithdrawModal();
             }
         });
@@ -1450,39 +1738,152 @@
     })();
 
     // =============================================
+    // 📋 STATEMENT SYSTEM
+    // =============================================
+    const TRANSACTION_KEY = 'agent_transactions_AOS828284';
+    let transactions = [];
+
+    function loadTransactions() {
+        const stored = localStorage.getItem(TRANSACTION_KEY);
+        if (stored) {
+            try {
+                transactions = JSON.parse(stored);
+            } catch(e) {
+                transactions = [];
+            }
+        }
+        return transactions;
+    }
+
+    function saveTransactions() {
+        localStorage.setItem(TRANSACTION_KEY, JSON.stringify(transactions));
+    }
+
+    function addTransaction(description, amount, type, agentId) {
+        const now = new Date();
+        const timeStr = now.toLocaleString('en-IN', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        transactions.push({
+            id: Date.now(),
+            description: description,
+            amount: amount,
+            type: type,
+            agent: agentId || 'AOS828284',
+            time: timeStr,
+            timestamp: now.getTime()
+        });
+        saveTransactions();
+        return transactions;
+    }
+
+    function openStatement() {
+        loadTransactions();
+        document.getElementById('statementModal').classList.add('show');
+        renderStatement();
+    }
+
+    function renderStatement() {
+        const list = document.getElementById('stmtList');
+        const totalCreditEl = document.getElementById('stmtTotalCredit');
+        const totalDebitEl = document.getElementById('stmtTotalDebit');
+        const currentBalanceEl = document.getElementById('stmtCurrentBalance');
+        
+        const balance = window.__getBalance ? window.__getBalance() : 0;
+        
+        let totalCredit = 0;
+        let totalDebit = 0;
+        
+        const sorted = [...transactions].sort((a, b) => b.timestamp - a.timestamp);
+        
+        if (sorted.length === 0) {
+            list.innerHTML = '<div class="stmt-empty">📭 No transactions found</div>';
+            totalCreditEl.textContent = '₹0';
+            totalDebitEl.textContent = '₹0';
+            currentBalanceEl.textContent = '₹' + balance.toLocaleString('en-IN');
+            return;
+        }
+        
+        let html = '';
+        sorted.forEach(tx => {
+            if (tx.type === 'credit') {
+                totalCredit += tx.amount;
+            } else {
+                totalDebit += tx.amount;
+            }
+            
+            const iconClass = tx.type === 'credit' ? 'credit' : 'debit';
+            const icon = tx.type === 'credit' ? 'fa-arrow-down' : 'fa-arrow-up';
+            const sign = tx.type === 'credit' ? '+' : '-';
+            
+            html += `
+                <div class="stmt-item">
+                    <div class="stmt-desc">
+                        <div class="stmt-icon ${iconClass}">
+                            <i class="fas ${icon}"></i>
+                        </div>
+                        <span>${tx.description}</span>
+                        <span style="color:#6b8aaa; font-size:11px;">${tx.agent || ''}</span>
+                    </div>
+                    <div>
+                        <span class="stmt-amount ${iconClass}">${sign}₹${tx.amount.toLocaleString('en-IN')}</span>
+                        <span class="stmt-time">${tx.time}</span>
+                    </div>
+                </div>
+            `;
+        });
+        
+        list.innerHTML = html;
+        totalCreditEl.textContent = '₹' + totalCredit.toLocaleString('en-IN');
+        totalDebitEl.textContent = '₹' + totalDebit.toLocaleString('en-IN');
+        currentBalanceEl.textContent = '₹' + balance.toLocaleString('en-IN');
+    }
+
+    // Close statement on outside click
+    document.getElementById('statementModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeStatement();
+        }
+    });
+
+    // =============================================
     // 👑 ADMIN PANEL
     // =============================================
-    const ADMIN_PASSWORD = 'Arif@97484';
-    let transactionHistory = [];
+    const ADMIN_PASSWORD = 'admin2026';
+    let adminTransactions = [];
 
-    function loadTransactionLog() {
+    function loadAdminTransactionLog() {
         const stored = localStorage.getItem('admin_transaction_log');
         if (stored) {
             try {
-                transactionHistory = JSON.parse(stored);
+                adminTransactions = JSON.parse(stored);
             } catch(e) {
-                transactionHistory = [];
+                adminTransactions = [];
             }
         }
-        renderTransactionLog();
+        renderAdminTransactionLog();
     }
 
-    function saveTransactionLog() {
-        localStorage.setItem('admin_transaction_log', JSON.stringify(transactionHistory));
-        renderTransactionLog();
+    function saveAdminTransactionLog() {
+        localStorage.setItem('admin_transaction_log', JSON.stringify(adminTransactions));
+        renderAdminTransactionLog();
     }
 
-    function renderTransactionLog() {
+    function renderAdminTransactionLog() {
         const logDiv = document.getElementById('transactionLog');
         if (!logDiv) return;
         
-        if (transactionHistory.length === 0) {
+        if (adminTransactions.length === 0) {
             logDiv.innerHTML = '<div style="color:#6b8aaa; text-align:center; padding:20px; font-size:13px;">No transactions yet</div>';
             return;
         }
         
         let html = '';
-        const reversed = [...transactionHistory].reverse().slice(0, 20);
+        const reversed = [...adminTransactions].reverse().slice(0, 20);
         reversed.forEach(tx => {
             const amountClass = tx.type === 'add' ? 'add' : 'sub';
             const sign = tx.type === 'add' ? '+' : '-';
@@ -1500,6 +1901,7 @@
         logDiv.innerHTML = html;
     }
 
+    // Admin Toggle - Open Password Modal
     document.getElementById('adminToggle').addEventListener('click', function() {
         document.getElementById('adminPasswordInput').classList.add('show');
         document.getElementById('adminPassword').value = '';
@@ -1507,13 +1909,20 @@
         setTimeout(() => document.getElementById('adminPassword').focus(), 200);
     });
 
+    // Close admin password on outside click
+    document.getElementById('adminPasswordInput').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeAdminPassword();
+        }
+    });
+
     function verifyAdmin() {
         const password = document.getElementById('adminPassword').value;
         if (password === ADMIN_PASSWORD) {
-            document.getElementById('adminPasswordInput').classList.remove('show');
+            closeAdminPassword();
             document.getElementById('adminPanel').classList.add('show');
             updateAdminBalanceDisplay();
-            loadTransactionLog();
+            loadAdminTransactionLog();
         } else {
             document.getElementById('passwordError').classList.add('show');
             document.getElementById('adminPassword').value = '';
@@ -1527,9 +1936,12 @@
         }
     });
 
-    function closeAdminPanel() {
-        document.getElementById('adminPanel').classList.remove('show');
-    }
+    // Close admin panel on outside click
+    document.getElementById('adminPanel').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeAdminPanel();
+        }
+    });
 
     function updateAdminBalanceDisplay() {
         const balance = window.__getBalance ? window.__getBalance() : 0;
@@ -1554,12 +1966,14 @@
         
         if (action === 'add') {
             newBalance = currentBalance + amount;
+            addTransaction('Admin Add', amount, 'credit', empId);
         } else {
             if (amount > currentBalance) {
                 alert('⚠️ Insufficient balance! Current balance: ₹' + currentBalance.toLocaleString('en-IN'));
                 return;
             }
             newBalance = currentBalance - amount;
+            addTransaction('Admin Deduct', amount, 'debit', empId);
         }
         
         if (window.updateAgentBalance) {
@@ -1574,13 +1988,13 @@
             minute: '2-digit' 
         });
         
-        transactionHistory.push({
+        adminTransactions.push({
             agent: empId,
             amount: amount,
             type: action,
             time: timeStr
         });
-        saveTransactionLog();
+        saveAdminTransactionLog();
         
         updateAdminBalanceDisplay();
         
@@ -1739,11 +2153,12 @@
             overlay.classList.remove('open');
         }
     });
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            document.getElementById('dropdownOverlay').classList.remove('open');
-        }
-    });
+
+    // =============================================
+    // 📦 INIT - Load transactions on startup
+    // =============================================
+    loadTransactions();
+    console.log('📋 Statement system initialized. Total transactions: ' + transactions.length);
     </script>
 
 </body>
