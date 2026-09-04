@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARIF ONLINE SERVICES | Business</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: #f8faff;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* ---------- HEADER ---------- */
+        .site-header {
+            background: #0b1a33;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e67e22;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-left: 20px;
+        }
+
+        .logo-area img {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text .brand-name {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+        }
+        .logo-text .brand-name span { color: #e67e22; }
+        .logo-text .tagline {
+            font-size: 12px;
+            color: #b0c4de;
+            margin-top: -2px;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .verified-badge-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            background: linear-gradient(145deg, #f9d976, #f39c12);
+            color: #0b1a33;
+            font-weight: 700;
+            font-size: 8px;
+            padding: 1px 6px 1px 4px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            border: 1px solid #f1c40f;
+            line-height: 1.4;
+        }
+        .verified-badge-sm i {
+            font-size: 8px;
+            color: #0b1a33;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            position: relative;
+            margin-right: -8px;
+        }
+
+        .menu-btn {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 26px;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 10px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding-right: 16px;
+        }
+        .menu-btn i {
+            font-size: 26px;
+            color: #e67e22;
+        }
+        .menu-btn:hover i {
+            color: #f39c12;
+        }
+
+        .dropdown-overlay {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            background: #0f233f;
+            min-width: 220px;
+            border-radius: 16px;
+            padding: 12px 0;
+            border: 1px solid #1e3350;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+            z-index: 300;
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.96);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: top right;
+        }
+        .dropdown-overlay.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .dropdown-overlay a {
+            color: #e2e8f0;
+            padding: 10px 22px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.15s;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+        }
+        .dropdown-overlay a i {
+            color: #e67e22;
+            width: 20px;
+            font-size: 14px;
+        }
+        .dropdown-overlay a:hover {
+            background: #1a3052;
+            border-left-color: #e67e22;
+            color: #ffffff;
+        }
+
+        .dropdown-overlay .contact-support-btn {
+            display: block;
+            margin: 12px 16px 4px 16px;
+            padding: 14px 20px;
+            background: linear-gradient(145deg, #e67e22, #d35400);
+            color: white;
+            text-align: center;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 16px rgba(230, 126, 34, 0.3);
+            letter-spacing: 0.5px;
+        }
+        .dropdown-overlay .contact-support-btn i {
+            color: white;
+            margin-right: 10px;
+            width: auto;
+            font-size: 16px;
+        }
+        .dropdown-overlay .contact-support-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 28px rgba(230, 126, 34, 0.5);
+            background: linear-gradient(145deg, #f39c12, #e67e22);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #1e3350;
+            margin: 8px 16px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ---------- PROMO BANNER ---------- */
+        .promo-banner {
+            max-width: 1400px;
+            margin: 18px auto 8px;
+            padding: 0 40px;
+            width: 100%;
+        }
+        .promo-banner-frame {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 12px 16px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 130px;
+            overflow: hidden;
+        }
+        .promo-banner-frame img {
+            max-width: 100%;
+            height: auto;
+            max-height: 130px;
+            border-radius: 18px;
+            display: block;
+            object-fit: contain;
+            width: 100%;
+            background: transparent;
+            transition: opacity 0.4s ease;
+        }
+
+        /* ---------- PRODUCT GRID ---------- */
+        .form-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 4px;
+            padding-left: 16px;
+            padding-right: 16px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-link-card {
+            background: white;
+            border-radius: 20px;
+            padding: 14px 16px 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #0b1a2f;
+            border: 1px solid #e8eef6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+            cursor: default;
+            gap: 10px;
+        }
+        .form-link-card:hover { border-color: #c5d5e8; box-shadow: 0 8px 20px -8px rgba(20,40,80,0.10); }
+        .link-info { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+        .link-label {
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #0f1e3a;
+            flex-wrap: wrap;
+        }
+        .link-icon-png { height: 30px; width: auto; display: block; border-radius: 8px; flex-shrink: 0; }
+        .link-description {
+            font-size: 12px;
+            font-weight: 400;
+            color: #5a6f8a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .payout-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #e6f7e6;
+            color: #0d7a3e;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 2px 10px 2px 8px;
+            border-radius: 40px;
+            border: 1px solid #b8e0b8;
+            white-space: nowrap;
+        }
+        .payout-badge i { font-size: 10px; color: #0d7a3e; }
+        .approved-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #e3f0ff;
+            color: #0f3b7a;
+            font-weight: 700;
+            font-size: 10px;
+            padding: 2px 12px 2px 8px;
+            border-radius: 40px;
+            border: 1px solid #b8d0f0;
+            white-space: nowrap;
+        }
+        .approved-badge i { font-size: 10px; color: #1a6bc4; }
+        .live-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 10px 2px 8px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+        .live-tag.green { background: #dcfce7; color: #15803d; border-color: #86efac; }
+        .live-tag.green i { color: #22c55e; }
+        .live-tag.red { background: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
+        .live-tag.red i { color: #ef4444; }
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .action-group .copy-btn {
+            background: #e8eef6;
+            color: #1f3b6a;
+            border: 1px solid #dce5f0;
+            padding: 6px 10px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .action-group .copy-btn:hover { background: #d5e0ed; transform: scale(1.02); }
+        .action-group .copy-btn:active { transform: scale(0.95); }
+        .action-group .copy-btn i { font-size: 13px; color: #1f3b6a; }
+        .share-btn {
+            background: #0f1a2e;
+            color: white;
+            border: none;
+            padding: 6px 14px 6px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            border: 1px solid #0f1a2e;
+        }
+        .share-btn i { font-size: 13px; color: #facc15; }
+        .share-btn:hover { background: #1b2c50; border-color: #1b2c50; transform: scale(1.02); }
+        .share-btn:active { transform: scale(0.95); }
+        .info-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #dce5f0;
+            background: #f5f9ff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #1f3b6a;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .info-btn:hover { background: #0f1a2e; color: white; border-color: #0f1a2e; }
+
+        .info-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .info-overlay.active { display: flex; }
+        .info-card {
+            background: white;
+            max-width: 420px;
+            width: 100%;
+            border-radius: 32px;
+            padding: 28px 24px 24px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            position: relative;
+            animation: fadeUp 0.25s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .info-card .close-overlay {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            font-size: 22px;
+            color: #8a9bb8;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: 0.2s;
+            padding: 4px 8px;
+            border-radius: 40px;
+        }
+        .info-card .close-overlay:hover { background: #f0f4fa; color: #1b2c50; }
+        .info-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f1a2e;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .info-card h3 img { height: 32px; width: auto; border-radius: 8px; }
+        .info-card .info-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #2b405e;
+            margin: 12px 0 8px;
+            background: #f5f9ff;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border-left: 4px solid #1f4a7a;
+        }
+        .info-card .info-desc i { color: #1f4a7a; margin-right: 6px; }
+        .info-card .info-meta {
+            font-size: 13px;
+            color: #5a6f8a;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin-top: 8px;
+            padding-top: 10px;
+            border-top: 1px solid #eef4fa;
+        }
+        .info-card .info-meta span { display: flex; align-items: center; gap: 6px; }
+        .info-requirements {
+            margin-top: 14px;
+            background: #f8faff;
+            border-radius: 16px;
+            padding: 14px 16px;
+            border: 1px solid #e8eef6;
+        }
+        .info-requirements h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0f1a2e;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .info-requirements h4 i { color: #1f4a7a; font-size: 14px; }
+        .info-requirements ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .info-requirements ul li {
+            font-size: 12.5px;
+            color: #2b405e;
+            padding: 4px 0 4px 24px;
+            position: relative;
+            line-height: 1.5;
+            border-bottom: 1px solid #f0f4fa;
+        }
+        .info-requirements ul li:last-child { border-bottom: none; }
+        .info-requirements ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: #1a6bc4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .info-requirements ul li .highlight-text {
+            background: #e3f0ff;
+            padding: 1px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #0f3b7a;
+        }
+        .fees-block {
+            margin-top: 14px;
+            background: #f8faff;
+            border-radius: 16px;
+            padding: 14px 16px;
+            border: 1px solid #e8eef6;
+        }
+        .fees-block h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0f1a2e;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .fees-block h4 i { color: #b45309; font-size: 14px; }
+        .fees-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .fees-block ul li {
+            font-size: 12.5px;
+            color: #2b405e;
+            padding: 4px 0 4px 24px;
+            position: relative;
+            line-height: 1.5;
+            border-bottom: 1px solid #f0f4fa;
+        }
+        .fees-block ul li:last-child { border-bottom: none; }
+        .fees-block ul li::before {
+            content: "•";
+            position: absolute;
+            left: 4px;
+            top: 4px;
+            color: #b45309;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .fees-block ul li .fee-amount {
+            font-weight: 700;
+            color: #0f1a2e;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f1a2e;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease;
+            display: none;
+            max-width: 90%;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .toast i { color: #facc15; margin-right: 8px; }
+        @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+        .share-modal {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 24px 24px 0 0;
+            padding: 20px 20px 30px;
+            z-index: 1001;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .share-modal.active {
+            transform: translateY(0);
+        }
+        .share-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+        .share-modal-overlay.active {
+            display: block;
+        }
+        .share-modal .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eef4fa;
+        }
+        .share-modal .modal-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f1a2e;
+        }
+        .share-modal .modal-header .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #8a9bb8;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+        .share-modal .modal-header .close-modal:hover { color: #1b2c50; }
+        .share-modal .share-apps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .share-modal .share-apps .app-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 8px;
+            border: 1px solid #e8eef6;
+            border-radius: 16px;
+            background: #f8faff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: #0f1a2e;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .share-modal .share-apps .app-btn:hover {
+            background: #eef6ff;
+            border-color: #b8d0f0;
+            transform: scale(1.05);
+        }
+        .share-modal .share-apps .app-btn i {
+            font-size: 28px;
+        }
+        .share-modal .share-apps .app-btn .fa-whatsapp { color: #25D366; }
+        .share-modal .share-apps .app-btn .fa-telegram { color: #0088cc; }
+        .share-modal .share-apps .app-btn .fa-instagram { color: #E4405F; }
+        .share-modal .share-apps .app-btn .fa-facebook-messenger { color: #00B2FF; }
+        .share-modal .share-apps .app-btn .fa-envelope { color: #D44638; }
+        .share-modal .share-apps .app-btn .fa-copy { color: #1f3b6a; }
+        .share-modal .share-apps .app-btn .fa-link { color: #0f7ae8; }
+        .share-modal .share-apps .app-btn .fa-ellipsis-h { color: #6a7f9e; }
+        .share-modal .share-message {
+            background: #f5f9ff;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #2b405e;
+            border: 1px solid #e8eef6;
+            word-break: break-all;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        .share-modal .share-message strong { color: #0f1a2e; }
+
+        /* ---------- FOOTER ---------- */
+        .site-footer {
+            background: #0b1a33;
+            color: #cbd5e1;
+            padding: 32px 40px 20px;
+            border-top: 2px solid #e67e22;
+            margin-top: 20px;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #1e3350;
+        }
+
+        .footer-grid .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-brand-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 6px;
+        }
+        .footer-brand-top img {
+            height: 44px;
+            width: auto;
+            display: block;
+        }
+        .footer-brand-top h3 {
+            color: white;
+            font-size: 20px;
+            margin: 0;
+        }
+        .footer-brand-top h3 span {
+            color: #e67e22;
+        }
+
+        .footer-grid .brand-info p {
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 320px;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+        .footer-grid .brand-info .social-links {
+            margin-top: 14px;
+            display: flex;
+            gap: 14px;
+        }
+        .footer-grid .brand-info .social-links a {
+            color: #b0c4de;
+            background: #1e3350;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .footer-grid .brand-info .social-links a:hover {
+            background: #e67e22;
+            color: white;
+        }
+
+        .footer-grid .col h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+        .footer-grid .col ul { list-style: none; padding: 0; }
+        .footer-grid .col ul li { margin-bottom: 10px; }
+        .footer-grid .col ul li a {
+            color: #b0c4de;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-grid .col ul li a i { color: #e67e22; width: 18px; font-size: 13px; }
+        .footer-grid .col ul li a:hover {
+            color: white;
+            padding-left: 4px;
+        }
+
+        .sitemap-btn-wrap {
+            margin-top: 18px;
+        }
+        .sitemap-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #1e3350;
+            color: #b0c4de;
+            padding: 4px 14px 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid #2a4060;
+            transition: 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .sitemap-btn i {
+            font-size: 11px;
+            color: #e67e22;
+        }
+        .sitemap-btn:hover {
+            background: #e67e22;
+            color: white;
+            border-color: #e67e22;
+        }
+        .sitemap-btn:hover i {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: #8899b0;
+        }
+
+        .footer-date-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #1e3350;
+            padding: 3px 12px 3px 10px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 11px;
+            color: #e8edf5;
+            border: 1px solid #2a4060;
+            white-space: nowrap;
+            margin-top: 6px;
+        }
+        .footer-date-status i {
+            color: #6c8fb0;
+            font-size: 10px;
+        }
+        .footer-date-status .date-text {
+            color: #f0f4fa;
+            font-weight: 500;
+            margin-left: 1px;
+        }
+        .footer-date-status .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 700;
+            font-size: 8px;
+            padding: 1px 6px 1px 5px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .footer-date-status .status-indicator.open {
+            background: #27ae60;
+            color: #fff;
+        }
+        .footer-date-status .status-indicator.closed {
+            background: #e74c3c;
+            color: #fff;
+        }
+        .footer-date-status .status-indicator i {
+            font-size: 7px;
+            color: inherit;
+            margin-right: 0;
+        }
+
+        .footer-bottom .legal a {
+            color: #8899b0;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: 0.2s;
+        }
+        .footer-bottom .legal a:hover { color: #e67e22; }
+        .footer-bottom .flag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #1e3350;
+            padding: 4px 14px 4px 10px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 860px) {
+            .site-header { padding: 12px 20px; flex-wrap: wrap; gap: 10px; }
+            .logo-area { flex: 1; margin-left: 0; }
+            .header-nav { margin-left: 0; }
+            .dropdown-overlay { right: 0; left: auto; min-width: 200px; }
+            .promo-banner { padding: 0 16px; }
+            .promo-banner-frame { min-height: 100px; padding: 8px 12px; border-radius: 18px; }
+            .promo-banner-frame img { max-height: 100px; border-radius: 14px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+        }
+
+        @media (max-width: 550px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .footer-bottom .legal a { margin-left: 0; margin-right: 16px; }
+            .logo-text .brand-name { font-size: 20px; }
+            .logo-area img { height: 40px; }
+            .logo-area { margin-left: 0; }
+            .menu-btn { font-size: 22px; padding: 2px 6px; }
+            .menu-btn i { font-size: 22px; }
+            .dropdown-overlay { min-width: 180px; top: 42px; }
+            .dropdown-overlay a { font-size: 13px; padding: 8px 16px; }
+            .dropdown-overlay .contact-support-btn { font-size: 14px; padding: 12px 16px; margin: 10px 12px 2px 12px; }
+            .section-title { font-size: 22px; }
+            .promo-banner { padding: 0 12px; margin-top: 12px; }
+            .promo-banner-frame { min-height: 80px; padding: 6px 10px; border-radius: 16px; }
+            .promo-banner-frame img { max-height: 80px; border-radius: 12px; }
+            .footer-brand-top img { height: 34px; }
+            .footer-brand-top h3 { font-size: 17px; }
+        }
+
+        @media (max-width: 480px) {
+            .form-grid { padding-left: 12px; padding-right: 12px; }
+            .form-link-card { padding: 12px 12px 12px 14px; border-radius: 16px; }
+            .link-label { font-size: 13px; }
+            .link-icon-png { height: 26px; }
+            .link-description { font-size: 10.5px; }
+            .share-btn { font-size: 10px; padding: 4px 10px 4px 8px; }
+            .action-group .copy-btn { font-size: 10px; padding: 4px 8px; }
+            .action-group .copy-btn i { font-size: 11px; }
+            .info-btn { width: 26px; height: 26px; font-size: 11px; }
+            .toast { font-size: 12px; padding: 10px 18px; bottom: 20px; }
+            .share-modal .share-apps { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+            .share-modal .share-apps .app-btn { padding: 10px 6px; font-size: 9px; }
+            .share-modal .share-apps .app-btn i { font-size: 24px; }
+        }
+        @media (max-width: 380px) {
+            .form-grid { padding-left: 8px; padding-right: 8px; }
+            .form-link-card { padding: 10px 8px 10px 12px; border-radius: 14px; }
+            .link-label { font-size: 12px; }
+            .link-icon-png { height: 22px; }
+            .link-description { font-size: 9.5px; }
+            .share-btn { font-size: 9px; padding: 3px 8px 3px 6px; }
+            .action-group .copy-btn { font-size: 9px; padding: 3px 6px; }
+            .action-group .copy-btn i { font-size: 10px; }
+            .info-btn { width: 24px; height: 24px; font-size: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER (from index (13).html) ===== -->
+    <header class="site-header">
+        <div class="logo-area">
+            <img src="https://i.ibb.co/PzjcRSmL/file-0000000067a881f5a9d27fb4ea86daa5.png" alt="Arif Online Services Logo" />
+            <div class="logo-text">
+                <span class="brand-name">ARIF ONLINE SERVICES<span>.in</span></span>
+                <div class="tagline">
+                    <span>Safe & secure all online solutions</span>
+                    <span class="verified-badge-sm">
+                        <i class="fas fa-check-circle"></i> Verified
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-nav">
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="dropdown-overlay" id="dropdownOverlay">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-cogs"></i> Our Services</a>
+                <a href="#"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="#"><i class="fas fa-tools"></i> Tools</a>
+                <a href="#"><i class="fas fa-users"></i> Our Team</a>
+                <a href="#"><i class="fas fa-certificate"></i> Certificate</a>
+                <a href="#"><i class="fas fa-credit-card"></i> Pay Now</a>
+                <a href="#"><i class="fas fa-images"></i> Gallery</a>
+                <a href="#"><i class="fas fa-gamepad"></i> Gaming</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="contact-support-btn">
+                    <i class="fas fa-headset"></i> Contact Support
+                </a>
+            </div>
+        </div>
+
+        <div class="header-right"></div>
+    </header>
+
+    <!-- ===== PROMO BANNER ===== -->
+    <section class="promo-banner">
+        <div class="promo-banner-frame" id="promoFrame">
+            <img id="promoBannerImg" src="https://i.ibb.co/k6hrnFpC/IMG-20260903-145912.png" alt="Promotional Banner" />
+        </div>
+    </section>
+
+    <!-- ===== OUR OFFERS ===== -->
+    <div style="padding: 20px 0 0 0; max-width: 1400px; margin: 0 auto; width: 100%;">
+        <h2 class="section-title" style="margin-bottom: 12px; font-size: 28px; font-weight: 700; color: #0b1a33; text-align: center;">Our <span style="color: #e67e22;">Offers</span></h2>
+        <p class="section-sub" style="text-align: center; color: #5b6f87; margin-bottom: 20px;">Earn commissions by sharing these products</p>
+    </div>
+    <div class="form-grid" id="productGrid"></div>
+
+    <!-- ===== FOOTER (from index (13).html) ===== -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="brand-info">
+                <div class="footer-brand-top">
+                    <img src="https://i.ibb.co/PzjcRSmL/file-0000000067a881f5a9d27fb4ea86daa5.png" alt="Arif Online Services Logo" />
+                    <h3>Arifonlineservices<span>.in</span></h3>
+                </div>
+                <p>Empowering Indian businesses with cutting-edge online services — from web development to cloud &amp; security.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="sitemap-btn-wrap">
+                    <a href="#" class="sitemap-btn"><i class="fas fa-sitemap"></i> Sitemap</a>
+                </div>
+            </div>
+            <div class="col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto: arifgoldar602@gmail.com"><i class="fas fa-envelope"></i> arifgoldar602@gmail.com</a></li>
+                    <li><a href="tel:+919748437602"><i class="fas fa-phone-alt"></i> +91 9748437602</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Kolkata, north 24 Parganas, pin 700135</a></li>
+                    <li><a href="#"><i class="fas fa-clock"></i> Mon–Sat 9AM – 8PM</a></li>
+                    <li style="margin-top: 4px;">
+                        <span class="footer-date-status" id="footerDateStatus">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span class="date-text" id="footerDateDisplay">--</span>
+                            <span id="footerStatusIndicator"></span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span><i class="far fa-copyright"></i> 2026 Arif Online Services. All rights reserved.</span>
+            <div class="legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookies</a>
+            </div>
+            <span class="flag"><i class="fas fa-flag" style="color:#e67e22;"></i> India</span>
+        </div>
+    </footer>
+
+    <!-- ===== TOAST & MODALS ===== -->
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMessage">Copied!</span></div>
+
+    <div class="share-modal-overlay" id="shareOverlay"></div>
+    <div class="share-modal" id="shareModal">
+        <div class="modal-header">
+            <h3><i class="fas fa-share-alt" style="color: #facc15;"></i> Share via</h3>
+            <button class="close-modal" id="closeShareModal"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="share-apps" id="shareApps"></div>
+        <div class="share-message" id="shareMessage"></div>
+    </div>
+
+    <div class="info-overlay" id="infoOverlay">
+        <div class="info-card" id="infoCard">
+            <button class="close-overlay" id="closeOverlayBtn"><i class="fas fa-times"></i></button>
+            <h3><img id="infoIcon" src="" alt=""> <span id="infoName"></span></h3>
+            <div class="info-desc" id="infoDesc"></div>
+            <div class="info-requirements">
+                <h4><i class="fas fa-users"></i> Target Audience</h4>
+                <ul>
+                    <li>Individual must be <strong>18 years or older</strong></li>
+                    <li>Must have a valid <strong>PAN & Aadhaar</strong></li>
+                    <li><strong>New customers only</strong></li>
+                    <li>Service available in <strong>limited PIN codes</strong> <span class="highlight-text">Check eligibility before applying</span></li>
+                </ul>
+            </div>
+            <div class="info-requirements" style="margin-top: 10px;">
+                <h4><i class="fas fa-file-alt"></i> Documents Required</h4>
+                <ul>
+                    <li>PAN Card</li>
+                    <li>Aadhaar Card</li>
+                    <li>Valid Mobile Number <span class="highlight-text">(linked with Aadhaar)</span></li>
+                </ul>
+            </div>
+            <div class="fees-block" id="feesBlock">
+                <h4><i class="fas fa-coins"></i> Fees & Charges</h4>
+                <ul id="feesList">
+                    <li>Processing Fee: <span class="fee-amount">₹0</span> (waived)</li>
+                    <li>Annual Maintenance: <span class="fee-amount">₹0</span> (first year free)</li>
+                    <li>Transaction Fee: <span class="fee-amount">2.5%</span> (minimum ₹50)</li>
+                    <li>Late Payment: <span class="fee-amount">₹500</span> (if applicable)</li>
+                </ul>
+            </div>
+            <div class="info-meta" id="infoMeta"></div>
+        </div>
+    </div>
+
+    <!-- ===== SCRIPT ===== -->
+    <script>
+        // ---------- PROMO BANNER AUTO-CHANGE ----------
+        (function() {
+            const bannerImages = [
+                'https://i.ibb.co/k6hrnFpC/IMG-20260903-145912.png',
+                'https://i.ibb.co/CsbQ7gdR/IMG-20260903-145856.png',
+                'https://i.ibb.co/6JwBdkG8/IMG-20260903-145840.png',
+                'https://i.ibb.co/k6hrnFpC/IMG-20260903-145912.png'
+            ];
+            let currentIndex = 0;
+            const imgElement = document.getElementById('promoBannerImg');
+
+            function rotateBanner() {
+                if (bannerImages.length === 0) return;
+                currentIndex = (currentIndex + 1) % bannerImages.length;
+                imgElement.style.opacity = '0.5';
+                setTimeout(() => {
+                    imgElement.src = bannerImages[currentIndex];
+                    imgElement.style.opacity = '1';
+                }, 150);
+            }
+            setInterval(rotateBanner, 4000);
+        })();
+
+        // ---------- LIVE INDIAN DATE + STATUS ----------
+        function updateIndianDateAndStatus() {
+            const now = new Date();
+            const istOffset = 5.5 * 60 * 60 * 1000;
+            const istDate = new Date(now.getTime() + (now.getTimezoneOffset() * 60 * 1000) + istOffset);
+            const options = { timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', year: 'numeric' };
+            const formatter = new Intl.DateTimeFormat('en-IN', options);
+            let formatted = formatter.format(istDate);
+            formatted = formatted.replace(/,/g, '');
+            document.getElementById('footerDateDisplay').textContent = formatted;
+
+            const day = istDate.getDay();
+            const isClosed = (day === 5 || day === 0);
+            const statusEl = document.getElementById('footerStatusIndicator');
+            if (isClosed) {
+                statusEl.className = 'status-indicator closed';
+                statusEl.innerHTML = '<i class="fas fa-circle"></i> CLOSED';
+            } else {
+                statusEl.className = 'status-indicator open';
+                statusEl.innerHTML = '<i class="fas fa-circle"></i> OPEN';
+            }
+        }
+        updateIndianDateAndStatus();
+        setInterval(updateIndianDateAndStatus, 60000);
+
+        // ---------- MENU ----------
+        function toggleMenu() {
+            document.getElementById('dropdownOverlay').classList.toggle('open');
+        }
+
+        document.addEventListener('click', function(e) {
+            const overlay = document.getElementById('dropdownOverlay');
+            const btn = document.querySelector('.menu-btn');
+            if (!overlay.contains(e.target) && !btn.contains(e.target)) {
+                overlay.classList.remove('open');
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('dropdownOverlay').classList.remove('open');
+            }
+        });
+
+        // ========== PRODUCT GRID ==========
+        (function() {
+            const products = [
+                { 
+                    name: 'Kotak 811 Saving Account', 
+                    icon: 'https://media.banksathi.com/advisors/products/logo/DFpq2zA1S0fYAQdZYSowHjLmVz4ZKSMW8Oa6WIK8.png', 
+                    desc: 'Account open with 2,000 Initial funding | VKYC Mandatory | Maintain 1,000 balance for 30 days', 
+                    payout: '₹300', 
+                    status: 'active',
+                    shareLink: 'https://leads.goldenteam.in/?h=UUxQamc3cy9sc09wVkxtY2NaZjRyOE8zb01NWkF0cWtWaHZRcUZpMXR3MD0=',
+                    fees: ['Processing Fee: ₹0 (waived)', 'Annual Maintenance: ₹0 (first year free)', 'Transaction Fee: 2.5% (min ₹50)', 'Late Payment: ₹500']
+                },
+                { 
+                    name: 'IDFC Savings Account', 
+                    icon: 'https://media.banksathi.com/advisors/products/logo/jf61j44WjDvt2IBJIofotcENtlAYcEVmCALy9QLA.png', 
+                    desc: 'Earn ₹450 Successful account open Initial founding of ₹10,000.', 
+                    payout: '₹450', 
+                    status: 'active',
+                    shareLink: 'https://leads.goldenteam.in/?h=OFA2SGVnak9HL2oxUVh1YUJzcXdWaGFuQVFIenlTQVJQdmVtajljUVV4az0=',
+                    fees: ['Processing Fee: ₹299', 'Annual Maintenance: ₹499/year', 'Transaction Fee: 2% (min ₹30)', 'Late Payment: ₹300']
+                },
+                { 
+                    name: 'DBS Savings Account', 
+                    icon: 'https://media.banksathi.com/advisors/products/logo/aFlBSmUyYVFuWlJmVncvNkhmTFd1R2lWNkJJM2R5RWpmMHFTai9pd3FGOD0_3D.png', 
+                    desc: 'Earn ₹150 on successful account opening.', 
+                    payout: '₹150', 
+                    status: 'active',
+                    shareLink: 'https://leads.goldenteam.in/?h=Vzh0Skg0OEZ2Q0NlUzJTNVZjMDRrM2IxcWlCenlTQlZ3anZmRHVIUkFtVT0=',
+                    fees: ['Processing Fee: ₹0 (waived)', 'Annual Maintenance: ₹0 (first year)', 'Transaction Fee: 1.8% (min ₹40)', 'Late Payment: ₹250']
+                },
+                { 
+                    name: 'Personal Loan', 
+                    icon: 'https://media.banksathi.com/advisors/products/icon/1646024607loan.svg', 
+                    desc: 'Personal loan leads. Earn up to ₹200 per approval. Get in touch with our team for support.', 
+                    payout: '₹200', 
+                    status: 'active',
+                    shareLink: 'https://www.kotak.com/en/personal-banking/loans/personal-loan.html',
+                    fees: ['Processing Fee: 1.5% of loan amount', 'Annual Maintenance: ₹0', 'Transaction Fee: ₹0', 'Late Payment: 2% p.m.']
+                },
+                { 
+                    name: 'Crazy Deals', 
+                    icon: 'https://media.banksathi.com/advisors/products/icon/RjN1MXRCVFk2Z2x5SnYzN0RxV0lUeFgySzdmQUZUUHI0cjBKRlFTZUdyYz0_3D.svg', 
+                    desc: 'Partner with us for crazy deals. Earn up to ₹1,200 per deal. Become a partner today.', 
+                    payout: '₹1,200', 
+                    status: 'hold',
+                    shareLink: 'https://www.kotak.com/en/offers.html',
+                    fees: ['Processing Fee: ₹0', 'Annual Maintenance: ₹0', 'Transaction Fee: 3% (min ₹50)', 'Late Payment: ₹400']
+                },
+                { 
+                    name: 'Car Sales', 
+                    icon: 'https://media.banksathi.com/advisors/products/icon/clNKWWFPV2llRkZSTGNiNDBYZHNqeTByRjA4a3lCTDI3R2lLb2dHL0dKMD0_3D.svg', 
+                    desc: 'Car sales leads – earn up to ₹450. Net promoter score based incentives.', 
+                    payout: '₹450', 
+                    status: 'active',
+                    shareLink: 'https://www.kotak.com/en/auto-loan.html',
+                    fees: ['Processing Fee: ₹500', 'Annual Maintenance: ₹0', 'Transaction Fee: 1.5%', 'Late Payment: ₹250']
+                },
+                { 
+                    name: 'Insurance', 
+                    icon: 'https://media.banksathi.com/advisors/products/icon/insurance.svg', 
+                    desc: 'Health & life insurance leads. Earn up to ₹900 per policy. High approval rate.', 
+                    payout: '₹900', 
+                    status: 'active',
+                    shareLink: 'https://www.kotak.com/en/personal-banking/insurance.html',
+                    fees: ['Processing Fee: ₹0', 'Annual Maintenance: ₹0', 'Transaction Fee: 2% (min ₹30)', 'Late Payment: ₹200']
+                },
+                { 
+                    name: 'Aqua Guard Sales', 
+                    icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiAXlxKNp3bjgV1xQbDF-dydt2sUB0k44j4ZlRkcv0lkkViD0vpAP97drm&s=10', 
+                    desc: 'Water purifier solutions. Earn up to ₹650 per sale. Currently on hold.', 
+                    payout: '₹650', 
+                    status: 'hold',
+                    shareLink: 'https://www.kotak.com/en/',
+                    fees: ['Processing Fee: ₹199', 'Annual Maintenance: ₹0', 'Transaction Fee: 2.5% (min ₹40)', 'Late Payment: ₹350']
+                }
+            ];
+
+            const customerMessages = {
+                'Kotak 811 Saving Account': '📱 Open your Kotak 811 Savings Account with just ₹2000. Zero balance account with VKYC. Apply now!',
+                'IDFC Savings Account': '🏦 Open IDFC Savings Account with ₹10,000 funding. Get amazing benefits. Apply now!',
+                'DBS Savings Account': '💳 Open DBS Savings Account instantly. Great features & benefits. Apply today!',
+                'Personal Loan': '💰 Need a personal loan? Get instant approval with competitive rates. Apply now!',
+                'Crazy Deals': '🛍️ Grab crazy deals and offers. Limited time only! Don\'t miss out!',
+                'Car Sales': '🚗 Looking for a new car? Get the best deals and financing options. Contact us!',
+                'Insurance': '🛡️ Protect your family with our health & life insurance plans. Get a quote today!',
+                'Aqua Guard Sales': '💧 Pure drinking water solutions for your home. Order your Aqua Guard today!'
+            };
+
+            const shareApps = [
+                { name: 'WhatsApp', icon: 'fab fa-whatsapp', color: '#25D366', url: (text, link) => `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + link)}` },
+                { name: 'Telegram', icon: 'fab fa-telegram', color: '#0088cc', url: (text, link) => `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}` },
+                { name: 'Instagram', icon: 'fab fa-instagram', color: '#E4405F', url: null, isNative: true },
+                { name: 'Messenger', icon: 'fab fa-facebook-messenger', color: '#00B2FF', url: (text, link) => `https://m.me/?text=${encodeURIComponent(text + ' ' + link)}` },
+                { name: 'Email', icon: 'fas fa-envelope', color: '#D44638', url: (text, link) => `mailto:?subject=${encodeURIComponent('Check this out')}&body=${encodeURIComponent(text + '\n\n' + link)}` },
+                { name: 'Copy Link', icon: 'fas fa-copy', color: '#1f3b6a', url: null, isCopy: true },
+                { name: 'More', icon: 'fas fa-ellipsis-h', color: '#6a7f9e', url: null, isNative: true }
+            ];
+
+            const grid = document.getElementById('productGrid');
+            const overlay = document.getElementById('infoOverlay');
+            const closeBtn = document.getElementById('closeOverlayBtn');
+            const infoIcon = document.getElementById('infoIcon');
+            const infoName = document.getElementById('infoName');
+            const infoDesc = document.getElementById('infoDesc');
+            const infoMeta = document.getElementById('infoMeta');
+            const feesList = document.getElementById('feesList');
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const shareModal = document.getElementById('shareModal');
+            const shareOverlay = document.getElementById('shareOverlay');
+            const shareAppsContainer = document.getElementById('shareApps');
+            const shareMessage = document.getElementById('shareMessage');
+            const closeShareModal = document.getElementById('closeShareModal');
+            let currentProduct = null;
+            let toastTimer = null;
+
+            function showToast(message, isSuccess = true) {
+                toastMessage.textContent = message;
+                toast.style.display = 'block';
+                toast.style.background = isSuccess ? '#0f1a2e' : '#7f1d1d';
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 3000);
+            }
+
+            function getFullShareText(prod) {
+                return customerMessages[prod.name] || `Check out ${prod.name} - Apply now!`;
+            }
+
+            function getFullShareTextWithLink(prod) {
+                const msg = getFullShareText(prod);
+                const link = prod.shareLink || window.location.href;
+                return `${msg}\n\n${link}`;
+            }
+
+            function openShareModal(prod) {
+                currentProduct = prod;
+                const text = getFullShareText(prod);
+                const link = prod.shareLink || window.location.href;
+                const fullText = getFullShareTextWithLink(prod);
+                
+                shareMessage.innerHTML = `<strong>${text}</strong><br><span style="color: #0f7ae8; font-size: 11px;">${link}</span>`;
+                
+                shareAppsContainer.innerHTML = shareApps.map(app => {
+                    let onClick = '';
+                    if (app.isNative) {
+                        onClick = `onclick="triggerNativeShare()"`;
+                    } else if (app.isCopy) {
+                        onClick = `onclick="copyShareText()"`;
+                    } else if (app.url) {
+                        const url = app.url(text, link);
+                        onClick = `onclick="window.open('${url}', '_blank')"`;
+                    }
+                    return `<button class="app-btn" ${onClick} style="color: ${app.color};">
+                        <i class="${app.icon}"></i>
+                        <span>${app.name}</span>
+                    </button>`;
+                }).join('');
+                
+                shareModal.classList.add('active');
+                shareOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeShareModalFn() {
+                shareModal.classList.remove('active');
+                shareOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            window.triggerNativeShare = function() {
+                if (currentProduct && navigator.share) {
+                    const text = getFullShareText(currentProduct);
+                    const link = currentProduct.shareLink || window.location.href;
+                    navigator.share({
+                        title: currentProduct.name,
+                        text: text,
+                        url: link
+                    }).then(() => {
+                        showToast('Shared successfully! ✅');
+                        closeShareModalFn();
+                    }).catch((err) => {
+                        if (err.name !== 'AbortError') {
+                            showToast('Share cancelled or failed', false);
+                        }
+                        closeShareModalFn();
+                    });
+                } else {
+                    showToast('Native share not supported. Try Copy Link.', false);
+                    closeShareModalFn();
+                }
+            };
+
+            window.copyShareText = function() {
+                if (currentProduct) {
+                    const fullText = getFullShareTextWithLink(currentProduct);
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(fullText).then(() => {
+                            showToast('📋 Copied to clipboard!');
+                            closeShareModalFn();
+                        }).catch(() => {
+                            fallbackCopy(fullText);
+                            closeShareModalFn();
+                        });
+                    } else {
+                        fallbackCopy(fullText);
+                        closeShareModalFn();
+                    }
+                }
+            };
+
+            function fallbackCopy(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                textarea.style.left = '-9999px';
+                textarea.style.top = '-9999px';
+                document.body.appendChild(textarea);
+                try {
+                    textarea.select();
+                    document.execCommand('copy');
+                    showToast('📋 Copied to clipboard!');
+                } catch (err) {
+                    showToast('⚠️ Could not copy. Please copy manually.', false);
+                }
+                document.body.removeChild(textarea);
+            }
+
+            function copyToClipboard(prod) {
+                const fullText = getFullShareTextWithLink(prod);
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(fullText)
+                        .then(() => {
+                            showToast('📋 Copied to clipboard! Share it with your customer.');
+                        })
+                        .catch(() => {
+                            fallbackCopy(fullText);
+                        });
+                } else {
+                    fallbackCopy(fullText);
+                }
+            }
+
+            function shareProduct(prod) {
+                if (navigator.share) {
+                    const text = getFullShareText(prod);
+                    const link = prod.shareLink || window.location.href;
+                    navigator.share({
+                        title: prod.name,
+                        text: text,
+                        url: link
+                    }).then(() => {
+                        showToast('Shared successfully! ✅');
+                    }).catch((err) => {
+                        if (err.name !== 'AbortError') {
+                            openShareModal(prod);
+                        }
+                    });
+                } else {
+                    openShareModal(prod);
+                }
+            }
+
+            // Build product cards
+            products.forEach((p) => {
+                const card = document.createElement('div');
+                card.className = 'form-link-card';
+
+                const statusClass = p.status === 'active' ? 'green' : 'red';
+                const statusText = p.status === 'active' ? 'Active' : 'Hold';
+
+                card.innerHTML = `
+                    <div class="link-info">
+                        <div class="link-label">
+                            <img class="link-icon-png" src="${p.icon}" alt="${p.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22%3E%3Crect width=%2230%22 height=%2230%22 fill=%22%23e2e8f0%22 rx=%228%22/%3E%3Ctext x=%225%22 y=%2220%22 font-size=%2214%22 fill=%22%236b7b8d%22%3E📄%3C/text%3E%3C/svg%3E'">
+                            ${p.name}
+                        </div>
+                        <div class="link-description">
+                            <span>${p.desc.substring(0, 50)}${p.desc.length > 50 ? '…' : ''}</span>
+                            <span class="approved-badge"><i class="fas fa-check-circle"></i> 90% Approved</span>
+                            <span class="payout-badge">
+                                <i class="fas fa-rupee-sign"></i> up to ${p.payout}
+                                <button class="info-btn" data-product='${JSON.stringify(p).replace(/'/g, "&#39;")}' aria-label="More info"><i class="fas fa-info"></i></button>
+                            </span>
+                            <span class="live-tag ${statusClass}"><i class="fas fa-circle"></i> ${statusText}</span>
+                        </div>
+                    </div>
+                    <div class="action-group">
+                        <button class="copy-btn" data-product='${JSON.stringify(p).replace(/'/g, "&#39;")}' aria-label="Copy to clipboard">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <button class="share-btn" data-product='${JSON.stringify(p).replace(/'/g, "&#39;")}'>
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+
+                const shareBtn = card.querySelector('.share-btn');
+                shareBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const prod = JSON.parse(this.dataset.product);
+                    shareProduct(prod);
+                });
+
+                const copyBtn = card.querySelector('.copy-btn');
+                copyBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const prod = JSON.parse(this.dataset.product);
+                    copyToClipboard(prod);
+                });
+
+                const infoBtn = card.querySelector('.info-btn');
+                infoBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const prod = JSON.parse(this.dataset.product);
+                    openInfo(prod);
+                });
+            });
+
+            closeShareModal.addEventListener('click', closeShareModalFn);
+            shareOverlay.addEventListener('click', closeShareModalFn);
+
+            function openInfo(prod) {
+                infoIcon.src = prod.icon;
+                infoName.textContent = prod.name;
+                infoDesc.innerHTML = `<i class="fas fa-lightbulb"></i> ${prod.desc}`;
+                
+                if (prod.fees && prod.fees.length > 0) {
+                    feesList.innerHTML = prod.fees.map(fee => 
+                        `<li>${fee}</li>`
+                    ).join('');
+                } else {
+                    feesList.innerHTML = '<li>No additional fees applicable</li>';
+                }
+                
+                infoMeta.innerHTML = `
+                    <span><i class="fas fa-rupee-sign"></i> Payout: up to ${prod.payout}</span>
+                    <span><i class="fas fa-check-circle"></i> Approval: 90%</span>
+                    <span><i class="fas fa-circle" style="color:${prod.status === 'active' ? '#22c55e' : '#ef4444'}"></i> Status: ${prod.status === 'active' ? 'Active' : 'Hold'}</span>
+                `;
+                overlay.classList.add('active');
+            }
+
+            function closeOverlay() {
+                overlay.classList.remove('active');
+            }
+            closeBtn.addEventListener('click', closeOverlay);
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) closeOverlay();
+            });
+        })();
+    </script>
+</body>
+</html>

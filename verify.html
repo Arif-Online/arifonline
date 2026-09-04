@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARIF ONLINE SERVICES | ID Card Verification</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: #f8faff;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* ---------- HEADER ---------- */
+        .site-header {
+            background: #0b1a33;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e67e22;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-left: 20px;
+        }
+
+        .logo-area img {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text .brand-name {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+        }
+        .logo-text .brand-name span { color: #e67e22; }
+        .logo-text .tagline {
+            font-size: 12px;
+            color: #b0c4de;
+            margin-top: -2px;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .verified-badge-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            background: linear-gradient(145deg, #f9d976, #f39c12);
+            color: #0b1a33;
+            font-weight: 700;
+            font-size: 8px;
+            padding: 1px 6px 1px 4px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            border: 1px solid #f1c40f;
+            line-height: 1.4;
+        }
+        .verified-badge-sm i {
+            font-size: 8px;
+            color: #0b1a33;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: -8px;
+        }
+
+        .menu-btn {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 26px;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 10px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding-right: 16px;
+        }
+        .menu-btn i {
+            font-size: 26px;
+            color: #e67e22;
+        }
+        .menu-btn:hover i {
+            color: #f39c12;
+        }
+
+        .dropdown-overlay {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            background: #0f233f;
+            min-width: 220px;
+            border-radius: 16px;
+            padding: 12px 0;
+            border: 1px solid #1e3350;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+            z-index: 300;
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.96);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: top right;
+        }
+        .dropdown-overlay.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .dropdown-overlay a {
+            color: #e2e8f0;
+            padding: 10px 22px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.15s;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+        }
+        .dropdown-overlay a i {
+            color: #e67e22;
+            width: 20px;
+            font-size: 14px;
+        }
+        .dropdown-overlay a:hover {
+            background: #1a3052;
+            border-left-color: #e67e22;
+            color: #ffffff;
+        }
+
+        .dropdown-overlay .contact-support-btn {
+            display: block;
+            margin: 12px 16px 4px 16px;
+            padding: 14px 20px;
+            background: linear-gradient(145deg, #e67e22, #d35400);
+            color: white;
+            text-align: center;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 16px rgba(230, 126, 34, 0.3);
+            letter-spacing: 0.5px;
+        }
+        .dropdown-overlay .contact-support-btn i {
+            color: white;
+            margin-right: 10px;
+            width: auto;
+            font-size: 16px;
+        }
+        .dropdown-overlay .contact-support-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 28px rgba(230, 126, 34, 0.5);
+            background: linear-gradient(145deg, #f39c12, #e67e22);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #1e3350;
+            margin: 8px 16px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ---------- HERO / SEARCH SECTION ---------- */
+        .hero {
+            background: linear-gradient(135deg, #0b1a33 0%, #1a3052 50%, #2a4060 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin: 0 0 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .hero h1 span {
+            color: #e67e22;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Search Container Styles */
+        .search-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            width: 350px;
+            max-width: 100%;
+            outline: none;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            transform: translateY(-2px);
+            border-color: #e67e22;
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .search-input::placeholder {
+            color: #666;
+        }
+
+        .search-btn {
+            padding: 15px 30px;
+            background: linear-gradient(145deg, #e67e22, #d35400);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(230, 126, 34, 0.4);
+            background: linear-gradient(145deg, #f39c12, #e67e22);
+        }
+
+        .search-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .search-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Clear Button */
+        .clear-btn {
+            padding: 15px;
+            background: linear-gradient(145deg, #6c757d, #495057);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(145deg, #495057, #6c757d);
+        }
+
+        .clear-btn i {
+            font-size: 18px;
+        }
+
+        /* Main Content - ID Card Display */
+        .intro {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 40px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border: 1px solid #eef2f6;
+        }
+
+        .intro h2 {
+            color: #0b1a33;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        .intro h2 span {
+            color: #e67e22;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            border: 4px solid rgba(230, 126, 34, 0.1);
+            border-top: 4px solid #e67e22;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin: 30px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Image */
+        .responsive-image {
+            width: 400px;
+            height: auto;
+            max-width: 95%;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .responsive-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Error Message */
+        .agent-not-found {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px dashed #dee2e6;
+            border-radius: 15px;
+            margin: 10px 0;
+            padding: 30px;
+        }
+
+        .agent-not-found .error-content {
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .agent-not-found .error-content i {
+            font-size: 3.5rem;
+            color: #dc3545;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .agent-not-found .error-content h3 {
+            color: #dc3545;
+            margin: 0 0 8px 0;
+            font-size: 1.3rem;
+        }
+
+        .agent-not-found .error-content p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #495057;
+        }
+
+        .agent-not-found .error-content .error-subtitle {
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .notification-success {
+            background: linear-gradient(145deg, #27ae60, #2ecc71);
+            color: white;
+        }
+
+        .notification-error {
+            background: linear-gradient(145deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .notification-info {
+            background: linear-gradient(145deg, #2980b9, #3498db);
+            color: white;
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification-content i {
+            font-size: 1.2rem;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .site-footer {
+            background: #0b1a33;
+            color: #cbd5e1;
+            padding: 32px 40px 20px;
+            border-top: 2px solid #e67e22;
+            margin-top: 20px;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #1e3350;
+        }
+
+        .footer-grid .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-brand-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 6px;
+        }
+        .footer-brand-top img {
+            height: 44px;
+            width: auto;
+            display: block;
+        }
+        .footer-brand-top h3 {
+            color: white;
+            font-size: 20px;
+            margin: 0;
+        }
+        .footer-brand-top h3 span {
+            color: #e67e22;
+        }
+
+        .footer-grid .brand-info p {
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 320px;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+        .footer-grid .brand-info .social-links {
+            margin-top: 14px;
+            display: flex;
+            gap: 14px;
+        }
+        .footer-grid .brand-info .social-links a {
+            color: #b0c4de;
+            background: #1e3350;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .footer-grid .brand-info .social-links a:hover {
+            background: #e67e22;
+            color: white;
+        }
+
+        .footer-grid .col h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+        .footer-grid .col ul { list-style: none; padding: 0; }
+        .footer-grid .col ul li { margin-bottom: 10px; }
+        .footer-grid .col ul li a {
+            color: #b0c4de;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-grid .col ul li a i { color: #e67e22; width: 18px; font-size: 13px; }
+        .footer-grid .col ul li a:hover {
+            color: white;
+            padding-left: 4px;
+        }
+
+        .sitemap-btn-wrap {
+            margin-top: 18px;
+        }
+        .sitemap-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #1e3350;
+            color: #b0c4de;
+            padding: 4px 14px 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid #2a4060;
+            transition: 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .sitemap-btn i {
+            font-size: 11px;
+            color: #e67e22;
+        }
+        .sitemap-btn:hover {
+            background: #e67e22;
+            color: white;
+            border-color: #e67e22;
+        }
+        .sitemap-btn:hover i {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: #8899b0;
+        }
+
+        .footer-date-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #1e3350;
+            padding: 3px 12px 3px 10px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 11px;
+            color: #e8edf5;
+            border: 1px solid #2a4060;
+            white-space: nowrap;
+            margin-top: 6px;
+        }
+        .footer-date-status i {
+            color: #6c8fb0;
+            font-size: 10px;
+        }
+        .footer-date-status .date-text {
+            color: #f0f4fa;
+            font-weight: 500;
+            margin-left: 1px;
+        }
+        .footer-date-status .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 700;
+            font-size: 8px;
+            padding: 1px 6px 1px 5px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .footer-date-status .status-indicator.open {
+            background: #27ae60;
+            color: #fff;
+        }
+        .footer-date-status .status-indicator.closed {
+            background: #e74c3c;
+            color: #fff;
+        }
+        .footer-date-status .status-indicator i {
+            font-size: 7px;
+            color: inherit;
+            margin-right: 0;
+        }
+
+        .footer-bottom .legal a {
+            color: #8899b0;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: 0.2s;
+        }
+        .footer-bottom .legal a:hover { color: #e67e22; }
+        .footer-bottom .flag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #1e3350;
+            padding: 4px 14px 4px 10px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 860px) {
+            .site-header { padding: 12px 20px; flex-wrap: wrap; gap: 10px; }
+            .logo-area { flex: 1; margin-left: 0; }
+            .header-nav { margin-left: 0; }
+            .dropdown-overlay { right: 0; left: auto; min-width: 200px; }
+            .intro { padding: 30px 16px; margin: 20px 16px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+            .hero h1 { font-size: 2rem; }
+            .search-input { width: 280px; }
+        }
+
+        @media (max-width: 550px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .footer-bottom .legal a { margin-left: 0; margin-right: 16px; }
+            .logo-text .brand-name { font-size: 20px; }
+            .logo-area img { height: 40px; }
+            .logo-area { margin-left: 0; }
+            .menu-btn { font-size: 22px; padding: 2px 6px; }
+            .menu-btn i { font-size: 22px; }
+            .dropdown-overlay { min-width: 180px; top: 42px; }
+            .dropdown-overlay a { font-size: 13px; padding: 8px 16px; }
+            .dropdown-overlay .contact-support-btn { font-size: 14px; padding: 12px 16px; margin: 10px 12px 2px 12px; }
+            .hero { padding: 40px 15px; }
+            .hero h1 { font-size: 1.6rem; }
+            .hero p { font-size: 0.95rem; }
+            .search-input { width: 200px; padding: 12px 18px; font-size: 14px; }
+            .search-btn { padding: 12px 20px; font-size: 14px; }
+            .clear-btn { width: 44px; height: 44px; padding: 10px; }
+            .clear-btn i { font-size: 15px; }
+            .responsive-image { max-width: 100%; }
+            .intro h2 { font-size: 1.5rem; }
+            .intro { padding: 20px 16px; }
+            .footer-brand-top img { height: 34px; }
+            .footer-brand-top h3 { font-size: 17px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+        <div class="logo-area">
+            <img src="https://i.ibb.co/PzjcRSmL/file-0000000067a881f5a9d27fb4ea86daa5.png" alt="Arif Online Services Logo" />
+            <div class="logo-text">
+                <span class="brand-name">ARIF ONLINE SERVICES<span>.in</span></span>
+                <div class="tagline">
+                    <span>Safe & secure all online solutions</span>
+                    <span class="verified-badge-sm">
+                        <i class="fas fa-check-circle"></i> Verified
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-nav">
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="dropdown-overlay" id="dropdownOverlay">
+                <a href="#" data-scroll="top"><i class="fas fa-home"></i> Home</a>
+                <a href="#" data-scroll="businessSection"><i class="fas fa-cogs"></i> Our Services</a>
+                <a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="tools.html"><i class="fas fa-tools"></i> Tools</a>
+                <a href="#"><i class="fas fa-users"></i> Our Team</a>
+                <a href="#"><i class="fas fa-certificate"></i> Certificate</a>
+                <a href="pay.html"><i class="fas fa-credit-card"></i> Pay Now</a>
+                <a href="#" data-scroll="gallerySection"><i class="fas fa-images"></i> Gallery</a>
+                <a href="#" data-scroll="gamingSection"><i class="fas fa-gamepad"></i> Gaming</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" data-scroll="footerSection" class="contact-support-btn">
+                    <i class="fas fa-headset"></i> Contact Support
+                </a>
+            </div>
+        </div>
+
+        <div class="header-right"></div>
+    </header>
+
+    <!-- ===== HERO / SEARCH SECTION ===== -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>ID Card <span>Verification</span></h1>
+            <p>Verify ND Partner details seamlessly and securely.</p>
+            <div class="search-container">
+                <input type="text" id="agentSearch" placeholder="Enter Partner ID" class="search-input">
+                <button id="searchBtn" class="search-btn"><i class="fas fa-search"></i> Get</button>
+                <button id="clearBtn" class="clear-btn" title="Clear Search"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT - ID CARD DISPLAY ===== -->
+    <main>
+        <section class="intro" id="businessSection">
+            <h2>Partner <span>ID Card</span></h2>
+            <div id="loading" class="loading-spinner"></div>
+            <img id="agentImage" alt="Agent ID Card" class="responsive-image" src="https://i.ibb.co/Qvz7fnnP/bdl-arifgoldar-google-pay.png">
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer" id="footerSection">
+        <div class="footer-grid">
+            <div class="brand-info">
+                <div class="footer-brand-top">
+                    <img src="https://i.ibb.co/PzjcRSmL/file-0000000067a881f5a9d27fb4ea86daa5.png" alt="Arif Online Services Logo" />
+                    <h3>Arifonlineservices<span>.in</span></h3>
+                </div>
+                <p>Empowering Indian businesses with cutting-edge online services — from web development to cloud &amp; security.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="sitemap-btn-wrap">
+                    <a href="#" class="sitemap-btn"><i class="fas fa-sitemap"></i> Sitemap</a>
+                </div>
+            </div>
+            <div class="col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:arifgoldar602@gmail.com"><i class="fas fa-envelope"></i> arifgoldar602@gmail.com</a></li>
+                    <li><a href="tel:+919748437602"><i class="fas fa-phone-alt"></i> +91 9748437602</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Kolkata, north 24 Parganas, pin 700135</a></li>
+                    <li><a href="#"><i class="fas fa-clock"></i> Mon–Sat 9AM – 8PM</a></li>
+                    <li style="margin-top: 4px;">
+                        <span class="footer-date-status" id="footerDateStatus">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span class="date-text" id="footerDateDisplay">--</span>
+                            <span id="footerStatusIndicator"></span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span><i class="far fa-copyright"></i> 2026 Arif Online Services. All rights reserved.</span>
+            <div class="legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookies</a>
+            </div>
+            <span class="flag"><i class="fas fa-flag" style="color:#e67e22;"></i> India</span>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPT ===== -->
+    <script>
+        // ---------- MENU ----------
+        function toggleMenu() {
+            document.getElementById('dropdownOverlay').classList.toggle('open');
+        }
+
+        document.addEventListener('click', function(e) {
+            const overlay = document.getElementById('dropdownOverlay');
+            const btn = document.querySelector('.menu-btn');
+            if (!overlay.contains(e.target) && !btn.contains(e.target)) {
+                overlay.classList.remove('open');
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('dropdownOverlay').classList.remove('open');
+            }
+        });
+
+        // ---------- SCROLL TO SECTION ----------
+        document.querySelectorAll('[data-scroll]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('data-scroll');
+                
+                if (targetId === 'top') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else if (targetId === 'footerSection') {
+                    const footer = document.getElementById('footerSection');
+                    if (footer) {
+                        footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                } else {
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+                document.getElementById('dropdownOverlay').classList.remove('open');
+            });
+        });
+
+        // ---------- LIVE INDIAN DATE + STATUS ----------
+        function updateIndianDateAndStatus() {
+            const now = new Date();
+            const istOffset = 5.5 * 60 * 60 * 1000;
+            const istDate = new Date(now.getTime() + (now.getTimezoneOffset() * 60 * 1000) + istOffset);
+            const options = { timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', year: 'numeric' };
+            const formatter = new Intl.DateTimeFormat('en-IN', options);
+            let formatted = formatter.format(istDate);
+            formatted = formatted.replace(/,/g, '');
+            document.getElementById('footerDateDisplay').textContent = formatted;
+
+            const day = istDate.getDay();
+            const isClosed = (day === 5 || day === 0);
+            const statusEl = document.getElementById('footerStatusIndicator');
+            if (isClosed) {
+                statusEl.className = 'status-indicator closed';
+                statusEl.innerHTML = '<i class="fas fa-circle"></i> CLOSED';
+            } else {
+                statusEl.className = 'status-indicator open';
+                statusEl.innerHTML = '<i class="fas fa-circle"></i> OPEN';
+            }
+        }
+        updateIndianDateAndStatus();
+        setInterval(updateIndianDateAndStatus, 60000);
+
+        // ========== ID CARD VERIFICATION SCRIPT ==========
+        (function() {
+            // DOM Elements
+            const searchInput = document.getElementById('agentSearch');
+            const searchBtn = document.getElementById('searchBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const agentImage = document.getElementById('agentImage');
+            const loadingSpinner = document.getElementById('loading');
+
+            // Helper: Get query param
+            function getQueryParam(param) {
+                try {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    return urlParams.get(param);
+                } catch (error) {
+                    console.error('Error parsing URL parameters:', error);
+                    return null;
+                }
+            }
+
+            // Helper: Update URL param
+            function updateURLParameter(param, value) {
+                try {
+                    const url = new URL(window.location);
+                    if (value) {
+                        url.searchParams.set(param, value);
+                    } else {
+                        url.searchParams.delete(param);
+                    }
+                    window.history.pushState({}, '', url);
+                } catch (error) {
+                    console.error('Error updating URL:', error);
+                }
+            }
+
+            // Helper: Show notification
+            function showNotification(message, type = 'info') {
+                const existingNotification = document.querySelector('.notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <i class="fas fa-${type === 'error' ? 'exclamation-circle' : type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                        <span>${message}</span>
+                    </div>
+                `;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(400px)';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+
+            // Load image with fallback
+            function loadImageWithFallback(agentCode) {
+                const extensions = ['jpg', 'jpeg', 'png', 'webp'];
+                let currentIndex = 0;
+
+                function tryNextExtension() {
+                    if (currentIndex >= extensions.length) {
+                        // All extensions failed
+                        loadingSpinner.style.display = "none";
+                        searchBtn.innerHTML = '<i class="fas fa-search"></i> Get';
+                        searchBtn.disabled = false;
+
+                        // Show error message
+                        agentImage.style.display = 'none';
+                        const existingError = document.querySelector('.agent-not-found');
+                        if (existingError) existingError.remove();
+
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = 'agent-not-found';
+                        errorMessage.innerHTML = `
+                            <div class="error-content">
+                                <i class="fas fa-user-slash"></i>
+                                <h3>Partner Not Found</h3>
+                                <p>No partner exists with ID: <strong>${agentCode}</strong></p>
+                                <p class="error-subtitle">Please verify the ID and try again.</p>
+                            </div>
+                        `;
+                        agentImage.parentNode.insertBefore(errorMessage, agentImage.nextSibling);
+                        showNotification('Partner not found. Please check the ID.', 'error');
+                        return;
+                    }
+
+                    const extension = extensions[currentIndex];
+                    agentImage.src = `../idcards/${agentCode}.${extension}`;
+                    currentIndex++;
+                }
+
+                // Set up error handler
+                agentImage.onerror = function() {
+                    tryNextExtension();
+                };
+
+                // Set up success handler
+                agentImage.onload = function() {
+                    loadingSpinner.style.display = "none";
+                    searchBtn.innerHTML = '<i class="fas fa-search"></i> Get';
+                    searchBtn.disabled = false;
+
+                    // Remove any existing error message
+                    const existingError = document.querySelector('.agent-not-found');
+                    if (existingError) {
+                        existingError.remove();
+                    }
+
+                    agentImage.style.display = 'block';
+                    showNotification('Partner found successfully!', 'success');
+                };
+
+                // Start with first extension
+                tryNextExtension();
+            }
+
+            // Search function
+            function searchAgent() {
+                const agentCode = searchInput.value.trim();
+
+                if (!agentCode) {
+                    showNotification('Please enter a Partner ID', 'error');
+                    searchInput.classList.add('error-shake');
+                    setTimeout(() => searchInput.classList.remove('error-shake'), 500);
+                    return;
+                }
+
+                // Update URL
+                updateURLParameter('AuthCode', agentCode);
+
+                // Reset UI
+                const existingError = document.querySelector('.agent-not-found');
+                if (existingError) existingError.remove();
+                agentImage.style.display = 'none';
+
+                // Show loading
+                loadingSpinner.style.display = "block";
+                searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+                searchBtn.disabled = true;
+
+                // Load image
+                loadImageWithFallback(agentCode);
+            }
+
+            // Clear search
+            function clearSearch() {
+                searchInput.value = '';
+                updateURLParameter('AuthCode', null);
+
+                const existingError = document.querySelector('.agent-not-found');
+                if (existingError) existingError.remove();
+
+                agentImage.style.display = 'block';
+                agentImage.src = 'https://i.ibb.co/PzjcRSmL/file-0000000067a881f5a9d27fb4ea86daa5.png';
+                agentImage.onerror = null;
+
+                loadingSpinner.style.display = "none";
+                searchBtn.innerHTML = '<i class="fas fa-search"></i> Get';
+                searchBtn.disabled = false;
+
+                showNotification('Search cleared', 'info');
+                searchInput.focus();
+            }
+
+            // Event Listeners
+            searchBtn.addEventListener('click', searchAgent);
+
+            clearBtn.addEventListener('click', clearSearch);
+
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchAgent();
+                }
+            });
+
+            // Check URL param on load
+            const authCode = getQueryParam("AuthCode");
+            if (authCode) {
+                searchInput.value = authCode;
+                // Auto search after small delay
+                setTimeout(searchAgent, 500);
+            }
+
+            // Add shake animation dynamically
+            const styleShake = document.createElement('style');
+            styleShake.textContent = `
+                .error-shake {
+                    animation: shake 0.5s ease-in-out;
+                }
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-10px); }
+                    75% { transform: translateX(10px); }
+                }
+            `;
+            document.head.appendChild(styleShake);
+        })();
+    </script>
+
+</body>
+</html>
